@@ -70,3 +70,16 @@ test.vue
 vendor-manifest.json
 vendor.dll*.js
 
+*.pyc
+
+*.py
+
+*.txt
+
+*.pdf
+
+*.m4a
+
+*.zip
+
+makefile
