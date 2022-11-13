@@ -1,0 +1,8 @@
+新增模块的步骤:
+1.在index.js中加入import
+2.在routes.js中添加路由规则
+3.写好模块 在NavBar中写上对应的入口
+
+
+fucking 运动会
+服装: 可以选择校服, 也可以是
