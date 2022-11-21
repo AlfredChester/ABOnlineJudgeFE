@@ -191,11 +191,13 @@
               requirePdf('《天净沙•秋思》课件', 12),
               requirePdf('《咏雪》（全）', 16),
               requirePdf('《论语》十二章（全）', 21),
+              requirePdf('《诫子书》翻译', 10),
               requirePdf('期中综合练习卷二', 5),
               requirePdf('期中综合练习卷三', 5),
               requirePdf('期中综合二及综合三现代文阅读参考答案', 1),
               requirePdf('作文《我懂得了爱》写作指导', 5),
-              requirePdf('7A 语文复习本--by 吴宇桐', 8)
+              requirePdf('7A 语文复习本--by 吴宇桐', 8),
+              requirePdf('周末练习七', 2)
             ]
           },
           truth: {
