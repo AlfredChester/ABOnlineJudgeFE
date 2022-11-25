@@ -9,6 +9,7 @@ import DownloadPage from './materials/DownloadPage.vue'
 import NotFound from './general/404.vue'
 import Home from './general/Home.vue'
 import Announcements from './general/Announcements.vue'
+import CalendarDemo from './demos/calender.vue'
 
 // Grouping Components in the Same Chunk
 const SubmissionList = () => import(/* webpackChunkName: "submission" */ '@oj/views/submission/SubmissionList.vue')
@@ -24,7 +25,7 @@ const Problem = () => import(/* webpackChunkName: "Problem" */ '@oj/views/proble
 
 export {
   Home, NotFound, Announcements,
-  Listening, DownloadPage,
+  Listening, DownloadPage, CalendarDemo,
   Logout, UserHome, About, FAQ, ThanksPage,
   ProblemList, Problem,
   ACMRank, OIRank,
