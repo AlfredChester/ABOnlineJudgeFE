@@ -26,12 +26,12 @@
             :src="makeliveBilibiliUrl" :title="makeliveTitle">
           </iframe>
         </div>
-        <div class="codePreview">
+        <!-- <div class="codePreview">
           <h1>Code Preview Test</h1>
           <previewFile 
             fileUrl="/static/codes/cpp/high-precision.h" :vfrom="true" :vprint="true">
           </previewFile>
-        </div>
+        </div> -->
       </div>
     </panel>
   </div>
