@@ -95,7 +95,7 @@ class Main:
         logger.info("更改过的文件: " + str(commitResult))
         for name in commitResult:
             name = name.split()[0]
-            if(isinstance(name,str)):
+            if(isinstance(name, str)) and (not name.endswith('.ttf')):
                 name = Main.force_decode(name)
                 logger.info("Decoded: " + name)
             currentCommit = input(f"请输入对 {name} 的commit: ").replace('"','\\"')
