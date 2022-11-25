@@ -65,12 +65,12 @@
         <Menu-item name="/ThanksPage">
           {{$t('m.ThanksPage')}}
         </Menu-item>
-        <Menu-item name="/listening">
+        <!-- <Menu-item name="/listening">
           {{$t('m.ListeningPage')}}
         </Menu-item>
         <Menu-item name="/downloadCollection">
           {{$t('m.DownloadPage')}}
-        </Menu-item>
+        </Menu-item> -->
       </Submenu>
       <!--Not logged in BEGIN-->
       <template v-if="!isAuthenticated">
