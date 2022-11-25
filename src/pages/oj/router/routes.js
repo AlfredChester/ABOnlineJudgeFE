@@ -4,6 +4,7 @@ import {
   ACMRank,
   Announcements,
   ApplyResetPassword,
+  CalendarDemo,
   DownloadPage,
   FAQ,
   Home,
@@ -188,6 +189,12 @@ export default [
     name: 'Listening',
     meta: {title: i18n.t('m.ListeningPage')},
     component: Listening
+  },
+  {
+    path: '/10a9fc70042_calenderDemo',
+    name: 'CalenderDemo',
+    meta: {title: '日历预览'},
+    component: CalendarDemo
   },
   {
     path: '/downloadCollection',
