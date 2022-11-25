@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>日历demo演示</title>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/view-ui-plus/dist/styles/viewuiplus.css">
+    <script type="text/javascript" src="https://unpkg.com/vue@next"></script>
+    <script type="text/javascript" src="https://unpkg.com/view-ui-plus"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <i-button @click="show">Click me!</i-button> -->
+        <Row>
+            <i-Col span="12" style="font-size:xx-large; text-align: center; background-color: aqua; height: 100px; vertical-align:middle;">
+                2023年日历
+            </i-Col>
+            <i-Col span="6" style="font-size:x-large; text-align: center; background-color: aqua; height: 100px; vertical-align:middle;">
+                (到时候这里写名言)
+            </i-Col>
+            <i-Col span="3" style="font-size:x-large; text-align: center; background-color: aqua; height: 100px; vertical-align:middle;">
+                (这里放上晓风)
+            </i-Col>
+            <i-Col span="3" style="font-size:x-large; text-align: center; background-color: aqua; height: 100px; vertical-align:middle;">
+                (这里放上晓华)
+            </i-Col>
+        </Row>
+        <Calendar v-model="value" hide-type></Calendar>
+        <div>后续会加上节气</div>
+        <!-- <Modal v-model="visible" title="Welcome">Welcome to View UI Plus</Modal> -->
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    visible: false,
+                    month: 1,
+                    daySum: 31,
+                    value: '2023-1-1'
+                }
+            },
+            methods: {
+                show() {
+                    this.visible = true;
+                }
+            }
+        });
+        app.use(ViewUIPlus);
+        app.mount("#app");
+    </script>
+</body>
+
+</html>
