@@ -142,7 +142,7 @@
               let t = params.row.difficulty
               let color = 'primary'
               if (t === 'Low') color = 'success'
-              else if (t === 'High') color = 'warning'
+              else if (t === 'High') color = 'error'
               return h('Tag', {
                 props: {
                   color: color
