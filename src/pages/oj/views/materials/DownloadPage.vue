@@ -193,6 +193,7 @@
               requirePdf('《论语》十二章（全）', 21),
               requirePdf('《诫子书》（全）', 17),
               requirePdf('《诫子书》家默卷及参考答案', 2),
+              requirePdf('《狼》翻译 第一部分_1', 12),
               requirePdf('期中综合练习卷二', 5),
               requirePdf('期中综合练习卷三', 5),
               requirePdf('期中综合二及综合三现代文阅读参考答案', 1),
