@@ -38,13 +38,13 @@
 </template>
 
 <script>
-  import previewFile from '@oj/components/PreviewFile.vue'
+  // import previewFile from '@oj/components/PreviewFile.vue'
 
   export default {
     name: 'ThanksPage',
-    components: {
-      previewFile
-    },
+    // components: {
+    //   previewFile
+    // },
     data() {
       return {
         groups: [
