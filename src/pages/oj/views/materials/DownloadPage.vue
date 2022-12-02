@@ -182,6 +182,10 @@
               {
                 title: '期中考试复习范围',
                 src: requireChinese('mid-term.jpg')
+              },
+              {
+                title: '单元练习2家默范围及要求',
+                src: requireChinese('单元练习2家默范围及要求.jpg')
               }
             ],
             pdfDatas: [
@@ -194,6 +198,7 @@
               requirePdf('《诫子书》（全）', 17),
               requirePdf('《诫子书》家默卷及参考答案', 2),
               requirePdf('《狼》课件（全）', 32),
+              requirePdf('《狼》家默卷及答案', 3),
               requirePdf('期中综合练习卷二', 5),
               requirePdf('期中综合练习卷三', 5),
               requirePdf('期中综合二及综合三现代文阅读参考答案', 1),
