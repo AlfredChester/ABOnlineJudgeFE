@@ -1,33 +1,56 @@
+const greyDay = [
+  '11-30'
+]
+
+const greyDuration = [
+  '2022-11-30~2022-12-6'
+]
+
+let time = new Date()
+
+let timeLis = time.toLocaleDateString().replace('/', '-').replace('/', '-')
+
 function greyAll() {
   $('html').css({
     '-webkit-filter': 'grayscale(100%)',
     '-moz-filter': 'grayscale(100%)',
     '-ms-filter': 'grayscale(100%)',
     '-o-filter': 'grayscale(100%)',
-    // ie滤镜
     filter: 'progid:DXImageTransform.Microsoft.BasicImage(grayscale=1)',
-    // ie6 等低版本浏览器不需要加滤镜
     _filter: 'none'
   })
 }
 
-function changeTimeFormat(src) {
-  let s = src.split('/')
-  return [s[1], s[2]]
+function Numberlize(src) {
+  return src[0] * 10000 + src[1] * 100 + src[2]
 }
 
-let time = new Date()
+function matchDuration(src) {
+  let fromAndTo = src.split('~')
+  let beg = Numberlize(fromAndTo[0].split('-'))
+  let end = Numberlize(fromAndTo[1].split('-'))
+  let now = Numberlize(timeLis.split('-'))
+  return beg <= now && now <= end
+}
 
-let timeLis = changeTimeFormat(time.toLocaleDateString())
+function matchDay(src) {
+  let now = Number(timeLis.split('-')[1]) * 100 + Number(timeLis.split('-')[2])
+  let match = Number(src.split('-')[0]) * 100 + Number(src.split('-')[1])
+  return now === match
+}
 
-const greyT = [
-  '11-30'
-]
+var d
 
-for (var match of greyT) {
-  // console.log(match.split('-'), timeLis)
-  if (match.split('-')[0] === timeLis[0] && match.split('-')[1] === timeLis[1]) {
+for (d of greyDuration) {
+  if (matchDuration(d)) {
+    console.log('Matched, may the deceased rest in peace')
     greyAll()
-    break
+  }
+}
+
+for (d of greyDay) {
+  if (matchDay(d)) {
+    console.log('Matched, may the deceased rest in peace')
+    greyAll()
   }
 }
