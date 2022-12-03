@@ -1,3 +1,5 @@
+// CopyRight © Rhodes Island Phr.Ltd. All Rights Reserverd
+
 'use strict'
 
 const greyDay = [
