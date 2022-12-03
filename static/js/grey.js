@@ -1,3 +1,5 @@
+'use strict'
+
 const greyDay = [
   '11-30'
 ]
