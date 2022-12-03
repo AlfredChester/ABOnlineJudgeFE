@@ -17,7 +17,7 @@
         </Input>
       </FormItem>
     </Form>
-    <div class="footer">
+    <div class="footer_login">
       <Button
         type="primary"
         @click="handleLogin"
@@ -112,7 +112,7 @@
 </script>
 
 <style scoped lang="less">
-  .footer {
+  .footer_login {
     overflow: auto;
     margin-top: 20px;
     margin-bottom: -15px;
