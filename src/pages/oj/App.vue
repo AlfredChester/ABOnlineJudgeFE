@@ -24,7 +24,7 @@
           <img src="../../assets/icon_small.png" height="100px"/>
         </span>
         <span class="slogan">
-          <div>ABOJ</div>
+          <div>ABOJ,</div>
           <div>OI梦的开始</div>
         </span>
         <span class="infoCard">
@@ -44,7 +44,11 @@
             </span>
             <br/>
             <span>
-              CopyRight &copy; 2022-present Dr.Alfred
+              Copyright &copy; 2022-present 
+              <a href="https://github.com/FredB-mine">
+                Dr.Alfred
+              </a>,
+              Rhodes Island
             </span>
             <br/>
             <span>
@@ -128,10 +132,12 @@
   a {
     text-decoration: none;
     background-color: transparent;
+    color: rgba(255, 255, 255, .75);
 
     &:active,
     &:hover {
       outline-width: 0;
+      color: white;
     }
   }
 
@@ -171,9 +177,11 @@
       .slogan {
         margin-top: auto;
         margin-bottom: auto;
+        margin-left: 10px;
         font-weight: bold;
         line-height: 1.5;
         font-size: 1.6em;
+        text-align: left;
       }
       .infoCard {
         flex: 1;
@@ -181,9 +189,6 @@
         min-width: 50vw;
         margin-top: auto;
         margin-bottom: auto;
-        a {
-          color: white;
-        }
       }
     }
   }
