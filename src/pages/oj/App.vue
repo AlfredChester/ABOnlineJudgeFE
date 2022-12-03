@@ -132,12 +132,10 @@
   a {
     text-decoration: none;
     background-color: transparent;
-    color: rgba(255, 255, 255, .75);
 
     &:active,
     &:hover {
       outline-width: 0;
-      color: white;
     }
   }
 
@@ -189,6 +187,13 @@
         min-width: 50vw;
         margin-top: auto;
         margin-bottom: auto;
+      }
+      a {
+        color: rgba(255, 255, 255, .75);
+        &:active,
+        &:hover {
+          color: white;
+        }
       }
     }
   }
