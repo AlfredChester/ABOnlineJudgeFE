@@ -8,6 +8,7 @@
       <BackTop></BackTop>
     </div>
     <div class="footer">
+      <!-- <img src="../../assets/icon_small.png" height="100px"/>
       <p>CopyRight &copy; 2022-present Dr.Alfred</p>
       <p>
         Powered by 
@@ -17,7 +18,48 @@
       </p>
       <p>
         Ver: {{version}}
-      </p>
+      </p> -->
+      <span class="wrapped">
+        <span class="logo">
+          <img src="../../assets/icon_small.png" height="100px"/>
+        </span>
+        <span class="slogan">
+          <div>ABOJ</div>
+          <div>OI梦的开始</div>
+        </span>
+        <span class="infoCard">
+          <p>
+            <span>            
+              <a href="/status">评测队列</a>
+              |
+              <a href="/about">评分细则</a>
+              |
+              <a href="/FAQ">常见问题</a>
+              |
+              <a href="/ThanksPage">特别鸣谢</a>
+            </span>
+            <br/>
+            <span>
+              Developed by the ABOJ Dev Team 
+            </span>
+            <br/>
+            <span>
+              CopyRight &copy; 2022-present Dr.Alfred
+            </span>
+            <br/>
+            <span>
+              Powered by 
+              <a href="https://github.com/QingdaoU/OnlineJudge">
+                OnlineJudge
+              </a>
+            </span>
+            <br/>
+            <span>
+              Build Version: {{version}}
+            </span>
+          </p>
+        </span>
+      </span>
     </div>
   </div>
 </template>
@@ -108,11 +150,42 @@
     }
   }
 
+  .content-app {
+    min-height: calc(100vh - 60px);
+  }
+
   .footer {
+    background-color: rgba(0, 0, 0, .75);
     margin-top: 20px;
-    margin-bottom: 10px;
     text-align: center;
     font-size: small;
+    display: flex;
+    .wrapped {
+      // vertical-align: middle;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      color: white;
+      .slogan {
+        margin-top: auto;
+        margin-bottom: auto;
+        font-weight: bold;
+        line-height: 1.5;
+        font-size: 1.6em;
+      }
+      .infoCard {
+        flex: 1;
+        text-align: right;
+        min-width: 50vw;
+        margin-top: auto;
+        margin-bottom: auto;
+        a {
+          color: white;
+        }
+      }
+    }
   }
 
   .fadeInUp-enter-active {
