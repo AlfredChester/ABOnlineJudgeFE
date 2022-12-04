@@ -2,6 +2,7 @@ try:
     from subprocess import Popen, PIPE
     from parse import compile
     from loguru import logger
+    from sys import exit
 
 except ImportError:
     from os import system
