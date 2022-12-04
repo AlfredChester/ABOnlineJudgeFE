@@ -1,6 +1,10 @@
 export const m = {
   loadedi18nType: 'zh-CN',
   preview: '预览',
+  // App.vue
+  Special_Thanks_AppVue: '特别鸣谢',
+  OI_Dream_start: 'OI梦的开始',
+  Judge_Queue: '评测队列',
   // 404.vue
   Go_Home: '返回主页',
   // Problem.vue
