@@ -232,6 +232,7 @@ export const m = {
   // OIContestRank.vue
   Total_Score: 'Total Score',
   // ProblemList.vue
+  hitokoto: 'Hitokoto',
   Good_Luck: 'Good Luck!',
   Problem_ID: 'Problem ID',
   OIer_Rank: 'Rank',
