@@ -8,17 +8,6 @@
       <BackTop></BackTop>
     </div>
     <div class="footer">
-      <!-- <img src="../../assets/icon_small.png" height="100px"/>
-      <p>CopyRight &copy; 2022-present Dr.Alfred</p>
-      <p>
-        Powered by 
-        <a href="https://github.com/QingdaoU/OnlineJudge">
-          OnlineJudge
-        </a>, Owner:Alfred
-      </p>
-      <p>
-        Ver: {{version}}
-      </p> -->
       <span class="wrapped">
         <span class="logo">
           <img src="../../assets/icon_small.png" height="100px"/>
@@ -40,7 +29,7 @@
             </span>
             <br/>
             <span>
-              Developed by the ABOJ Dev Team 
+              Developed by the ABOJ Dev Team.
             </span>
             <br/>
             <span>
@@ -48,13 +37,13 @@
               <a href="https://github.com/FredB-mine" target="_blank">
                 Dr.Alfred
               </a>,
-              Rhodes Island
+              Rhodes Island.
             </span>
             <br/>
             <span>
               Powered by 
               <a href="https://github.com/QingdaoU/OnlineJudge" target="_blank">
-                OnlineJudge
+                OnlineJudge.
               </a>
             </span>
             <br/>
@@ -165,7 +154,7 @@
     font-size: small;
     display: flex;
     .wrapped {
-      // vertical-align: middle;
+      vertical-align: middle;
       margin-left: auto;
       margin-right: auto;
       margin-top: 20px;
