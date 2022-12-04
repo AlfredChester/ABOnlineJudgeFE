@@ -60,7 +60,7 @@
         <div class="saying_content">
           {{saying}}
         </div>
-        <div class="saying_content" style="text-align:right; margin-top:-5px;">
+        <div class="saying_content saying_src" v-if="saying_src">
           ——{{saying_src}}
         </div>
       </Card>
@@ -205,6 +205,9 @@
         ).then(res => {
           this.saying = res.data.hitokoto
           this.saying_src = res.data.from
+        }).catch(err => {
+          console.log('Error when getting hitokoto', err)
+          this.saying = '获取一言失败'
         })
         this.routeName = this.$route.name
         let query = this.$route.query
@@ -340,5 +343,10 @@
 
   .saying_content {
     padding: 5px 15px;
+  }
+
+  .saying_src {
+    text-align:right; 
+    margin-top:-5px;
   }
 </style>
