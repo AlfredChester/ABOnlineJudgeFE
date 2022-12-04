@@ -45,7 +45,7 @@
             <br/>
             <span>
               Copyright &copy; 2022-present 
-              <a href="https://github.com/FredB-mine">
+              <a href="https://github.com/FredB-mine" target="_blank">
                 Dr.Alfred
               </a>,
               Rhodes Island
@@ -53,7 +53,7 @@
             <br/>
             <span>
               Powered by 
-              <a href="https://github.com/QingdaoU/OnlineJudge">
+              <a href="https://github.com/QingdaoU/OnlineJudge" target="_blank">
                 OnlineJudge
               </a>
             </span>
