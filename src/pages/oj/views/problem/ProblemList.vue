@@ -55,22 +55,26 @@
     </Col>
 
     <Col :span="5">
-    <Panel :padding="10">
-      <div slot="title" class="taglist-title">{{$t('m.Tags')}}</div>
-      <Button v-for="tag in tagList" 
-              :key="tag.name"
-              @click="filterByTag(tag.name)"
-              :disabled="query.tag === tag.name"
-              shape="circle"
-              class="tag-btn">{{tag.name}}
-      </Button>
+      <Card :padding="10" style="margin-bottom: 10px;">
+        <div class="saying_title">{{$t('m.hitokoto')}}</div>
+        <div class="saying_content">{{saying}}</div>
+      </Card>
+      <Panel :padding="10">
+        <div slot="title" class="taglist-title">{{$t('m.Tags')}}</div>
+        <Button v-for="tag in tagList" 
+                :key="tag.name"
+                @click="filterByTag(tag.name)"
+                :disabled="query.tag === tag.name"
+                shape="circle"
+                class="tag-btn">{{tag.name}}
+        </Button>
 
-      <Button long id="pick-one" @click="pickone">
-        <Icon type="ios-shuffle" size="15"></Icon>
-        {{$t('m.Pick_One')}}
-      </Button>
-    </Panel>
-    <Spin v-if="loadings.tag" fix size="large"></Spin>
+        <Button long id="pick-one" @click="pickone">
+          <Icon type="ios-shuffle" size="15"></Icon>
+          {{$t('m.Pick_One')}}
+        </Button>
+      </Panel>
+      <Spin v-if="loadings.tag" fix size="large"></Spin>
     </Col>
   </Row>
 </template>
@@ -81,6 +85,8 @@
   import utils from '@/utils/utils'
   import { ProblemMixin } from '@oj/components/mixins'
   import Pagination from '@oj/components/Pagination'
+
+  const axios = require('axios')
 
   export default {
     name: 'ProblemList',
@@ -175,7 +181,8 @@
           tag: '',
           page: 1,
           limit: 10
-        }
+        },
+        saying: null
       }
     },
     mounted () {
@@ -183,6 +190,13 @@
     },
     methods: {
       init (simulate = false) {
+        axios.get(
+          'https://v1.hitokoto.cn/', {
+            c: 'k'
+          }
+        ).then(res => {
+          this.saying = res.data.hitokoto
+        })
         this.routeName = this.$route.name
         let query = this.$route.query
         this.query.difficulty = query.difficulty || ''
@@ -306,5 +320,16 @@
 
   #pick-one {
     margin-top: 10px;
+  }
+
+  .saying_title {
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 30px;
+    padding: 5px 15px;
+  }
+
+  .saying_content {
+    padding: 5px 15px;
   }
 </style>
