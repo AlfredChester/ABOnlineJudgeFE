@@ -59,6 +59,7 @@
         <div class="saying_title">{{$t('m.hitokoto')}}</div>
         <div class="saying_content">{{saying}}</div>
       </Card>
+      <!--Todo: 1. Add scroll bar for tag choosing 2. Reset the api type-->
       <Panel :padding="10">
         <div slot="title" class="taglist-title">{{$t('m.Tags')}}</div>
         <Button v-for="tag in tagList" 
@@ -85,6 +86,9 @@
   import utils from '@/utils/utils'
   import { ProblemMixin } from '@oj/components/mixins'
   import Pagination from '@oj/components/Pagination'
+
+  // Add Params Here
+  const params = '?c=a&c=c&c=d&c=i&c=k'
 
   const axios = require('axios')
 
@@ -191,9 +195,7 @@
     methods: {
       init (simulate = false) {
         axios.get(
-          'https://v1.hitokoto.cn/', {
-            c: 'k'
-          }
+          'https://v1.hitokoto.cn/' + params
         ).then(res => {
           this.saying = res.data.hitokoto
         })
