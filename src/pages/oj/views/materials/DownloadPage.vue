@@ -47,7 +47,7 @@
               {{ $t('m.preview') }}
             </Button>
           </Col>
-          <Card :padding="0" v-show="single.show">
+          <Card :padding="0" v-if="single.show">
             <div style="margin: 10px 10px;">
               <!--Sidebar icons-->
               <div style="display: flex;">
