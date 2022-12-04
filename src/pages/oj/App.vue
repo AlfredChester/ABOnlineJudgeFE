@@ -14,18 +14,18 @@
         </span>
         <span class="slogan">
           <div>ABOJ,</div>
-          <div>OI梦的开始</div>
+          <div>{{$t('m.OI_Dream_start')}}</div>
         </span>
         <span class="infoCard">
           <p>
             <span>            
-              <a href="/status">评测队列</a>
+              <a href="/status">{{$t('m.Judge_Queue')}}</a>
               |
-              <a href="/about">评分细则</a>
+              <a href="/about">{{$t('m.Judger')}}</a>
               |
-              <a href="/FAQ">常见问题</a>
+              <a href="/FAQ">{{$t('m.FAQ')}}</a>
               |
-              <a href="/ThanksPage">特别鸣谢</a>
+              <a href="/ThanksPage">{{$t('m.Special_Thanks_AppVue')}}</a>
             </span>
             <br/>
             <span>
