@@ -1,6 +1,10 @@
 export const m = {
   loadedi18nType: 'zh-TW',
   preview: '預覽',
+  // App.vue
+  Special_Thanks_AppVue: '特別鳴謝',
+  OI_Dream_start: 'OI夢的開始',
+  Judge_Queue: '評測隊列',
   // 404.vue
   Go_Home: '回到首頁',
   // Problem.vue
@@ -160,7 +164,7 @@ export const m = {
   ACM_Rank: 'ACM 排名',
   OI_Rank: 'OI 排名',
   About: '關於',
-  Judger: 'Judge 說明',
+  Judger: '評測說明',
   ThanksPage: '感謝頁面',
   FAQ: '常見問題',
   Login: '登入',
