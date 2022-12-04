@@ -232,6 +232,7 @@ export const m = {
   // OIContestRank.vue
   Total_Score: '总分',
   // ProblemList.vue
+  hitokoto: '一言',
   Good_Luck: '祝你好运',
   Problem_ID: '题目 ID',
   OIer_Rank: '排名',
