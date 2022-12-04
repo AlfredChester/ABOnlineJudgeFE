@@ -149,7 +149,7 @@
 
   .footer {
     background-color: rgba(0, 0, 0, .75);
-    margin-top: 20px;
+    // margin-top: 20px;
     text-align: center;
     font-size: small;
     display: flex;
