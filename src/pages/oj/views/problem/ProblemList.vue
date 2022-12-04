@@ -57,7 +57,12 @@
     <Col :span="5">
       <Card :padding="10" style="margin-bottom: 10px;">
         <div class="saying_title">{{$t('m.hitokoto')}}</div>
-        <div class="saying_content">{{saying}}</div>
+        <div class="saying_content">
+          {{saying}}
+        </div>
+        <div class="saying_content" style="text-align:right; margin-top:-5px;">
+          ——{{saying_src}}
+        </div>
       </Card>
       <!--Todo: 1. Add scroll bar for tag choosing 2. Reset the api type-->
       <Panel :padding="10">
@@ -186,7 +191,8 @@
           page: 1,
           limit: 10
         },
-        saying: null
+        saying: null,
+        saying_src: null
       }
     },
     mounted () {
@@ -198,6 +204,7 @@
           'https://v1.hitokoto.cn/' + params
         ).then(res => {
           this.saying = res.data.hitokoto
+          this.saying_src = res.data.from
         })
         this.routeName = this.$route.name
         let query = this.$route.query
