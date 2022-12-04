@@ -1,6 +1,10 @@
 export const m = {
   loadedi18nType: 'en-US',
   preview: 'Preview',
+  // App.vue
+  Special_Thanks_AppVue: 'Special Thanks',
+  OI_Dream_start: 'Where your OI Dream starts',
+  Judge_Queue: 'Judge Queue',
   // 404.vue
   Go_Home: 'Go Home',
   // Problem.vue
@@ -234,7 +238,7 @@ export const m = {
   // ProblemList.vue
   hitokoto: 'Hitokoto',
   Good_Luck: 'Good Luck!',
-  Problem_ID: 'Problem ID',
+  Problem_ID: 'ID',
   OIer_Rank: 'Rank',
   Problem_List: 'Problem List',
   High: 'High',
