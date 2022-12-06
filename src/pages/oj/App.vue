@@ -29,7 +29,8 @@
             </span>
             <br/>
             <span>
-              Developed by the ABOJ Dev Team.
+              Developed by the ABOJ Dev Team,
+              <a href="mailto:abonlinejudge@163.com">Contact us here.</a>
             </span>
             <br/>
             <span>
