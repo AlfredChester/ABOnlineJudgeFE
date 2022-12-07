@@ -144,6 +144,7 @@
             title: '模拟卷/练习卷',
             datas: [],
             pdfDatas: [
+              requirePdf('Unit 8   Reading ABCD', 7),
               requirePdf('英语初一上学期期中考试-市北', 8),
               requirePdf('7A 市北期中 听力文字及参考答案', 4)
             ]
