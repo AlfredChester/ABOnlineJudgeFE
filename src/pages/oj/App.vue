@@ -30,7 +30,7 @@
             <br/>
             <span>
               Developed by the ABOJ Dev Team,
-              <a href="mailto:abonlinejudge@163.com">Contact us here.</a>
+              <a href="mailto:abonlinejudge@163.com">Contact us.</a>
             </span>
             <br/>
             <span>
