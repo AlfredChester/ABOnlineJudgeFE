@@ -203,6 +203,7 @@
               requirePdf('期中综合练习卷三', 5),
               requirePdf('期中综合二及综合三现代文阅读参考答案', 1),
               requirePdf('风华初级中学2021学年第一学期七年级语文阶段单元练习(3)', 4),
+              requirePdf('单元练习二文言文讲评', 14),
               requirePdf('作文《我懂得了爱》写作指导', 5),
               requirePdf('7A 语文复习本--by 吴宇桐', 8),
               requirePdf('周末练习七', 2)
