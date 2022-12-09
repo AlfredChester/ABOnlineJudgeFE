@@ -200,6 +200,8 @@
               requirePdf('《诫子书》家默卷及参考答案', 2),
               requirePdf('《狼》课件（全）', 32),
               requirePdf('《狼》家默卷及答案', 3),
+              requirePdf('《穿井得一人》课件', 16),
+              requirePdf('《穿井得一人》家默卷', 1),
               requirePdf('期中综合练习卷二', 5),
               requirePdf('期中综合练习卷三', 5),
               requirePdf('期中综合二及综合三现代文阅读参考答案', 1),
