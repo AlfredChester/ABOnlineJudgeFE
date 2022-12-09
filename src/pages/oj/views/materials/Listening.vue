@@ -129,6 +129,7 @@
             Audiolist: [
               genExerciseData('上海市风华初级中学2022学年七年级第一学期国庆小练习听力'),
               genExerciseData('U5单元练习听力'),
+              genExerciseData('7AU8单元测试听力音频'),
               genExerciseData('七年级-7A-期中模拟听力-1'),
               genExerciseData('七年级-7A-期中模拟听力-2'),
               genExerciseData('听力7a期中市北')
