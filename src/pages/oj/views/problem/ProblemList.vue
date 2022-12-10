@@ -64,7 +64,6 @@
           ——{{saying_src}}
         </div>
       </Card>
-      <!--Todo: 1. Add scroll bar for tag choosing 2. Reset the api type-->
       <Panel :padding="10">
         <div slot="title" class="taglist-title">{{$t('m.Tags')}}</div>
         <Scroll>
