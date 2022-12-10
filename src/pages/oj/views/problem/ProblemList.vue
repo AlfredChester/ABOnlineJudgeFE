@@ -67,7 +67,7 @@
       <!--Todo: 1. Add scroll bar for tag choosing 2. Reset the api type-->
       <Panel :padding="10">
         <div slot="title" class="taglist-title">{{$t('m.Tags')}}</div>
-        <span>
+        <Scroll>
           <Button v-for="tag in tagList" 
                   :key="tag.name"
                   @click="filterByTag(tag.name)"
@@ -75,7 +75,7 @@
                   shape="circle"
                   class="tag-btn">{{tag.name}}
           </Button>
-        </span>
+        </Scroll>
 
         <Button long id="pick-one" @click="pickone">
           <Icon type="ios-shuffle" size="15"></Icon>
