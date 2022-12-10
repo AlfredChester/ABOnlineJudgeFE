@@ -1,7 +1,5 @@
 // CopyRight © Rhodes Island Phr.Ltd. All Rights Reserverd
 
-// 音 greyjs 侏罗纪
-
 'use strict'
 
 const greyDay = [
