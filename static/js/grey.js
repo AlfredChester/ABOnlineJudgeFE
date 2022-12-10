@@ -1,5 +1,7 @@
 // CopyRight © Rhodes Island Phr.Ltd. All Rights Reserverd
 
+// 音 greyjs 侏罗纪
+
 'use strict'
 
 const greyDay = [
@@ -26,7 +28,8 @@ function greyAll() {
 }
 
 function Numberlize(src) {
-  return src[0] * 10000 + src[1] * 100 + src[2]
+  // console.log('Numberlize src: ', src)
+  return Number(src[0]) * 10000 + Number(src[1]) * 100 + Number(src[2])
 }
 
 function matchDuration(src) {
@@ -34,12 +37,17 @@ function matchDuration(src) {
   let beg = Numberlize(fromAndTo[0].split('-'))
   let end = Numberlize(fromAndTo[1].split('-'))
   let now = Numberlize(timeLis.split('-'))
+  // console.log('Beg: ', beg)
+  // console.log('End: ', end)
+  // console.log('Now:', now)
   return beg <= now && now <= end
 }
 
 function matchDay(src) {
   let now = Number(timeLis.split('-')[1]) * 100 + Number(timeLis.split('-')[2])
   let match = Number(src.split('-')[0]) * 100 + Number(src.split('-')[1])
+  // console.log('Now: ', now)
+  // console.log('Match: ', match)
   return now === match
 }
 
@@ -47,14 +55,14 @@ var d
 
 for (d of greyDuration) {
   if (matchDuration(d)) {
-    console.log('Matched, may the deceased rest in peace')
+    console.log('Matched Duration, may the deceased rest in peace')
     greyAll()
   }
 }
 
 for (d of greyDay) {
   if (matchDay(d)) {
-    console.log('Matched, may the deceased rest in peace')
+    console.log('Matched Day, may the deceased rest in peace')
     greyAll()
   }
 }
