@@ -83,7 +83,7 @@
           '繁體中文': 'zh-TW',
           'English': 'en-US'
         },
-        langCache: 'zh-CN'
+        langCache: this.$i18n.locale
       }
     },
     created() {
