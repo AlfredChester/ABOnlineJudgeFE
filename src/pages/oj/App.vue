@@ -36,9 +36,8 @@
             <span>
               Copyright &copy; 2022-present 
               <a href="https://github.com/FredB-mine" target="_blank">
-                Dr.Alfred
-              </a>,
-              Rhodes Island.
+                Dr.Alfred.
+              </a>
             </span>
             <br/>
             <span>
@@ -49,7 +48,16 @@
             </span>
             <br/>
             <span>
-              Build Version: {{version}}
+              <span class="upperBox">
+                <Select 
+                  placeholder="更改语言" style="width: auto;" 
+                  size="small" prefix="md-globe" v-model="langCache">
+                  <Option v-for="(name, _ID) in languages" 
+                    :value="name" :label="_ID" :key="name">
+                  </Option>
+                </Select>
+              </span>
+              Build Version: {{version}}.
             </span>
           </p>
         </span>
@@ -69,7 +77,13 @@
     },
     data() {
       return {
-        version: process.env.VERSION
+        version: process.env.VERSION,
+        languages: {
+          '简体中文': 'zh-CN',
+          '繁體中文': 'zh-TW',
+          'English': 'en-US'
+        },
+        langCache: 'zh-CN'
       }
     },
     created() {
@@ -93,6 +107,10 @@
       },
       '$route'() {
         this.changeDomTitle()
+      },
+      'langCache'() {
+        // console.log(this.langCache)
+        this.$i18n.locale = this.langCache
       }
     }
   }
@@ -162,6 +180,10 @@
       margin-bottom: 20px;
       display: flex;
       color: white;
+      .logo {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
       .slogan {
         margin-top: auto;
         margin-bottom: auto;
@@ -177,6 +199,9 @@
         min-width: 50vw;
         margin-top: auto;
         margin-bottom: auto;
+        .upperBox {
+          margin-right: 20px;
+        }
       }
       a {
         color: rgba(255, 255, 255, .75);
