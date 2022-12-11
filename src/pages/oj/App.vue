@@ -205,6 +205,7 @@
             .ivu-select-selection {
               background-color: unset;
               border: none;
+              box-shadow: none;
               color: white;
             }
           }
