@@ -27,9 +27,11 @@ for (let lang of languages) {
   messages[locale] = Object.assign({m: m}, ui)
 }
 // load language packages
-export default new VueI18n({
+var langPack = new VueI18n({
   locale: 'zh-CN',
   messages: messages
 })
 
-export {languages}
+export default langPack
+
+export { languages }
