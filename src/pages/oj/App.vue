@@ -201,6 +201,13 @@
         margin-bottom: auto;
         .upperBox {
           margin-right: 20px;
+          .ivu-select {
+            .ivu-select-selection {
+              background-color: unset;
+              border: none;
+              color: white;
+            }
+          }
         }
       }
       a {
