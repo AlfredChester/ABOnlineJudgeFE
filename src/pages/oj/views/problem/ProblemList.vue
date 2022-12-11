@@ -70,7 +70,7 @@
           <Button v-for="tag in tagList" 
                   :key="tag.name"
                   @click="filterByTag(tag.name)"
-                  :disabled="query.tag === tag.name"
+                  :type="query.tag === tag.name ? 'primary' : 'default'"
                   shape="circle"
                   class="tag-btn">{{tag.name}}
           </Button>
@@ -257,9 +257,14 @@
         })
       },
       filterByTag (tagName) {
-        this.query.tag = tagName
-        this.query.page = 1
-        this.pushRouter()
+        if (this.query.tag !== tagName) {
+          this.query.tag = tagName
+          this.query.page = 1
+          this.pushRouter()
+        } else {
+          this.query.tag = ''
+          this.pushRouter()
+        }
       },
       filterByDifficulty (difficulty) {
         this.query.difficulty = difficulty
