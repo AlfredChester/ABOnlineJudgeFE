@@ -109,8 +109,8 @@
         this.changeDomTitle()
       },
       'langCache'() {
-        // console.log(this.langCache)
         this.$i18n.locale = this.langCache
+        this.$success(this.$i18n.t('m.Succeeded'))
       }
     }
   }
