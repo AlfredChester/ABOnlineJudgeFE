@@ -16,10 +16,20 @@
         <ul class="announcements-container" key="list">
           <li v-for="announcement in announcements" :key="announcement.title">
             <div class="flex-container">
-              <div class="title"><a class="entry" @click="goAnnouncement(announcement)">
-                {{announcement.title}}</a></div>
+              <div class="title">
+                <a class="entry" @click="goAnnouncement(announcement)">
+                  {{announcement.title}}
+                </a>
+              </div>
               <div class="date">{{announcement.create_time | localtime }}</div>
-              <div class="creator"> {{$t('m.By')}} {{announcement.created_by.username}}</div>
+              <div class="creator">
+                <span v-if="avatarLoaded">
+                  <Avatar 
+                    :src="avatarSrc[announcement.created_by.username]">
+                  </Avatar>
+                </span>
+                {{announcement.created_by.username}}
+              </div>
             </div>
           </li>
         </ul>
@@ -54,7 +64,9 @@
         btnLoading: false,
         announcements: [],
         announcement: '',
-        listVisible: true
+        listVisible: true,
+        avatarSrc: {},
+        avatarRequestSum: 0
       }
     },
     mounted () {
@@ -73,6 +85,16 @@
         api.getAnnouncementList((page - 1) * this.limit, this.limit).then(res => {
           this.btnLoading = false
           this.announcements = res.data.data.results
+          console.log(this.announcements)
+          this.avatarRequestSum = 0
+          for (var item of this.announcements) {
+            api.getUserInfo(item.created_by.username).then(res1 => {
+              let username = res1.data.data.user.username
+              let gotSrc = res1.data.data.avatar
+              this.avatarSrc[username] = gotSrc
+              this.avatarRequestSum += 1
+            })
+          }
           this.total = res.data.data.total
         }, () => {
           this.btnLoading = false
@@ -106,6 +128,9 @@
       },
       isContest () {
         return !!this.$route.params.contestID
+      },
+      avatarLoaded () {
+        return this.avatarRequestSum === 10
       }
     }
   }
@@ -116,9 +141,9 @@
     margin-top: -10px;
     margin-bottom: 10px;
     li {
-      padding-top: 15px;
+      padding-top: 10px;
       list-style: none;
-      padding-bottom: 15px;
+      padding-bottom: 10px;
       margin-left: 20px;
       font-size: 16px;
       border-bottom: 1px solid rgba(187, 187, 187, 0.5);
@@ -130,6 +155,8 @@
           flex: 1 1;
           text-align: left;
           padding-left: 10px;
+          margin-top: auto;
+          margin-bottom: auto;
           a.entry {
             color: #495060;
             &:hover {
@@ -139,11 +166,15 @@
           }
         }
         .creator {
+          margin-top: auto;
+          margin-bottom: auto;
           flex: none;
           width: 200px;
           text-align: center;
         }
         .date {
+          margin-top: auto;
+          margin-bottom: auto;
           flex: none;
           width: 200px;
           text-align: center;
