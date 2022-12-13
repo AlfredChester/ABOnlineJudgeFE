@@ -28,7 +28,9 @@
                     :src="avatarSrc[announcement.created_by.username]">
                   </Avatar>
                 </span>
-                {{announcement.created_by.username}}
+                <a class="entry" @click="goUserHome(announcement.created_by.username)">
+                  {{announcement.created_by.username}}
+                </a>
               </div>
             </div>
           </li>
@@ -85,7 +87,6 @@
         api.getAnnouncementList((page - 1) * this.limit, this.limit).then(res => {
           this.btnLoading = false
           this.announcements = res.data.data.results
-          console.log(this.announcements)
           this.avatarRequestSum = 0
           for (var item of this.announcements) {
             api.getUserInfo(item.created_by.username).then(res1 => {
@@ -113,6 +114,11 @@
         this.announcement = announcement
         this.listVisible = false
       },
+      goUserHome (name1) {
+        this.$router.push({
+          path: `user-home?username=${name1}`
+        })
+      },
       goBack () {
         this.listVisible = true
         this.announcement = ''
@@ -130,7 +136,7 @@
         return !!this.$route.params.contestID
       },
       avatarLoaded () {
-        return this.avatarRequestSum === 10
+        return this.avatarRequestSum === this.announcements.length
       }
     }
   }
@@ -171,6 +177,13 @@
           flex: none;
           width: 200px;
           text-align: center;
+          a.entry {
+            color: #495060;
+            &:hover {
+              color: #2d8cf0;
+              border-bottom: 1px solid #2d8cf0;
+            }
+          }
         }
         .date {
           margin-top: auto;
