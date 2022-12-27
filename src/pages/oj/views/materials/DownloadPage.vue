@@ -217,6 +217,7 @@
             datas: [],
             pdfDatas: [
               requirePdf('七上地理练习册答案', 7),
+              requirePdf('七年级上科学练习册答案', 68),
               requirePdf('上海练习册道德与法治七年级（全一册）(7)', 16),
               requirePdf('中国历史第一册练习部分参考答案', 16),
               requirePdf('中国历史第二册练习部分参考答案', 12)
