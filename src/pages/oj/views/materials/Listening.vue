@@ -132,7 +132,8 @@
               genExerciseData('7AU8单元测试听力音频'),
               genExerciseData('七年级-7A-期中模拟听力-1'),
               genExerciseData('七年级-7A-期中模拟听力-2'),
-              genExerciseData('听力7a期中市北')
+              genExerciseData('听力7a期中市北'),
+              genExerciseData('Listening-Revision-1-for-Final-term')
             ]
           }
         ]
