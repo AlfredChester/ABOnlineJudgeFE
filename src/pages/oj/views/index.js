@@ -4,6 +4,7 @@ import UserHome from './user/UserHome.vue'
 import About from './help/About.vue'
 import FAQ from './help/FAQ.vue'
 import ThanksPage from './help/ThanksPage.vue'
+import License from './help/License.vue'
 import Listening from './materials/Listening.vue'
 import DownloadPage from './materials/DownloadPage.vue'
 import NotFound from './general/404.vue'
@@ -26,7 +27,8 @@ const Problem = () => import(/* webpackChunkName: "Problem" */ '@oj/views/proble
 export {
   Home, NotFound, Announcements,
   Listening, DownloadPage, CalendarDemo,
-  Logout, UserHome, About, FAQ, ThanksPage,
+  Logout, UserHome, License,
+  About, FAQ, ThanksPage,
   ProblemList, Problem,
   ACMRank, OIRank,
   SubmissionList, SubmissionDetails,
