@@ -8,6 +8,7 @@ import {
   DownloadPage,
   FAQ,
   Home,
+  License,
   Listening,
   Logout,
   NotFound,
@@ -201,6 +202,12 @@ export default [
     name: 'Downloads',
     meta: {title: i18n.t('m.DownloadPage')},
     component: DownloadPage
+  },
+  {
+    path: '/tos',
+    name: 'License',
+    meta: {title: i18n.t('m.license')},
+    component: License
   },
   {
     path: '*',
