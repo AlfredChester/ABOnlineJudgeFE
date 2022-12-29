@@ -1,6 +1,7 @@
 export const m = {
   loadedi18nType: 'zh-TW',
   preview: '預覽',
+  license: '服務/隱私條款',
   // App.vue
   Special_Thanks_AppVue: '特別鳴謝',
   OI_Dream_start: 'OI夢的開始',
