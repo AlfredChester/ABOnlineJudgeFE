@@ -59,6 +59,9 @@
         <Menu-item name="/about">
           {{$t('m.Judger')}}
         </Menu-item>
+        <Menu-item name="/tos">
+          {{$t('m.license')}}
+        </Menu-item>
         <Menu-item name="/FAQ">
           {{$t('m.FAQ')}}
         </Menu-item>
