@@ -55,26 +55,6 @@ Vue.use(iView, {
 Vue.use(VueFullscreen)
 Vue.use(PerfectScrollbar)
 
-// Vue.use(Viewer)
-// Viewer.setDefaults({
-//   Options: {
-//     'inline': true,
-//     'button': true,
-//     'navbar': true,
-//     'title': true,
-//     'toolbar': true,
-//     'tooltip': true,
-//     'movable': true,
-//     'zoomable': true,
-//     'rotatable': true,
-//     'scalable': true,
-//     'transition': true,
-//     'fullscreen': true,
-//     'keyboard': true,
-//     'url': 'data-source'
-//   }
-// })
-
 Vue.use(VueClipboard)
 Vue.use(highlight)
 Vue.use(katex)
