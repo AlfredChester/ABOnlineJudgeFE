@@ -1,0 +1,53 @@
+{
+    "en-US": [
+        {
+            "title": "About ABOJ",
+            "url": "/static/html/en-US-about.html",
+            "content": ""
+        },
+        {
+            "title": "ABOJ TOS",
+            "url": "/static/html/en-US-tos.html",
+            "content": ""
+        },
+        {
+            "title": "ABOJ Privacy License",
+            "url": "/static/html/en-US-privacy.html",
+            "content": ""
+        }
+    ],
+    "zh-CN": [
+        {
+            "title": "关于ABOJ",
+            "url": "/static/html/zh-CN-about.html",
+            "content": ""
+        },
+        {
+            "title": "ABOJ 服务条款",
+            "url": "/static/html/zh-CN-tos.html",
+            "content": ""
+        },
+        {
+            "title": "ABOJ 隐私条款",
+            "url": "/static/html/zh-CN-privacy.html",
+            "content": ""
+        }
+    ],
+    "zh-TW": [
+        {
+            "title": "關於ABOJ",
+            "url": "/static/html/zh-TW-about.html",
+            "content": ""
+        },
+        {
+            "title": "ABOJ 服務條款",
+            "url": "/static/html/zh-TW-tos.html",
+            "content": ""
+        },
+        {
+            "title": "ABOJ 隱私條款",
+            "url": "/static/html/zh-TW-privacy.html",
+            "content": ""
+        }
+    ]
+}
