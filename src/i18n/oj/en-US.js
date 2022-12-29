@@ -1,6 +1,7 @@
 export const m = {
   loadedi18nType: 'en-US',
   preview: 'Preview',
+  license: 'Tos & Privacy',
   // App.vue
   Special_Thanks_AppVue: 'Special Thanks',
   OI_Dream_start: 'Where your OI Dream starts',
