@@ -113,6 +113,9 @@
       'langCache'() {
         this.$i18n.locale = this.langCache
         this.$success(this.$i18n.t('m.Succeeded'))
+      },
+      '$i18n.locale'(newVal) {
+        this.langCache = newVal
       }
     }
   }
