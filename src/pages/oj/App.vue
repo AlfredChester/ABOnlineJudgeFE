@@ -185,7 +185,7 @@
       margin-bottom: 20px;
       color: white;
       .inner_wrap {
-        min-width: 60vw;
+        min-width: 55vw;
         display: flex;
         .logo {
           margin-top: auto;
