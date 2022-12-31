@@ -20,13 +20,18 @@
           <span class="infoCard">
             <p>
               <span>            
-                <a href="/status">{{$t('m.Judge_Queue')}}</a>
-                |
-                <a href="/about">{{$t('m.Judger')}}</a>
-                |
-                <a href="/FAQ">{{$t('m.FAQ')}}</a>
-                |
-                <a href="/ThanksPage">{{$t('m.Special_Thanks_AppVue')}}</a>
+                <a href="/status">
+                  {{ $t('m.Judge_Queue') }}
+                </a> |
+                <a href="/about">
+                  {{ $t('m.Judger') }}
+                </a> |
+                <a href="/FAQ">
+                  {{ $t('m.FAQ') }}
+                </a> |
+                <a href="/ThanksPage">
+                  {{ $t('m.Special_Thanks_AppVue') }}
+                </a>
               </span>
               <br/>
               <span>
@@ -58,7 +63,7 @@
                     </Option>
                   </Select>
                 </span>
-                Build Version: {{version}}.
+                Build Version: {{ version }}.
               </span>
             </p>
           </span>
