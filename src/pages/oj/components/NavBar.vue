@@ -2,7 +2,6 @@
   <div id="header">
     <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
       <div class="logo">
-        <!--TODO 后期有了logo 可以加在此处-->
         <span>
           <a href="/">
             <!-- {{website.website_name}} -->
@@ -178,6 +177,7 @@
     }
 
     .logo {
+      user-select: none;
       margin-left: 2%;
       margin-right: 2%;
       font-size: 20px;
