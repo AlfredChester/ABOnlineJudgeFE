@@ -96,7 +96,6 @@ export default {
   text-align: center;
   font-size: small;
   display: flex;
-
   .wrapped {
     vertical-align: middle;
     margin-left: auto;
@@ -104,16 +103,13 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
     color: white;
-
     .inner_wrap {
-      min-width: 60vw;
+      min-width: 65vw;
       display: flex;
-
       .logo {
         margin-top: auto;
         margin-bottom: auto;
       }
-
       .slogan {
         margin-top: auto;
         margin-bottom: auto;
@@ -123,16 +119,13 @@ export default {
         font-size: 1.6em;
         text-align: left;
       }
-
       .infoCard {
         flex: 1;
         text-align: right;
         margin-top: auto;
         margin-bottom: auto;
-
         .infoCard_line_extension {
           margin-right: 10px;
-
           .ivu-select {
             .ivu-select-selection {
               background-color: unset;
@@ -144,10 +137,8 @@ export default {
         }
       }
     }
-
     a {
       color: rgba(255, 255, 255, .75);
-
       &:active,
       &:hover {
         color: white;
