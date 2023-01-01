@@ -57,13 +57,11 @@
   /* 滚动槽 */
   ::-webkit-scrollbar-track {
     border-radius: 6px;
-    -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 20%);
   }
 
   ::-webkit-scrollbar-thumb {
     border-radius: 6px;
     background: #bbb;
-    -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 25%);
   }
 
   * {
