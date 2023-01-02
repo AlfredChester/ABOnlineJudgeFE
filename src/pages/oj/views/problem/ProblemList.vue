@@ -72,7 +72,8 @@
                   @click="filterByTag(tag.name)"
                   :type="query.tag === tag.name ? 'primary' : 'default'"
                   shape="circle"
-                  class="tag-btn">{{tag.name}}
+                  class="tag-btn">
+            {{ tag.name }}
           </Button>
         </Scroll>
 
@@ -284,7 +285,13 @@
               render: (h, params) => {
                 let tags = []
                 params.row.tags.forEach(tag => {
-                  tags.push(h('Tag', {}, tag))
+                  tags.push(h('Tag', {
+                    on: {
+                      click: () => {
+                        console.log('114514')
+                      }
+                    }
+                  }, tag))
                 })
                 return h('div', {
                   style: {
