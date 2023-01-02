@@ -4,7 +4,7 @@ export const m = {
   license: 'Tos & Privacy',
   // App.vue
   Special_Thanks_AppVue: 'Special Thanks',
-  OI_Dream_start: 'Where your OI Dream starts',
+  OI_Dream_start: 'Where your OI dream starts',
   Judge_Queue: 'Judge Queue',
   // 404.vue
   Go_Home: 'Go Home',
