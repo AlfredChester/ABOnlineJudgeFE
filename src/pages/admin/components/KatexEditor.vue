@@ -1,7 +1,10 @@
 <template>
   <el-form>
     <el-form-item :label="$t('m.Input')">
-      <el-input type="textarea" v-model="input" @change="changeInput" @keyup.enter.native="changeInput"></el-input>
+      <el-input type="textarea" v-model="input" 
+                @change="changeInput" 
+                @keyup.enter.native="changeInput">
+      </el-input>
     </el-form-item>
 
     <el-form-item :label="$t('m.Output')">
@@ -36,6 +39,11 @@
         } catch (e) {
           this.text = '<p style="text-align: center"><span style="color:red">Error Input</span></p>'
         }
+      }
+    },
+    watch: {
+      'input'() {
+        this.changeInput()
       }
     }
   }
