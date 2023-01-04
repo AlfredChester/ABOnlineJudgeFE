@@ -104,8 +104,7 @@
   import 'viewerjs/dist/viewer.css'
   import { mapGetters } from 'vuex'
   import { api as viewerApi } from 'v-viewer'
-
-  const axios = require('axios')
+  import utils from '@/utils/utils'
   
   function requireListening(grade) {
     return require(`../../../../assets/Listenings/${grade}/${grade}.zip`)
@@ -253,14 +252,8 @@
         console.log(obj)
       },
       downloadPdf(obj) {
-        var realSrc
-        if (process.env.NODE_ENV === 'development') {
-          realSrc = 'http://localhost:8080' + obj.src
-        } else {
-          realSrc = 'http://alfredoj.natapp1.cc' + obj.src
-        }
-        axios.get(
-          realSrc, {
+        utils.realAxiosGet(
+          obj.src, {
             responseType: 'blob'
           }
         ).then((res) => {
