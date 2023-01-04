@@ -1,7 +1,17 @@
 import Vue from 'vue'
 import storage from '@/utils/storage'
-import { STORAGE_KEY } from '@/utils/constants'
 import ojAPI from '@oj/api'
+import { STORAGE_KEY } from '@/utils/constants'
+
+const axios = require('axios')
+
+function realAxiosGet(suffix, config) {
+  if (config === undefined) {
+    return axios.get(window.location.origin + suffix)
+  } else {
+    return axios.get(window.location.origin + suffix, config)
+  }
+}
 
 function unique (_arr) {
   console.log('Uniqueing')
@@ -115,5 +125,6 @@ export default {
   breakLongWords: breakLongWords,
   downloadFile: downloadFile,
   getLanguages: getLanguages,
-  unique: unique
+  unique: unique,
+  realAxiosGet: realAxiosGet
 }
