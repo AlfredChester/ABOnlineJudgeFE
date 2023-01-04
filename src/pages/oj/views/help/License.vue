@@ -10,8 +10,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  
-  const axios = require('axios')
+  import utils from '@/utils/utils'
 
   export default {
     data() {
@@ -28,20 +27,11 @@
       ...mapGetters(['website'])
     },
     methods: {
-      realGet(end) {
-        var realSrc
-        if (process.env.NODE_ENV === 'development') {
-          realSrc = 'http://localhost:8080' + end
-        } else {
-          realSrc = 'http://alfredoj.natapp1.cc' + end
-        }
-        return axios.get(realSrc)
-      },
       loadRealData() {
         this.loaded = false
         for (var i = 0; i < this.content.length; i++) {
           let that = this.content[i]
-          this.realGet(this.content[i].url).then(data => {
+          utils.realAxiosGet(this.content[i].url).then(data => {
             that.content = data.data
           })
         }
@@ -49,7 +39,7 @@
       },
       init() {
         if (this.dataFetchCache === undefined) {
-          this.realGet('/static/configs/license.json').then(data => {
+          utils.realAxiosGet('/static/configs/license.json').then(data => {
             // console.log(data)
             this.dataFetchCache = data.data
             this.content = data.data[this.$i18n.t('m.loadedi18nType')]
