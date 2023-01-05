@@ -29,7 +29,9 @@
               <Button
                 :size="buttonSize" icon="ios-eye-outline" 
                 type="primary" style="text-align:right;"
-                @click="previewImg(window.location.origin + single.src)">
+                @click="previewImg(
+                  'http://alfredoj.natapp1.cc' + single.src
+                )">
                 {{ $t('m.preview') }}
               </Button>
             </span>
@@ -194,6 +196,11 @@
               }
             ],
             pdfDatas: [
+              requirePdf('《两小儿辩日》（翻译＋内容理解）', 15),
+              requirePdf('《书戴嵩画牛》', 22),
+              requirePdf('《学弈》文学常识及翻译', 8),
+              requirePdf('《学弈》内容理解', 5),
+              requirePdf('《伯牙鼓琴》', 18),
               requirePdf('《朝花夕拾》阅读任务单1', 2),
               requirePdf('《陈太丘与友期行》（全）', 16),
               requirePdf('《观沧海》课件', 12),
@@ -206,6 +213,7 @@
               requirePdf('《狼》家默卷及答案', 3),
               requirePdf('《穿井得一人》课件', 16),
               requirePdf('《穿井得一人》家默卷', 1),
+              requirePdf('杞人忧天 课件', 17),
               requirePdf('期中综合练习卷二', 5),
               requirePdf('期中综合练习卷三', 5),
               requirePdf('期中综合二及综合三现代文阅读参考答案', 1),
