@@ -67,12 +67,6 @@
         <Menu-item name="/ThanksPage">
           {{$t('m.ThanksPage')}}
         </Menu-item>
-        <!-- <Menu-item name="/listening">
-          {{$t('m.ListeningPage')}}
-        </Menu-item>
-        <Menu-item name="/downloadCollection">
-          {{$t('m.DownloadPage')}}
-        </Menu-item> -->
       </Submenu>
       <!--Not logged in BEGIN-->
       <template v-if="!isAuthenticated">
@@ -92,7 +86,9 @@
       <!--Logged In BEGIN-->
       <template v-else>
         <Dropdown class="drop-menu" @on-click="handleRoute" placement="bottom" trigger="click">
-          <Button type="text" class="drop-menu-title">{{ user.username }}
+          <Button type="text" class="drop-menu-title">
+            <Avatar :src="avatar"></Avatar>
+            {{ user.username }}
             <Icon type="md-arrow-dropdown"></Icon>
           </Button>
           <Dropdown-menu slot="list">
@@ -107,7 +103,9 @@
       <!--Logged in END-->
     </Menu>
     <Modal v-model="modalVisible" :width="400">
-      <div slot="header" class="modal-title">{{$t('m.Welcome_to')}} {{website.website_name_shortcut}}</div>
+      <div slot="header" class="modal-title">
+        {{$t('m.Welcome_to')}} {{website.website_name_shortcut}}
+      </div>
       <component :is="modalStatus.mode" v-if="modalVisible"></component>
       <div slot="footer" style="display: none"></div>
     </Modal>
@@ -116,6 +114,7 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
+  import api from '@oj/api'
   import login from '@oj/views/user/Login'
   import register from '@oj/views/user/Register'
 
@@ -124,8 +123,17 @@
       login,
       register
     },
+    data() {
+      return {
+        avatar: ''
+      }
+    },
     mounted () {
       this.getProfile()
+      api.getUserInfo(this.user.username).then(data => {
+        console.log('[oj/NavBar.vue]:', data.data.data.avatar)
+        this.avatar = data.data.data.avatar
+      })
     },
     methods: {
       ...mapActions(['getProfile', 'changeModalStatus']),
