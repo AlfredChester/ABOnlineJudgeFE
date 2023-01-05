@@ -6,12 +6,16 @@
     <div class="content markdown-body">
       <span class="MaterialType" 
         v-for="MaterialType in Downloads">
-        <h1 class="Mat_title">{{MaterialType.title}}</h1>
+        <h1 class="Mat_title">
+          {{ MaterialType.title }}
+        </h1>
         <!--Normal files-->
         <Row v-for="single in MaterialType.datas" 
              class="type_row" :key="single.src">
           <Col span="23">
-            <li class="ele_title">{{single.title}}</li>
+            <li class="ele_title">
+              {{ single.title }}
+            </li>
           </Col>
           <Col span="1">
             <a :href="single.src" v-if="!single.src.endsWith('.jpg')">
@@ -21,12 +25,11 @@
                 {{ $t('m.Download_i18n') }}
               </Button>
             </a>
-            <!--Upgrade iview-->
             <span v-else>
               <Button
                 :size="buttonSize" icon="ios-eye-outline" 
                 type="primary" style="text-align:right;"
-                @click="previewImg('http://alfredoj.natapp1.cc' + single.src)">
+                @click="previewImg(window.location.origin + single.src)">
                 {{ $t('m.preview') }}
               </Button>
             </span>
@@ -37,7 +40,9 @@
              class="type_row" :key="single.src">
           <!--File name-->
           <Col span="23">
-            <li class="ele_title">{{ single.title }}</li>
+            <li class="ele_title">
+              {{ single.title }}
+            </li>
           </Col>
           <Col span="1">
             <Button
