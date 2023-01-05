@@ -94,6 +94,8 @@
               let gotSrc = res1.data.data.avatar
               this.avatarSrc[username] = gotSrc
               this.avatarRequestSum += 1
+            }).catch(err => {
+              console.log('[oj/Announcements.vue]: Error', err)
             })
           }
           this.total = res.data.data.total
