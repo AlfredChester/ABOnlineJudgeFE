@@ -123,18 +123,17 @@
           this.profile = res.data.data
           this.adminType = res.data.data.user.admin_type
           let registerTime = time.utcToLocal(this.profile.user.create_time, 'YYYY-MM-D')
-          console.log('The guy registered at ' + registerTime + '.')
+          console.log('[oj/UserHome.vue] The guy registered at ' + registerTime + '.')
         })
         api.getProblemList(0, 200, getExistProblemQuery).then(res => {
-          // console.log('Api returned: ', res.data.data.results)
           res.data.data.results.forEach(element => {
             cacheElement(element._id)
           })
         }).then(res => {
           this.getSolvedProblems()
         }).catch(e => {
-          console.log('Some Problems have occured:\n', e)
-          console.log('Retrying...')
+          console.log('[oj/UserHome.vue] Some Problems have occured:\n', e)
+          console.log('[oj/UserHome.vue] Retrying...')
           this.getSolvedProblems()
         })
         // todo: 一劳永逸解决getAll
@@ -143,12 +142,10 @@
         let ACMProblems = this.profile.acm_problems_status.problems || {}
         let OIProblems = this.profile.oi_problems_status.problems || {}
         // todo oi problems
-        // console.log('ACM: ', JSON.stringify(ACMProblems))
-        // console.log('OI: ', JSON.stringify(OIProblems))
         let AllProblems = getCache()
         let ACProblems = []
-        // console.log('All: ', AllProblems)
-        // When You see this code, you can know that it is a piece of shit
+        // When You see this code, you can know
+        // that it is a piece of shit
         // Motherfucker
         for (let problems of [ACMProblems, OIProblems]) {
           Object.keys(problems).forEach(problemID => {
@@ -157,7 +154,7 @@
             }
           })
         }
-        console.log('Accepted: ', ACProblems)
+        console.log('[oj/UserHome.vue] Accepted: ', ACProblems)
         this.problems = utils.unique(ACProblems)
         this.problems = this.problems.sort((a, b) => {
           return a < b ? -114 : 514
