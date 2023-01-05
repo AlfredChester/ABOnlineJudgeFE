@@ -2,42 +2,36 @@
   <div id="header">
     <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
       <div class="logo">
-        <span>
-          <a href="/">
-            <!-- {{website.website_name}} -->
-            <img src="../../../assets/title.png"/>
-          </a>
-        </span>
+        <a href="/"><img src="../../../assets/title.png"/></a>
       </div>
       <Menu-item name="/">
         <Icon type="md-home"></Icon>
-        {{$t('m.Home')}}
+        {{ $t('m.Home') }}
       </Menu-item>
       <Menu-item name="/problem">
         <Icon type="ios-keypad"></Icon>
-        {{$t('m.NavProblems')}}
+        {{ $t('m.NavProblems') }}
       </Menu-item>
       <Menu-item name="/contest">
         <Icon type="ios-trophy"></Icon>
-        {{$t('m.Contests')}}
+        {{ $t('m.Contests') }}
       </Menu-item>
       <Menu-item name="/status">
         <Icon type="ios-pulse"></Icon>
-        {{$t('m.NavStatus')}}
+        {{ $t('m.NavStatus') }}
       </Menu-item>
       <Submenu name="rank">
         <template slot="title">
           <Icon type="ios-podium"></Icon>
-          {{$t('m.Rank')}}
+          {{ $t('m.Rank') }}
         </template>
         <Menu-item name="/acm-rank">
-          {{$t('m.ACM_Rank')}}
+          {{ $t('m.ACM_Rank') }}
         </Menu-item>
         <Menu-item name="/oi-rank">
-          {{$t('m.OI_Rank')}}
+          {{ $t('m.OI_Rank') }}
         </Menu-item>
       </Submenu>
-      <!--Disable when Race-->
       <!-- <Submenu name="materials">
         <template slot="title">
           <Icon type="ios-book"></Icon>
@@ -53,19 +47,19 @@
       <Submenu name="about">
         <template slot="title">
           <Icon type="ios-information-circle"></Icon>
-          {{$t('m.About')}}
+          {{ $t('m.About') }}
         </template>
         <Menu-item name="/about">
-          {{$t('m.Judger')}}
+          {{ $t('m.Judger') }}
         </Menu-item>
         <Menu-item name="/tos">
-          {{$t('m.license')}}
+          {{ $t('m.license') }}
         </Menu-item>
         <Menu-item name="/FAQ">
-          {{$t('m.FAQ')}}
+          {{ $t('m.FAQ') }}
         </Menu-item>
         <Menu-item name="/ThanksPage">
-          {{$t('m.ThanksPage')}}
+          {{ $t('m.ThanksPage') }}
         </Menu-item>
       </Submenu>
       <!--Not logged in BEGIN-->
@@ -73,12 +67,14 @@
         <div class="btn-menu">
           <Button ref="loginBtn"
                   shape="circle"
-                  @click="handleBtnClick('login')">{{$t('m.Login')}}
+                  @click="handleBtnClick('login')">
+                  {{ $t('m.Login') }}
           </Button>
           <Button v-if="website.allow_register" 
                   shape="circle"
                   @click="handleBtnClick('register')"
-                  style="margin-left: 5px;">{{$t('m.Register')}}
+                  style="margin-left: 5px;">
+                  {{ $t('m.Register') }}
           </Button>
         </div>
       </template>
@@ -92,11 +88,11 @@
             <Icon type="md-arrow-dropdown"></Icon>
           </Button>
           <Dropdown-menu slot="list">
-            <Dropdown-item name="/user-home">{{$t('m.MyHome')}}</Dropdown-item>
-            <Dropdown-item name="/status?myself=1">{{$t('m.MySubmissions')}}</Dropdown-item>
-            <Dropdown-item name="/setting/profile">{{$t('m.Settings')}}</Dropdown-item>
-            <Dropdown-item v-if="isAdminRole" name="/admin">{{$t('m.Management')}}</Dropdown-item>
-            <Dropdown-item divided name="/logout">{{$t('m.Logout')}}</Dropdown-item>
+            <Dropdown-item name="/user-home">{{ $t('m.MyHome') }}</Dropdown-item>
+            <Dropdown-item name="/status?myself=1">{{ $t('m.MySubmissions') }}</Dropdown-item>
+            <Dropdown-item name="/setting/profile">{{ $t('m.Settings') }}</Dropdown-item>
+            <Dropdown-item v-if="isAdminRole" name="/admin">{{ $t('m.Management') }}</Dropdown-item>
+            <Dropdown-item divided name="/logout">{{ $t('m.Logout') }}</Dropdown-item>
           </Dropdown-menu>
         </Dropdown>
       </template>
@@ -104,7 +100,7 @@
     </Menu>
     <Modal v-model="modalVisible" :width="400">
       <div slot="header" class="modal-title">
-        {{$t('m.Welcome_to')}} {{website.website_name_shortcut}}
+        {{ $t('m.Welcome_to') }} {{ website.website_name_shortcut }}
       </div>
       <component :is="modalStatus.mode" v-if="modalVisible"></component>
       <div slot="footer" style="display: none"></div>
@@ -128,23 +124,26 @@
         avatar: ''
       }
     },
-    mounted () {
+    mounted() {
       this.getProfile()
       api.getUserInfo(this.user.username).then(data => {
         console.log('[oj/NavBar.vue]:', data.data.data.avatar)
         this.avatar = data.data.data.avatar
+      }).catch(err => {
+        console.log('[oj/NavBar.vue]: Error occured when loading avatar:')
+        console.log('[oj/NavBar.vue]:', err)
       })
     },
     methods: {
       ...mapActions(['getProfile', 'changeModalStatus']),
-      handleRoute (route) {
+      handleRoute(route) {
         if (route && route.indexOf('admin') < 0) {
           this.$router.push(route)
         } else {
           window.open('/admin/')
         }
       },
-      handleBtnClick (mode) {
+      handleBtnClick(mode) {
         this.changeModalStatus({
           visible: true,
           mode: mode
@@ -154,15 +153,15 @@
     computed: {
       ...mapGetters(['website', 'modalStatus', 'user', 'isAuthenticated', 'isAdminRole']),
       // 跟随路由变化
-      activeMenu () {
+      activeMenu() {
         return '/' + this.$route.path.split('/')[1]
       },
       modalVisible: {
-        get () {
+        get() {
           return this.modalStatus.visible
         },
-        set (value) {
-          this.changeModalStatus({visible: value})
+        set(value) {
+          this.changeModalStatus({ visible: value })
         }
       }
     }
@@ -183,7 +182,6 @@
     .oj-menu {
       background: #fdfdfd;
     }
-
     .logo {
       user-select: none;
       margin-left: 2%;
@@ -197,7 +195,6 @@
         height: 60px;
       }
     }
-
     .drop-menu {
       float: right;
       margin-right: 30px;
@@ -213,7 +210,6 @@
       margin-right: 10px;
     }
   }
-
   .modal {
     &-title {
       font-size: 18px;
