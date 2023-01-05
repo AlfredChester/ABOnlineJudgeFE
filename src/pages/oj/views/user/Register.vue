@@ -1,5 +1,6 @@
 <template>
-<div>
+  <!-- MSG Globalization -->
+  <div class="register_root">
     <Form ref="formRegister" :model="formRegister" :rules="ruleRegister">
       <FormItem prop="username">
         <Input type="text" v-model="formRegister.username" :placeholder="$t('m.RegisterUsername')" size="large" @on-enter="handleRegister">
@@ -21,10 +22,12 @@
         <Icon type="ios-lock-outline" slot="prepend"></Icon>
         </Input>
       </FormItem>
-      <FormItem prop="captcha" style="margin-bottom:10px">
+      <FormItem prop="captcha">
         <div class="oj-captcha">
           <div class="oj-captcha-code">
-            <Input v-model="formRegister.captcha" :placeholder="$t('m.Captcha')" size="large" @on-enter="handleRegister">
+            <Input v-model="formRegister.captcha" 
+                  :placeholder="$t('m.Captcha')" size="large"
+                  @on-enter="handleRegister">
             <Icon type="ios-bulb-outline" slot="prepend"></Icon>
             </Input>
           </div>
@@ -35,6 +38,20 @@
           </div>
         </div>
       </FormItem>
+      <FormItem prop="agree_tos" class="agree_tos_formitem">
+        <Checkbox label="agree"
+                  v-model="formRegister.agree_tos"
+                  style="vertical-align: center;">
+                  {{ $t('m.Read_And_Agree') }}
+                  <a href="/tos">
+                    {{ $t('m.ABOJs_Tos') }}
+                  </a>
+                  {{ $t('m.And') }}
+                  <a href="/tos">
+                    {{ $t('m.ABOJs_Privacy_Policy') }}
+                  </a>
+        </Checkbox>
+      </FormItem>
     </Form>
     <div class="footer_register">
       <Button
@@ -42,20 +59,20 @@
         @click="handleRegister"
         class="btn" long
         :loading="btnRegisterLoading">
-        {{$t('m.UserRegister')}}
+        {{ $t('m.UserRegister') }}
       </Button>
       <Button
         @click="switchMode('login')"
         class="btn" long>
-        {{$t('m.Already_Registed')}}
+        {{ $t('m.Already_Registed') }}
       </Button>
     </div>
   </div>
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
   import api from '@oj/api'
+  import { mapGetters, mapActions } from 'vuex'
   import { FormMixin } from '@oj/components/mixins'
 
   export default {
@@ -89,10 +106,15 @@
         }
         callback()
       }
-
       const CheckAgainPassword = (rule, value, callback) => {
         if (value !== this.formRegister.password) {
           callback(new Error(this.$i18n.t('m.password_does_not_match')))
+        }
+        callback()
+      }
+      const CheckAgreeTos = (rule, value, callback) => {
+        if (!value) {
+          callback(new Error(this.$i18n.t('m.Must_Agree_Tos')))
         }
         callback()
       }
@@ -104,26 +126,69 @@
           password: '',
           passwordAgain: '',
           email: '',
-          captcha: ''
+          captcha: '',
+          agree_tos: false
         },
         ruleRegister: {
           username: [
-            {required: true, trigger: 'blur'},
-            {validator: CheckUsernameNotExist, trigger: 'blur'}
+            {
+              required: true,
+              trigger: 'blur',
+              message: this.$i18n.t('m.Username_Cannot_Be_Empty')
+            },
+            {
+              validator: CheckUsernameNotExist,
+              trigger: 'blur'
+            }
           ],
           email: [
-            {required: true, type: 'email', trigger: 'blur'},
-            {validator: CheckEmailNotExist, trigger: 'blur'}
+            {
+              required: true,
+              type: 'email',
+              trigger: 'blur',
+              message: this.$i18n.t('m.Invalid_Email')
+            },
+            {
+              validator: CheckEmailNotExist,
+              trigger: 'blur'
+            }
           ],
           password: [
-            {required: true, trigger: 'blur', min: 6, max: 20},
-            {validator: CheckPassword, trigger: 'blur'}
+            {
+              required: true,
+              trigger: 'blur',
+              min: 6,
+              max: 20,
+              message: this.$i18n.t('m.Invalid_Password')
+            },
+            {
+              validator: CheckPassword,
+              trigger: 'blur'
+            }
           ],
           passwordAgain: [
-            {required: true, validator: CheckAgainPassword, trigger: 'change'}
+            {
+              required: true,
+              validator: CheckAgainPassword,
+              trigger: 'change'
+            }
           ],
           captcha: [
-            {required: true, trigger: 'blur', min: 1, max: 10}
+            {
+              required: true,
+              trigger: 'blur',
+              min: 1,
+              max: 10,
+              message: this.$i18n.t('m.Invalid_Captcha')
+            }
+          ],
+          agree_tos: [
+            {
+              required: true,
+              type: 'boolean',
+              validator: CheckAgreeTos,
+              trigger: 'change'
+            }
           ]
         }
       }
@@ -155,15 +220,16 @@
     },
     computed: {
       ...mapGetters(['website', 'modalStatus'])
-
     }
   }
 </script>
 
 <style scoped lang="less">
+  .agree_tos_formitem {
+    line-height: 1px;
+  }
   .footer_register {
     overflow: auto;
-    margin-top: 20px;
     margin-bottom: -15px;
     text-align: left;
     .btn {
