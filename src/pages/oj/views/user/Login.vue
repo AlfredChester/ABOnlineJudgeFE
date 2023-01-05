@@ -58,7 +58,7 @@
         },
         ruleLogin: {
           username: [
-            {required: true, trigger: 'blur'},
+            {required: true, trigger: 'blur', message: this.$i18n.t('m.Username_Cannot_Be_Empty')},
             {validator: CheckRequiredTFA, trigger: 'blur'}
           ],
           password: [
