@@ -241,7 +241,6 @@
           this.problemList = res.data.data.results.sort((a, b) => {
             return a._id < b._id ? -114 : 514
           })
-          console.log(this.problemList)
           if (this.isAuthenticated) {
             this.addStatusColumn(this.problemTableColumns, res.data.data.results)
           }
