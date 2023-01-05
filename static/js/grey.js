@@ -7,7 +7,8 @@ const greyDay = [
 ]
 
 const greyDuration = [
-  '2022-11-30~2022-12-6'
+  '2022-11-30~2022-12-6',
+  '2023-1-5~2023-1-5'
 ]
 
 let time = new Date()
