@@ -7,8 +7,9 @@
           <ul class="filter">
             <li>
               <Dropdown @on-click="handleResultChange">
-                <span>{{status}}
-                  <Icon type="arrow-down-b"></Icon>
+                <span>
+                  <Icon type="md-arrow-dropdown"></Icon>
+                  {{ status }}
                 </span>
                 <Dropdown-menu slot="list">
                   <Dropdown-item name="">{{$t('m.All')}}</Dropdown-item>
