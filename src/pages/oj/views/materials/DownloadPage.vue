@@ -247,11 +247,11 @@
         AIMG = AIMG.sort((a, b) => {
           return a === url ? 1 : -1
         })
-        console.log('[handleSwitching/DownloadPage.vue] All images (sorted):', AIMG)
+        console.log('[oj/DownloadPage.vue] All images (sorted):', AIMG)
         const $viewer = viewerApi({
           images: AIMG
         })
-        console.log('[handleSwitching/DownloadPage.vue] Viewer object:', $viewer)
+        console.log('[oj/DownloadPage.vue] Viewer object:', $viewer)
       },
       print(obj) {
         console.log(obj)
@@ -265,7 +265,7 @@
           const url = window.URL.createObjectURL(res.data)
           const link = document.createElement('a')
           let fileName = obj.downloadName
-          console.log('[downloadPdf/DownloadPage.vue] fileName is', fileName)
+          console.log('[oj/DownloadPage.vue] fileName is', fileName)
           link.href = url
           link.setAttribute('download', fileName)
           document.body.appendChild(link)
@@ -282,7 +282,7 @@
               element.show = false
             } else {
               element.show = !element.show
-              console.log('[handleSwitching/DownloadPage.vue] loading ratio: ', element.loadingRatio)
+              console.log('[oj/DownloadPage.vue] loading ratio: ', element.loadingRatio)
             }
           })
         }
