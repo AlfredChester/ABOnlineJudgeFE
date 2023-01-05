@@ -14,15 +14,12 @@ function realAxiosGet(suffix, config) {
 }
 
 function unique (_arr) {
-  console.log('Uniqueing')
-  console.log('Warning: Must Be sorted')
   let _retval = []
   _arr.forEach(element => {
     if (_retval.indexOf(element) === -1) {
       _retval.push(element)
     }
   })
-  console.log('Done!')
   return _retval
 }
 
