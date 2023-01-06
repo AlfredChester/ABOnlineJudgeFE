@@ -3,51 +3,60 @@
         {
             "title": "About ABOJ",
             "url": "/static/html/en-US-about.html",
-            "content": ""
+            "content": "",
+            "id": "about"
         },
         {
             "title": "ABOJ TOS",
             "url": "/static/html/en-US-tos.html",
-            "content": ""
+            "content": "",
+            "id": "tos"
         },
         {
             "title": "ABOJ Privacy Policy",
             "url": "/static/html/en-US-privacy.html",
-            "content": ""
+            "content": "",
+            "id": "privacy"
         }
     ],
     "zh-CN": [
         {
             "title": "关于ABOJ",
             "url": "/static/html/zh-CN-about.html",
-            "content": ""
+            "content": "",
+            "id": "about"
         },
         {
             "title": "ABOJ 服务条款",
             "url": "/static/html/zh-CN-tos.html",
-            "content": ""
+            "content": "",
+            "id": "tos"
         },
         {
             "title": "ABOJ 隐私政策",
             "url": "/static/html/zh-CN-privacy.html",
-            "content": ""
+            "content": "",
+            "id": "privacy"
         }
     ],
     "zh-TW": [
         {
             "title": "關於ABOJ",
             "url": "/static/html/zh-TW-about.html",
-            "content": ""
+            "content": "",
+            "id": "about"
         },
         {
             "title": "ABOJ 服務條款",
             "url": "/static/html/zh-TW-tos.html",
-            "content": ""
+            "content": "",
+            "id": "tos"
         },
         {
             "title": "ABOJ 隱私政策",
             "url": "/static/html/zh-TW-privacy.html",
-            "content": ""
+            "content": "",
+            "id": "privacy"
         }
     ]
 }
