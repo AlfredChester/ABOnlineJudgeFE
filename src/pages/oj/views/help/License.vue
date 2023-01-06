@@ -1,9 +1,13 @@
 <template>
   <div v-if="loaded">
-    <panel class="content"
-      v-for="pContent of content" :key="pContent.title">
-      <div slot="title">{{ pContent.title }}</div>
-      <div v-katex v-html="pContent.content" key="content" class="content-container markdown-body"></div>
+    <panel class="content" v-for="pContent of content" 
+      :key="pContent.title" :id="pContent.id">
+      <div slot="title">
+        {{ pContent.title }}
+      </div>
+      <div v-katex v-html="pContent.content" key="content" 
+            class="content-container markdown-body">
+      </div>
     </panel>
   </div>
 </template>
