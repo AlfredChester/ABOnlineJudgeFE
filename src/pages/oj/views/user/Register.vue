@@ -43,11 +43,11 @@
                   v-model="formRegister.agree_tos"
                   style="vertical-align: center;">
                   {{ $t('m.Read_And_Agree') }}
-                  <a href="/tos">
+                  <a href="/tos#tos">
                     {{ $t('m.ABOJs_Tos') }}
                   </a>
                   {{ $t('m.And') }}
-                  <a href="/tos">
+                  <a href="/tos#privacy">
                     {{ $t('m.ABOJs_Privacy_Policy') }}
                   </a>
         </Checkbox>
