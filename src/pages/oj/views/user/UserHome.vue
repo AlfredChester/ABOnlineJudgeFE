@@ -1,8 +1,5 @@
 <template>
   <div class="container">
-    <!-- <div class="bg-container">
-      <img class="background" src="../../../../assets/linesBG.png"/>
-    </div> -->
     <div class="avatar-container">
       <img class="avatar" :src="profile.avatar"/>
     </div>
@@ -92,14 +89,8 @@
     limit: 200
   }
 
-  let ansCache = []
-  
-  function cacheElement(object) {
-    ansCache.push(object)
-  }
-
-  function getCache() {
-    return ansCache
+  function debug(info) {
+    console.log('[oj/UserHome.vue]:\n' + info)
   }
 
   export default {
@@ -117,53 +108,36 @@
     methods: {
       ...mapActions(['changeDomTitle']),
       init () {
+        // 获取用户名称 undefined则为自身
         this.username = this.$route.query.username
+        debug('Loading user:' + this.username)
         api.getUserInfo(this.username).then(res => {
-          this.changeDomTitle({title: res.data.data.user.username})
+          this.changeDomTitle({
+            title: res.data.data.user.username
+          })
           this.profile = res.data.data
           this.adminType = res.data.data.user.admin_type
-          let registerTime = time.utcToLocal(this.profile.user.create_time, 'YYYY-MM-D')
-          console.log('[oj/UserHome.vue] The guy registered at ' + registerTime + '.')
+          // 获取注册时间
+          let registerTime = time.utcToLocal(
+            this.profile.user.create_time, 'YYYY-MM-D'
+          )
+          debug('The guy registered at ' + registerTime)
         })
         api.getProblemList(0, 200, getExistProblemQuery).then(res => {
-          res.data.data.results.forEach(element => {
-            cacheElement(element._id)
-          })
-        }).then(res => {
-          this.getSolvedProblems()
+          let problemSum = res.data.data.total
+          debug('Got ProblemSum: ' + problemSum)
         }).catch(e => {
-          console.log('[oj/UserHome.vue] Some Problems have occured:\n', e)
-          console.log('[oj/UserHome.vue] Retrying...')
-          this.getSolvedProblems()
+          debug('Some Problems have occured: ' + e)
+          debug('Retrying...')
         })
-        // todo: 一劳永逸解决getAll
-      },
-      getSolvedProblems () {
-        let ACMProblems = this.profile.acm_problems_status.problems || {}
-        let OIProblems = this.profile.oi_problems_status.problems || {}
-        // todo oi problems
-        let AllProblems = getCache()
-        let ACProblems = []
-        // When You see this code, you can know
-        // that it is a piece of shit
-        // Motherfucker
-        for (let problems of [ACMProblems, OIProblems]) {
-          Object.keys(problems).forEach(problemID => {
-            if (problems[problemID].status === 0 && AllProblems.indexOf(problems[problemID]._id) !== -1) {
-              ACProblems.push(problems[problemID]._id)
-            }
-          })
-        }
-        console.log('[oj/UserHome.vue] Accepted: ', ACProblems)
-        this.problems = utils.unique(ACProblems)
-        this.problems = this.problems.sort((a, b) => {
-          return a < b ? -114 : 514
-        })
-        this.profile.accepted_number = this.problems.length
-        ansCache = [] // empty Cache
       },
       goProblem (problemID) {
-        this.$router.push({name: 'problem-details', params: {problemID: problemID}})
+        this.$router.push({
+          name: 'problem-details',
+          params: {
+            problemID: problemID
+          }
+        })
       },
       freshProblemDisplayID () {
         api.freshDisplayID().then(res => {
@@ -174,8 +148,12 @@
     },
     computed: {
       refreshVisible () {
-        if (!this.username) return true
-        if (this.username && this.username === this.$store.getters.user.username) return true
+        if (!this.username) {
+          return true
+        }
+        if (this.username && this.username === this.$store.getters.user.username) {
+          return true
+        }
         return false
       }
     },
