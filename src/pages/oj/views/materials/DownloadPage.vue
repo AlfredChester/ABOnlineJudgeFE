@@ -193,6 +193,10 @@
               {
                 title: '单元练习2家默范围及要求',
                 src: requireChinese('单元练习2家默范围及要求.jpg')
+              },
+              {
+                title: '期末考试复习范围',
+                src: requireChinese('7Afinal.jpg')
               }
             ],
             pdfDatas: [
