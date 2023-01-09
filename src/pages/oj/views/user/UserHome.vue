@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="avatar-container">
-      <!-- <img class="avatar" :src="profile.avatar"/> -->
+      <img class="avatar" :src="profile.avatar"/>
     </div>
     <Card :padding="100">
       <div v-if="profile.user">
