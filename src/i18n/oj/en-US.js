@@ -9,6 +9,7 @@ export const m = {
   // 404.vue
   Go_Home: 'Go Home',
   // Problem.vue
+  SPJ_Enabled: 'SPJ is enabled',
   Copy_Success: 'Copied',
   Copy_Fail: 'Failed to copy',
   Details_i18n: 'Details',
