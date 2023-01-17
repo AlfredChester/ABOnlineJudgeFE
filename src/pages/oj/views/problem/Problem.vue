@@ -7,7 +7,7 @@
         <div id="problem-content" class="markdown-body" v-katex>
           <p class="title">{{$t('m.Description')}}</p>
           <p class="content" v-html=problem.description></p>
-          <!-- {{$t('m.music')}} -->
+
           <p class="title">{{$t('m.Input')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.FromFile')}}: {{ problem.io_mode.input }})</span></p>
           <p class="content" v-html=problem.input_description></p>
 
@@ -145,6 +145,9 @@
           <Icon type="ios-information-circle" />
           <span class="card-title">{{$t('m.Information')}}</span>
         </div>
+        <Alert v-if="problem.spj" type="warning" show-icon style="margin-bottom: 15px;">
+          {{ $t('m.SPJ_Enabled') }}
+        </Alert>
         <ul>
           <li><p>ID</p>
             <p>{{problem._id}}</p></li>
@@ -254,6 +257,7 @@
           created_by: {
             username: ''
           },
+          spj: false,
           tags: [],
           io_mode: {'io_mode': 'Standard IO'}
         },
