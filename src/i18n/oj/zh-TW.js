@@ -9,6 +9,7 @@ export const m = {
   // 404.vue
   Go_Home: '回到首頁',
   // Problem.vue
+  SPJ_Enabled: '本題啟用SPJ',
   Copy_Success: '複製成功',
   Copy_Fail: '複製失敗',
   Details_i18n: '詳細',
