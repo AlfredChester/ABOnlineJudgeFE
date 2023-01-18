@@ -3,21 +3,21 @@
     <div id="problem-main">
       <!--problem main-->
       <Panel :padding="40" shadow>
-        <div slot="title">{{problem.title}}</div>
+        <div slot="title">{{ problem.title }}</div>
         <div id="problem-content" class="markdown-body" v-katex>
-          <p class="title">{{$t('m.Description')}}</p>
+          <p class="title">{{ $t('m.Description') }}</p>
           <p class="content" v-html=problem.description></p>
 
-          <p class="title">{{$t('m.Input')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.FromFile')}}: {{ problem.io_mode.input }})</span></p>
+          <p class="title">{{ $t('m.Input') }} <span v-if="problem.io_mode.io_mode == 'File IO'">({{ $t('m.FromFile') }}: {{ problem.io_mode.input }})</span></p>
           <p class="content" v-html=problem.input_description></p>
 
-          <p class="title">{{$t('m.Output')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.ToFile')}}: {{ problem.io_mode.output }})</span></p>
+          <p class="title">{{ $t('m.Output') }} <span v-if="problem.io_mode.io_mode == 'File IO'">({{ $t('m.ToFile') }}: {{ problem.io_mode.output }})</span></p>
           <p class="content" v-html=problem.output_description></p>
 
           <div v-for="(sample, index) of problem.samples" :key="index">
             <div class="flex-container sample">
               <div class="sample-input">
-                <p class="title">{{$t('m.Sample_Input')}} {{index + 1}}
+                <p class="title">{{ $t('m.Sample_Input') }} {{ index + 1}}
                   <a class="copy"
                      v-clipboard:copy="sample.input"
                      v-clipboard:success="onCopy"
@@ -25,10 +25,10 @@
                     <Icon type="md-clipboard"></Icon>
                   </a>
                 </p>
-                <pre>{{sample.input}}</pre>
+                <pre>{{ sample.input }}</pre>
               </div>
               <div class="sample-output">
-                <p class="title">{{$t('m.Sample_Output')}} {{index + 1}}
+                <p class="title">{{ $t('m.Sample_Output') }} {{ index + 1}}
                   <a class="copy"
                      v-clipboard:copy="sample.output"
                      v-clipboard:success="onCopy"
@@ -36,21 +36,21 @@
                     <Icon type="md-clipboard"></Icon>
                   </a>
                 </p>
-                <pre>{{sample.output}}</pre>
+                <pre>{{ sample.output }}</pre>
               </div>
             </div>
           </div>
 
           <div v-if="problem.hint">
-            <p class="title">{{$t('m.Hint')}}</p>
+            <p class="title">{{ $t('m.Hint') }}</p>
             <Card dis-hover>
               <div class="content" v-html=problem.hint></div>
             </Card>
           </div>
 
           <div v-if="problem.source">
-            <p class="title">{{$t('m.Source')}}</p>
-            <p class="content">{{problem.source}}</p>
+            <p class="title">{{ $t('m.Source') }}</p>
+            <p class="content">{{ problem.source }}</p>
           </div>
 
         </div>
@@ -68,23 +68,23 @@
           <Col :span="10">
             <div class="status" v-if="statusVisible">
               <template v-if="!this.contestID || (this.contestID && OIContestRealTimePermission)">
-                <span>{{$t('m.Status')}}</span>
-                <Tag type="dot" :color="submissionStatus.color" @click.native="handleRoute('/status/'+submissionId)">
-                  {{$t('m.' + submissionStatus.text.replace(/ /g, "_"))}}
+                <span>{{ $t('m.Status') }}</span>
+                <Tag type="dot" :color="submissionStatus.color" @click.native="handleRoute('/status/' + submissionId)">
+                  {{ $t('m.' + submissionStatus.text.replace(/ /g, "_"))}}
                 </Tag>
               </template>
               <template v-else-if="this.contestID && !OIContestRealTimePermission">
-                <Alert type="success" show-icon>{{$t('m.Submitted_successfully')}}</Alert>
+                <Alert type="success" show-icon>{{ $t('m.Submitted_successfully') }}</Alert>
               </template>
             </div>
             <div v-else-if="problem.my_status === 0">
-              <Alert type="success" show-icon>{{$t('m.You_have_solved_the_problem')}}</Alert>
+              <Alert type="success" show-icon>{{ $t('m.You_have_solved_the_problem') }}</Alert>
             </div>
             <div v-else-if="this.contestID && !OIContestRealTimePermission && submissionExists">
-              <Alert type="success" show-icon>{{$t('m.You_have_submitted_a_solution')}}</Alert>
+              <Alert type="success" show-icon>{{ $t('m.You_have_submitted_a_solution') }}</Alert>
             </div>
             <div v-if="contestEnded">
-              <Alert type="warning" show-icon>{{$t('m.Contest_has_ended')}}</Alert>
+              <Alert type="warning" show-icon>{{ $t('m.Contest_has_ended') }}</Alert>
             </div>
           </Col>
 
@@ -100,8 +100,8 @@
             <Button type="warning" icon="md-create" :loading="submitting" @click="submitCode"
                     :disabled="problemSubmitDisabled || submitted"
                     class="fl-right">
-              <span v-if="submitting">{{$t('m.Submitting')}}</span>
-              <span v-else>{{$t('m.Submit')}}</span>
+              <span v-if="submitting">{{ $t('m.Submitting') }}</span>
+              <span v-else>{{ $t('m.Submit') }}</span>
             </Button>
           </Col>
         </Row>
@@ -111,31 +111,31 @@
     <div id="right-column">
       <VerticalMenu @on-click="handleRoute">
         <template v-if="this.contestID">
-          <VerticalMenu-item :route="{name: 'contest-problem-list', params: {contestID: contestID}}">
+          <VerticalMenu-item :route="{ name: 'contest-problem-list', params: { contestID: contestID } }">
             <Icon type="ios-photos"></Icon>
-            {{$t('m.Problems')}}
+            {{ $t('m.Problems') }}
           </VerticalMenu-item>
 
-          <VerticalMenu-item :route="{name: 'contest-announcement-list', params: {contestID: contestID}}">
+          <VerticalMenu-item :route="{ name: 'contest-announcement-list', params: { contestID: contestID } }">
             <Icon type="ios-chatboxes"></Icon>
-            {{$t('m.Announcements')}}
+            {{ $t('m.Announcements') }}
           </VerticalMenu-item>
         </template>
 
         <VerticalMenu-item v-if="!this.contestID || OIContestRealTimePermission" :route="submissionRoute">
           <Icon type="md-menu"></Icon>
-           {{$t('m.Submissions')}}
+           {{ $t('m.Submissions') }}
         </VerticalMenu-item>
 
         <template v-if="this.contestID">
           <VerticalMenu-item v-if="!this.contestID || OIContestRealTimePermission"
-                             :route="{name: 'contest-rank', params: {contestID: contestID}}">
+                             :route="{ name: 'contest-rank', params: { contestID: contestID } }">
             <Icon type="ios-stats"></Icon>
-            {{$t('m.Rankings')}}
+            {{ $t('m.Rankings') }}
           </VerticalMenu-item>
-          <VerticalMenu-item :route="{name: 'contest-details', params: {contestID: contestID}}">
+          <VerticalMenu-item :route="{ name: 'contest-details', params: { contestID: contestID } }">
             <Icon type="md-home"></Icon>
-            {{$t('m.View_Contest')}}
+            {{ $t('m.View_Contest') }}
           </VerticalMenu-item>
         </template>
       </VerticalMenu>
@@ -143,42 +143,45 @@
       <Card id="info">
         <div slot="title" class="header">
           <Icon type="ios-information-circle" />
-          <span class="card-title">{{$t('m.Information')}}</span>
+          <span class="card-title">{{ $t('m.Information') }}</span>
         </div>
         <Alert v-if="problem.spj" type="warning" show-icon style="margin-bottom: 15px;">
           {{ $t('m.SPJ_Enabled') }}
         </Alert>
         <ul>
-          <li><p>ID</p>
-            <p>{{problem._id}}</p></li>
           <li>
-            <p>{{$t('m.Time_Limit')}}</p>
-            <p>{{problem.time_limit}}MS</p></li>
-          <li>
-            <p>{{$t('m.Memory_Limit')}}</p>
-            <p>{{problem.memory_limit}}MB</p>
+            <p>ID</p>
+            <p>{{ problem._id }}</p>
           </li>
           <li>
-            <p>{{$t('m.IOMode')}}</p>
-            <p>{{problem.io_mode.io_mode}}</p>
+            <p>{{ $t('m.Time_Limit') }}</p>
+            <p>{{ problem.time_limit }}MS</p>
           </li>
           <li>
-            <p>{{$t('m.Created')}}</p>
-            <p>{{problem.created_by.username}}</p></li>
+            <p>{{ $t('m.Memory_Limit') }}</p>
+            <p>{{ problem.memory_limit }}MB</p>
+          </li>
+          <li>
+            <p>{{ $t('m.IOMode') }}</p>
+            <p>{{ problem.io_mode.io_mode }}</p>
+          </li>
+          <li>
+            <p>{{ $t('m.Created') }}</p>
+            <p>{{ problem.created_by.username }}</p></li>
           <li v-if="problem.difficulty">
-            <p>{{$t('m.Level')}}</p>
-            <p>{{$t('m.' + problem.difficulty)}}</p></li>
+            <p>{{ $t('m.Level') }}</p>
+            <p>{{ $t('m.' + problem.difficulty)}}</p></li>
           <li v-if="problem.total_score">
-            <p>{{$t('m.Score')}}</p>
-            <p>{{problem.total_score}}</p>
+            <p>{{ $t('m.Score') }}</p>
+            <p>{{ problem.total_score }}</p>
           </li>
           <li>
-            <p>{{$t('m.Tags')}}</p>
+            <p>{{ $t('m.Tags') }}</p>
             <p>
               <Poptip trigger="hover" placement="left-end">
-                <a>{{$t('m.Show')}}</a>
+                <a>{{ $t('m.Show') }}</a>
                 <div slot="content">
-                  <Tag v-for="tag in problem.tags" :key="tag">{{tag}}</Tag>
+                  <Tag v-for="tag in problem.tags" :key="tag">{{ tag }}</Tag>
                 </div>
               </Poptip>
             </p>
@@ -189,8 +192,8 @@
       <Card id="pieChart" :padding="0" v-if="!this.contestID || OIContestRealTimePermission">
         <div slot="title">
           <Icon type="ios-analytics"></Icon>
-          <span class="card-title">{{$t('m.Statistic')}}</span>
-          <Button id="detail" @click="graphVisible = !graphVisible">{{$t('m.Details_i18n')}}</Button>
+          <span class="card-title">{{ $t('m.Statistic') }}</span>
+          <Button id="detail" @click="graphVisible = !graphVisible">{{ $t('m.Details_i18n') }}</Button>
         </div>
         <div class="echarts">
           <ECharts :options="pie"></ECharts>
@@ -203,21 +206,21 @@
         <ECharts :options="largePie" :initOptions="largePieInitOpts"></ECharts>
       </div>
       <div slot="footer">
-        <Button @click="graphVisible=false">{{$t('m.Close')}}</Button>
+        <Button @click="graphVisible = false">{{ $t('m.Close') }}</Button>
       </div>
     </Modal>
   </div>
 </template>
 
 <script>
-  import {mapGetters, mapActions} from 'vuex'
-  import {types} from '../../../../store'
+  import { mapGetters, mapActions } from 'vuex'
+  import { types } from '../../../../store'
   import CodeMirror from '@oj/components/CodeMirror.vue'
   import storage from '@/utils/storage'
-  import {FormMixin} from '@oj/components/mixins'
-  import {JUDGE_STATUS, CONTEST_STATUS, buildProblemCodeKey} from '@/utils/constants'
+  import { FormMixin } from '@oj/components/mixins'
+  import { JUDGE_STATUS, CONTEST_STATUS, buildProblemCodeKey } from '@/utils/constants'
   import api from '@oj/api'
-  import {pie, largePie} from './chartData'
+  import { pie, largePie } from './chartData'
 
   // 只显示这些状态的图形占用
   const filtedStatus = ['-1', '-2', '0', '1', '2', '3', '4', '8']
@@ -228,7 +231,7 @@
       CodeMirror
     },
     mixins: [FormMixin],
-    data () {
+    data() {
       return {
         statusVisible: false,
         captchaRequired: false,
@@ -259,7 +262,7 @@
           },
           spj: false,
           tags: [],
-          io_mode: {'io_mode': 'Standard IO'}
+          io_mode: { 'io_mode': 'Standard IO' }
         },
         pie: pie,
         largePie: largePie,
@@ -270,7 +273,7 @@
         }
       }
     },
-    beforeRouteEnter (to, from, next) {
+    beforeRouteEnter(to, from, next) {
       let problemCode = storage.get(buildProblemCodeKey(to.params.problemID, to.params.contestID))
       if (problemCode) {
         next(vm => {
@@ -282,13 +285,13 @@
         next()
       }
     },
-    mounted () {
-      this.$store.commit(types.CHANGE_CONTEST_ITEM_VISIBLE, {menu: false})
+    mounted() {
+      this.$store.commit(types.CHANGE_CONTEST_ITEM_VISIBLE, { menu: false })
       this.init()
     },
     methods: {
       ...mapActions(['changeDomTitle']),
-      init () {
+      init() {
         this.$Loading.start()
         this.contestID = this.$route.params.contestID
         this.problemID = this.$route.params.problemID
@@ -296,7 +299,7 @@
         api[func](this.problemID, this.contestID).then(res => {
           this.$Loading.finish()
           let problem = res.data.data
-          this.changeDomTitle({title: problem.title})
+          this.changeDomTitle({ title: problem.title })
           api.submissionExists(problem.id).then(res => {
             this.submissionExists = res.data.data
           })
@@ -320,7 +323,7 @@
           this.$Loading.error()
         })
       },
-      changePie (problemData) {
+      changePie(problemData) {
         // 只显示特定的一些状态
         for (let k in problemData.statistic_info) {
           if (filtedStatus.indexOf(k) === -1) {
@@ -329,8 +332,8 @@
         }
         let acNum = problemData.accepted_number
         let data = [
-          {name: 'WA', value: problemData.submission_number - acNum},
-          {name: 'AC', value: acNum}
+          { name: 'WA', value: problemData.submission_number - acNum },
+          { name: 'AC', value: acNum }
         ]
         this.pie.series[0].data = data
         // 只把大图的AC selected下，这里需要做一下deepcopy
@@ -351,15 +354,15 @@
 
         let largePieData = []
         Object.keys(problemData.statistic_info).forEach(ele => {
-          largePieData.push({name: JUDGE_STATUS[ele].short, value: problemData.statistic_info[ele]})
+          largePieData.push({ name: JUDGE_STATUS[ele].short, value: problemData.statistic_info[ele] })
         })
-        largePieData.push({name: 'AC', value: acCount})
+        largePieData.push({ name: 'AC', value: acCount })
         this.largePie.series[0].data = largePieData
       },
-      handleRoute (route) {
+      handleRoute(route) {
         this.$router.push(route)
       },
-      onChangeLang (newLang) {
+      onChangeLang(newLang) {
         if (this.problem.template[newLang]) {
           if (this.code.trim() === '') {
             this.code = this.problem.template[newLang]
@@ -367,10 +370,10 @@
         }
         this.language = newLang
       },
-      onChangeTheme (newTheme) {
+      onChangeTheme(newTheme) {
         this.theme = newTheme
       },
-      onResetToTemplate () {
+      onResetToTemplate() {
         this.$Modal.confirm({
           content: this.$i18n.t('m.Are_you_sure_you_want_to_reset_your_code'),
           onOk: () => {
@@ -383,7 +386,7 @@
           }
         })
       },
-      checkSubmissionStatus () {
+      checkSubmissionStatus() {
         // 使用setTimeout避免一些问题
         if (this.refreshStatus) {
           // 如果之前的提交状态检查还没有停止,则停止,否则将会失去timeout的引用造成无限请求
@@ -408,13 +411,13 @@
         }
         this.refreshStatus = setTimeout(checkStatus, 2000)
       },
-      submitCode () {
+      submitCode() {
         if (this.code.trim() === '') {
           this.$error(this.$i18n.t('m.Code_can_not_be_empty'))
           return
         }
         this.submissionId = ''
-        this.result = {result: 9}
+        this.result = { result: 9 }
         this.submitting = true
         let data = {
           problem_id: this.problem.id,
@@ -473,40 +476,40 @@
           submitFunc(data, true)
         }
       },
-      onCopy (event) {
+      onCopy(event) {
         this.$success(this.$i18n.t('m.Copy_Success'))
       },
-      onCopyError (e) {
+      onCopyError(e) {
         this.$error(this.$i18n.t('m.Copy_Fail'))
       }
     },
     computed: {
       ...mapGetters(['problemSubmitDisabled', 'contestRuleType', 'OIContestRealTimePermission', 'contestStatus']),
-      contest () {
+      contest() {
         return this.$store.state.contest.contest
       },
-      contestEnded () {
+      contestEnded() {
         return this.contestStatus === CONTEST_STATUS.ENDED
       },
-      submissionStatus () {
+      submissionStatus() {
         return {
           text: JUDGE_STATUS[this.result.result]['name'],
           color: JUDGE_STATUS[this.result.result]['type']
         }
       },
-      submissionRoute () {
+      submissionRoute() {
         if (this.contestID) {
-          return {name: 'contest-submission-list', query: {problemID: this.problemID}}
+          return { name: 'contest-submission-list', query: { problemID: this.problemID } }
         } else {
-          return {name: 'submission-list', query: {problemID: this.problemID}}
+          return { name: 'submission-list', query: { problemID: this.problemID } }
         }
       }
     },
-    beforeRouteLeave (to, from, next) {
+    beforeRouteLeave(to, from, next) {
       // 防止切换组件后仍然不断请求
       clearInterval(this.refreshStatus)
 
-      this.$store.commit(types.CHANGE_CONTEST_ITEM_VISIBLE, {menu: true})
+      this.$store.commit(types.CHANGE_CONTEST_ITEM_VISIBLE, { menu: true })
       storage.set(buildProblemCodeKey(this.problem._id, from.params.contestID), {
         code: this.code,
         language: this.language,
@@ -515,7 +518,7 @@
       next()
     },
     watch: {
-      '$route' () {
+      '$route'() {
         this.init()
       }
     }
@@ -532,6 +535,7 @@
       flex: auto;
       margin-right: 18px;
     }
+
     #right-column {
       flex: none;
       width: 220px;
@@ -540,29 +544,36 @@
 
   #problem-content {
     margin-top: -50px;
+
     .title {
       font-size: 20px;
       font-weight: 400;
       margin: 25px 0 8px 0;
       color: #3091f2;
+
       .copy {
         padding-left: 8px;
       }
     }
+
     p.content {
       margin-left: 25px;
       margin-right: 20px;
       font-size: 15px
     }
+
     .sample {
       align-items: stretch;
-      &-input, &-output {
+
+      &-input,
+      &-output {
         width: 50%;
         flex: 1 1 auto;
         display: flex;
         flex-direction: column;
         margin-right: 5%;
       }
+
       pre {
         flex: 1 1 auto;
         align-self: stretch;
@@ -575,15 +586,19 @@
   #submit-code {
     margin-top: 20px;
     margin-bottom: 20px;
+
     .status {
       float: left;
+
       span {
         margin-right: 10px;
         margin-left: 10px;
       }
     }
+
     .captcha-container {
       display: inline-block;
+
       .captcha-code {
         width: auto;
         margin-top: -20px;
@@ -595,17 +610,22 @@
   #info {
     margin-bottom: 20px;
     margin-top: 20px;
+
     ul {
       list-style-type: none;
+
       li {
         border-bottom: 1px dotted #e9eaec;
         margin-bottom: 10px;
+
         p {
           display: inline-block;
         }
+
         p:first-child {
           width: 90px;
         }
+
         p:last-child {
           float: right;
         }
@@ -622,6 +642,7 @@
       height: 250px;
       width: 210px;
     }
+
     #detail {
       position: absolute;
       right: 10px;
