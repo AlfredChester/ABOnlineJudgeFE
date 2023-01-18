@@ -203,10 +203,13 @@
 
     <Modal v-model="graphVisible">
       <div id="pieChart-detail">
-        <ECharts :options="largePie" :initOptions="largePieInitOpts"></ECharts>
+        <ECharts :options="largePie" :initOptions="largePieInitOpts">
+        </ECharts>
       </div>
       <div slot="footer">
-        <Button @click="graphVisible = false">{{ $t('m.Close') }}</Button>
+        <Button @click="graphVisible = false">
+          {{ $t('m.Close') }}
+        </Button>
       </div>
     </Modal>
   </div>
@@ -304,6 +307,10 @@
             this.submissionExists = res.data.data
           })
           problem.languages = problem.languages.sort()
+          if (problem.languages[0] === 'C') {
+            problem.languages[0] = 'C++'
+            problem.languages[1] = 'C'
+          }
           this.problem = problem
           if (problem.statistic_info) {
             this.changePie(problem)
