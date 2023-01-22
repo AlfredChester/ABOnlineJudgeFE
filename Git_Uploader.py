@@ -34,7 +34,7 @@ class Main:
         for sec in route_info.split("/"):           # parse后, 以'/'分割路径
             sec = f"b'{sec}'"
             sec = eval(sec)                         # decode to utf-8
-            retval += "\\" + str(sec,encoding='utf-8')
+            retval += "/" + str(sec,encoding='utf-8')
         return retval
 
     def checkBranch() -> list:
@@ -72,7 +72,7 @@ class Main:
         return response == 'N' or response == 'n' or (response == '' and Default == 'n')
 
     def main() -> None:
-        logger.add(".\\Uploader_log\\file-{time:YYYY-MM-DD}.log", retention="1 day")
+        logger.add("./Uploader_log/file-{time:YYYY-MM-DD}.log", retention="1 day")
         logger.info("欢迎来到Git上传工具 v2.0")
         # 首先检查当前的分支:
         CheckResult = Main.checkBranch()
