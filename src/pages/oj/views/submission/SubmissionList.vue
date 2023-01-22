@@ -2,7 +2,7 @@
   <div class="flex-container">
     <div id="main">
       <Panel shadow>
-        <div slot="title">{{title}}</div>
+        <div slot="title">{{ title }}</div>
         <div slot="extra">
           <ul class="filter">
             <li>
@@ -12,9 +12,9 @@
                   <Icon type="md-arrow-dropdown"></Icon>
                 </span>
                 <Dropdown-menu slot="list">
-                  <Dropdown-item name="">{{$t('m.All')}}</Dropdown-item>
+                  <Dropdown-item name="">{{ $t('m.All') }}</Dropdown-item>
                   <Dropdown-item v-for="status in Object.keys(JUDGE_STATUS)" :key="status" :name="status">
-                    {{$t('m.' + JUDGE_STATUS[status].name.replace(/ /g, "_"))}}
+                    {{ $t('m.' + JUDGE_STATUS[status].name.replace(/ /g, "_"))}}
                   </Dropdown-item>
                 </Dropdown-menu>
               </Dropdown>
@@ -23,8 +23,8 @@
 
             <li>
               <i-switch size="large" v-model="formFilter.myself" @on-change="handleQueryChange">
-                <span slot="open">{{$t('m.Mine')}}</span>
-                <span slot="close">{{$t('m.All')}}</span>
+                <span slot="open">{{ $t('m.Mine') }}</span>
+                <span slot="close">{{ $t('m.All') }}</span>
               </i-switch>
             </li>
             <li>
@@ -32,7 +32,7 @@
             </li>
 
             <li>
-              <Button type="info" icon="md-refresh" @click="getSubmissions">{{$t('m.Refresh')}}</Button>
+              <Button type="info" icon="md-refresh" @click="getSubmissions">{{ $t('m.Refresh') }}</Button>
             </li>
           </ul>
         </div>
@@ -56,7 +56,7 @@
     components: {
       Pagination
     },
-    data () {
+    data() {
       return {
         formFilter: {
           myself: false,
@@ -119,10 +119,10 @@
                         this.$router.push(
                           {
                             name: 'contest-problem-details',
-                            params: {problemID: params.row.problem, contestID: this.contestID}
+                            params: { problemID: params.row.problem, contestID: this.contestID }
                           })
                       } else {
-                        this.$router.push({name: 'problem-details', params: {problemID: params.row.problem}})
+                        this.$router.push({ name: 'problem-details', params: { problemID: params.row.problem } })
                       }
                     }
                   }
@@ -163,7 +163,7 @@
                     this.$router.push(
                       {
                         name: 'user-home',
-                        query: {username: params.row.username}
+                        query: { username: params.row.username }
                       })
                   }
                 }
@@ -183,7 +183,7 @@
         rejudge_column: false
       }
     },
-    mounted () {
+    mounted() {
       this.init()
       this.JUDGE_STATUS = Object.assign({}, JUDGE_STATUS)
       // 去除submitting的状态 和 两个
@@ -191,7 +191,7 @@
       delete this.JUDGE_STATUS['2']
     },
     methods: {
-      init () {
+      init() {
         this.contestID = this.$route.params.contestID
         let query = this.$route.query
         this.problemID = query.problemID
@@ -205,7 +205,7 @@
         this.routeName = this.$route.name
         this.getSubmissions()
       },
-      buildQuery () {
+      buildQuery() {
         return {
           myself: this.formFilter.myself === true ? '1' : '0',
           result: this.formFilter.result,
@@ -213,7 +213,7 @@
           page: this.page
         }
       },
-      getSubmissions () {
+      getSubmissions() {
         let params = this.buildQuery()
         params.contest_id = this.contestID
         params.problem_id = this.problemID
@@ -234,7 +234,7 @@
         })
       },
       // 改变route， 通过监听route变化请求数据，这样可以产生route history， 用户返回时就会保存之前的状态
-      changeRoute () {
+      changeRoute() {
         let query = utils.filterEmptyValue(this.buildQuery())
         query.contestID = this.contestID
         query.problemID = this.problemID
@@ -244,10 +244,10 @@
           query: utils.filterEmptyValue(query)
         })
       },
-      goRoute (route) {
+      goRoute(route) {
         this.$router.push(route)
       },
-      adjustRejudgeColumn () {
+      adjustRejudgeColumn() {
         if (!this.rejudgeColumnVisible || this.rejudge_column) {
           return
         }
@@ -274,16 +274,16 @@
         this.columns.push(judgeColumn)
         this.rejudge_column = true
       },
-      handleResultChange (status) {
+      handleResultChange(status) {
         this.page = 1
         this.formFilter.result = status
         this.changeRoute()
       },
-      handleQueryChange () {
+      handleQueryChange() {
         this.page = 1
         this.changeRoute()
       },
-      handleRejudge (id, index) {
+      handleRejudge(id, index) {
         this.submissions[index].loading = true
         api.submissionRejudge(id).then(res => {
           this.submissions[index].loading = false
@@ -296,7 +296,7 @@
     },
     computed: {
       ...mapGetters(['isAuthenticated', 'user']),
-      title () {
+      title() {
         if (!this.contestID) {
           return this.$i18n.t('m.Status')
         } else if (this.problemID) {
@@ -305,23 +305,23 @@
           return this.$i18n.t('m.Submissions')
         }
       },
-      status () {
+      status() {
         return this.formFilter.result === '' ? this.$i18n.t('m.Status') : this.$i18n.t('m.' + JUDGE_STATUS[this.formFilter.result].name.replace(/ /g, '_'))
       },
-      rejudgeColumnVisible () {
+      rejudgeColumnVisible() {
         return !this.contestID && this.user.admin_type === USER_TYPE.SUPER_ADMIN
       }
     },
     watch: {
-      '$route' (newVal, oldVal) {
+      '$route'(newVal, oldVal) {
         if (newVal !== oldVal) {
           this.init()
         }
       },
-      'rejudgeColumnVisible' () {
+      'rejudgeColumnVisible'() {
         this.adjustRejudgeColumn()
       },
-      'isAuthenticated' () {
+      'isAuthenticated'() {
         this.init()
       }
     }
@@ -337,10 +337,12 @@
     #main {
       flex: auto;
       margin-right: 18px;
+
       .filter {
         margin-right: -10px;
       }
     }
+
     #contest-menu {
       flex: none;
       width: 210px;
