@@ -83,3 +83,5 @@ vendor.dll*.js
 *.zip
 
 makefile
+
+*.DS_Store
