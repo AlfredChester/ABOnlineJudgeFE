@@ -140,7 +140,7 @@ module.exports = {
       files: ['index.html', 'admin/index.html'],
       append: false
     }),
-    new MonacoWebpackPlugin(),
+    // new MonacoWebpackPlugin(),
   ],
   // externals: 'hls.js',
   externals: [
