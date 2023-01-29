@@ -4,7 +4,7 @@ import {
   ACMRank,
   Announcements,
   ApplyResetPassword,
-  CalendarDemo,
+  CodeCompresser,
   DownloadPage,
   FAQ,
   Home,
@@ -192,16 +192,16 @@ export default [
     component: Listening
   },
   {
-    path: '/10a9fc70042_calenderDemo',
-    name: 'CalenderDemo',
-    meta: {title: '日历预览'},
-    component: CalendarDemo
-  },
-  {
     path: '/downloadCollection',
     name: 'Downloads',
     meta: {title: i18n.t('m.DownloadPage')},
     component: DownloadPage
+  },
+  {
+    name: 'CodeCompresser',
+    path: '/code_compresser',
+    meta: {title: i18n.t('m.Code_Compresser')},
+    component: CodeCompresser
   },
   {
     path: '/tos',
