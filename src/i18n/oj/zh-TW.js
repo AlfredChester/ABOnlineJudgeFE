@@ -86,6 +86,8 @@ export const m = {
   The_email_doesnt_exist: '此電子郵件並不存在',
   Success: '成功',
   Password_reset_mail_sent: '已發送重置密碼之電子郵件',
+  // Code_Compresser.vue
+  Code_Compresser: '代碼壓縮器',
   // FAQ.vue
   Frequently_Asked_Questions: '常見問題',
   Where_is_the_input_and_the_output: '輸入與輸出在哪邊?',
