@@ -86,6 +86,8 @@ export const m = {
   The_email_doesnt_exist: '该电子邮件地址不存在',
   Success: '成功',
   Password_reset_mail_sent: '密码重置邮件已发送。',
+  // Code_Compresser.vue
+  Code_Compresser: '代码压缩器',
   // FAQ.vue
   Frequently_Asked_Questions: '常见问题',
   Where_is_the_input_and_the_output: '输入和输出在哪里？',
