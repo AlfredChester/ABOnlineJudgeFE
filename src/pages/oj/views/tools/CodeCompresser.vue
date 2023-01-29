@@ -1,0 +1,68 @@
+<template>
+  <panel class="container">
+    <div slot="title" style="font-size: xx-large; margin-top: 3px;">
+      {{ $t('m.Code_Compresser') }}
+    </div>
+    <div class="content markdown-body">
+      <CodeMirror :value.sync="code"
+                  :languages="languages"
+                  :language="language"
+                  @resetCode="onResetToTemplate">
+      </CodeMirror>
+      <Button v-on:click="compressCode">
+        压缩!
+      </Button>
+      <Button v-on:click="downloadCode" type="primary">
+        下载
+      </Button>
+    </div>
+  </panel>
+</template>
+
+<script>
+  import CodeMirror from '@oj/components/CodeMirror.vue'
+  import CompressUtil from '@/utils/compress'
+
+  export default {
+    components: {
+      CodeMirror
+    },
+    data() {
+      return {
+        code: '',
+        language: 'C++',
+        languages: [
+          'C', 'C++'
+        ]
+      }
+    },
+    methods: {
+      onResetToTemplate() {
+        this.$Modal.confirm({
+          content: this.$i18n.t('m.Are_you_sure_you_want_to_reset_your_code'),
+          onOk: () => {
+            this.code = ''
+          }
+        })
+      },
+      compressCode() {
+        this.code = CompressUtil.compress(this.code)
+        this.$success(this.$i18n.t('m.Succeeded'))
+      }
+    }
+  }
+</script>
+
+<style lang="less">
+  .container {
+    margin-bottom: 20px;
+    .content {
+      font-size: 16px;
+      margin: 0 50px 20px 50px;
+      .CodeMirror-scroll {
+        min-height: 50vh !important;
+        max-height: 60vh !important;
+      }
+    }
+  }
+</style>
