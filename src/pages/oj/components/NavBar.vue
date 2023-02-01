@@ -2,7 +2,9 @@
   <div id="header">
     <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
       <div class="logo">
-        <a href="/"><img src="../../../assets/title.png"/></a>
+        <a href="/">
+          <img src="../../../assets/title.png"/>
+        </a>
       </div>
       <Menu-item name="/">
         <Icon type="md-home"></Icon>
@@ -127,7 +129,7 @@
     mounted() {
       this.getProfile()
       api.getUserInfo(this.user.username).then(data => {
-        console.log('[oj/NavBar.vue]:', data.data.data.avatar)
+        console.log('[oj/NavBar.vue]: User Avatar:', data.data.data.avatar)
         this.avatar = data.data.data.avatar
       }).catch(err => {
         console.log('[oj/NavBar.vue]: Error occured when loading avatar:')
