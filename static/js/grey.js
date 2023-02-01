@@ -1,4 +1,7 @@
-// CopyRight © Rhodes Island Phr.Ltd. All Rights Reserverd
+/* eslint no-undef: ["off"] */
+
+// CopyRight © Rhodes Island Phr.Ltd. All Rights Reserved
+
 'use strict'
 
 const greyDay = []
