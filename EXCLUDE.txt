@@ -1,5 +1,0 @@
-node_modules
-dist
-src\assets\Geography
-src\assets\Listenings\7A\7A.zip
-.git
