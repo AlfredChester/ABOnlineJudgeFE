@@ -1,0 +1,7 @@
+// jsconfig.json 文件
+{
+    //...其他配置项
+    "vueCompilerOptions": {
+        "target": 2.7
+    }
+}
