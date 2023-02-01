@@ -1,5 +1,5 @@
 from time import sleep
-from baidutranslib import BaiduTranslator
+from BaiduTrans import BaiduTranslator
 from parse import compile
 import pyttsx3
 
