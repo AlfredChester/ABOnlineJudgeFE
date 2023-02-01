@@ -65,28 +65,32 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      version: process.env.VERSION,
-      languages: {
-        '简体中文': 'zh-CN',
-        '繁體中文': 'zh-TW',
-        'English': 'en-US'
-      },
-      langCache: this.$i18n.locale
-    }
-  },
-  watch: {
-    'langCache'() {
-      this.$i18n.locale = this.langCache
-      this.$success(this.$i18n.t('m.Succeeded'))
+  import { languages } from '../../../i18n'
+
+  export default {
+    data() {
+      var languagesTemp = {}
+      console.log('[oj/Footer.vue]: Fetching i18n Map')
+      for (var item of languages) {
+        console.log('[oj/Footer.vue]:', item.label, item.value)
+        languagesTemp[item.label] = item.value
+      }
+      return {
+        version: process.env.VERSION,
+        languages: languagesTemp,
+        langCache: this.$i18n.locale
+      }
     },
-    '$i18n.locale'(newVal) {
-      this.langCache = newVal
+    watch: {
+      'langCache'() {
+        this.$i18n.locale = this.langCache
+        this.$success(this.$i18n.t('m.Succeeded'))
+      },
+      '$i18n.locale'(newVal) {
+        this.langCache = newVal
+      }
     }
   }
-}
 </script>
 
 <style lang="less">
