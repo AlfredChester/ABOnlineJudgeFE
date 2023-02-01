@@ -70,20 +70,22 @@ test.vue
 vendor-manifest.json
 vendor.dll*.js
 
+# python files for build
+__pycache__/
 *.pyc
-
 *.py
 
+# notices
 *.txt
 
+# assets
 *.pdf
-
 *.m4a
-
 *.zip
 
+# makeFile
 makefile
 
+# MacOS
 *.DS_Store
-
 rundev.sh
