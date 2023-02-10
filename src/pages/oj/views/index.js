@@ -11,6 +11,7 @@ import NotFound from './general/404.vue'
 import Home from './general/Home.vue'
 import Announcements from './general/Announcements.vue'
 import CodeCompresser from './tools/CodeCompresser.vue'
+import HomoNumber from './tools/HomoNumber.vue'
 
 // Grouping Components in the Same Chunk
 const SubmissionList = () => import(/* webpackChunkName: "submission" */ '@oj/views/submission/SubmissionList.vue')
@@ -29,8 +30,8 @@ export {
   Listening, DownloadPage, CodeCompresser,
   Logout, UserHome, License,
   About, FAQ, ThanksPage,
-  ProblemList, Problem,
-  ACMRank, OIRank,
+  ProblemList, HomoNumber,
+  ACMRank, OIRank, Problem,
   SubmissionList, SubmissionDetails,
   ApplyResetPassword, ResetPassword
 }
