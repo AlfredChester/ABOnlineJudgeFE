@@ -46,6 +46,20 @@
           {{$t('m.DownloadPage')}}
         </Menu-item>
       </Submenu> -->
+      <Submenu name="tools">
+        <template slot="title">
+          <Icon type="ios-hammer"></Icon>
+          {{ $t('m.Tools') }}
+        </template>
+        <Menu-item name="/code_compresser">
+          <Icon type="ios-folder"></Icon>
+          {{ $t('m.Code_Compresser') }}
+        </Menu-item>
+        <Menu-item name="/homoGenerator">
+          <Icon type="ios-infinite"></Icon>
+          {{ $t('m.Homo_Number_Generator') }}
+        </Menu-item>
+      </Submenu>
       <Submenu name="about">
         <template slot="title">
           <Icon type="ios-information-circle"></Icon>
