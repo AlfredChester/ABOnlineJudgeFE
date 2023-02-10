@@ -3,11 +3,12 @@
     <div slot="title" style="font-size: xx-large; margin-top: 3px;">
       {{ $t('m.Code_Compresser') }}
     </div>
-    <div class="content markdown-body">
+    <div class="content">
       <CodeMirror :value.sync="code"
                   :languages="languages"
                   :language="language"
-                  @resetCode="onResetToTemplate">
+                  @resetCode="onResetToTemplate"
+                  @changeLang="onChangeLang">
       </CodeMirror>
       <Button v-on:click="compressCode">
         压缩!
@@ -20,6 +21,7 @@
 </template>
 
 <script>
+  import download from 'downloadjs'
   import CodeMirror from '@oj/components/CodeMirror.vue'
   import CompressUtil from '@/utils/compress'
 
@@ -45,9 +47,19 @@
           }
         })
       },
+      onChangeLang(newLang) {
+        this.language = newLang
+      },
       compressCode() {
         this.code = CompressUtil.compress(this.code)
         this.$success(this.$i18n.t('m.Succeeded'))
+      },
+      downloadCode() {
+        if (this.language === 'C') {
+          download(this.code, 'compressed.c', 'text/plain')
+        } else if (this.language === 'C++') {
+          download(this.code, 'compressed.cpp', 'text/plain')
+        }
       }
     }
   }
