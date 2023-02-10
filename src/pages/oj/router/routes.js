@@ -8,6 +8,7 @@ import {
   DownloadPage,
   FAQ,
   Home,
+  HomoNumber,
   License,
   Listening,
   Logout,
@@ -202,6 +203,12 @@ export default [
     path: '/code_compresser',
     meta: {title: i18n.t('m.Code_Compresser')},
     component: CodeCompresser
+  },
+  {
+    name: 'HomoNumber',
+    path: '/homoGenerator',
+    meta: {title: i18n.t('m.Homo_Number_Generator')},
+    component: HomoNumber
   },
   {
     path: '/tos',
