@@ -88,6 +88,8 @@ export const m = {
   Password_reset_mail_sent: '密码重置邮件已发送。',
   // Code_Compresser.vue
   Code_Compresser: '代码压缩器',
+  // HomoNumber.vue
+  Homo_Number_Generator: 'Homo数生成器',
   // FAQ.vue
   Frequently_Asked_Questions: '常见问题',
   Where_is_the_input_and_the_output: '输入和输出在哪里？',
@@ -160,6 +162,7 @@ export const m = {
   // KatexEditor.vue
   Latex_Editor: 'Latex 编辑器',
   // NavBar.vue
+  Tools: '工具',
   Home: '首页',
   NavProblems: '问题',
   Contests: '练习&比赛',
