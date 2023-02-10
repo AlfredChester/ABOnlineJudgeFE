@@ -88,6 +88,8 @@ export const m = {
   Password_reset_mail_sent: 'Password reset mail has been sent to your email，',
   // Code_Compresser.vue
   Code_Compresser: 'Code Compresser',
+  // HomoNumber.vue
+  Homo_Number_Generator: 'Homo Number Generator',
   // FAQ.vue
   Frequently_Asked_Questions: 'Frequently Asked Questions',
   Where_is_the_input_and_the_output: 'Where is the input and the output?',
@@ -160,6 +162,7 @@ export const m = {
   // KatexEditor.vue
   Latex_Editor: 'Latex Editor',
   // NavBar.vue
+  Tools: 'Tools',
   Home: 'Home',
   NavProblems: 'Problems',
   Contests: 'Contests',
