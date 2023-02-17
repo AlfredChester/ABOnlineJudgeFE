@@ -6,7 +6,7 @@
     <div class="content markdown-body">
       <span class="MaterialType" 
         v-for="MaterialType in Downloads"
-        v-if="MaterialType.title !== '真 理 诞 生 于 一 百 块 钱 之 后' || isAuthenticated">
+        v-if="MaterialType.title !== IgnoreTitle || isAuthenticated">
         <h1 class="Mat_title">
           {{ MaterialType.title }}
         </h1>
@@ -245,7 +245,8 @@
             ]
           }
         },
-        AllImage: []
+        AllImage: [],
+        IgnoreTitle: '真 理 诞 生 于 一 百 块 钱 之 后'
       }
     },
     mounted() {
