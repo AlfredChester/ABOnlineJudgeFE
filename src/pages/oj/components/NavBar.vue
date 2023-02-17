@@ -34,7 +34,7 @@
           {{ $t('m.OI_Rank') }}
         </Menu-item>
       </Submenu>
-      <!-- <Submenu name="materials">
+      <Submenu name="materials">
         <template slot="title">
           <Icon type="ios-book"></Icon>
           {{$t('m.Learning_Materials')}}
@@ -45,7 +45,7 @@
         <Menu-item name="/downloadCollection">
           {{$t('m.DownloadPage')}}
         </Menu-item>
-      </Submenu> -->
+      </Submenu>
       <Submenu name="tools">
         <template slot="title">
           <Icon type="ios-hammer"></Icon>
