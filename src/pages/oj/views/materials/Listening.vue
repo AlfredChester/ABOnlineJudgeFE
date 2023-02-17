@@ -82,9 +82,7 @@
    */
   function genPHData(grade, unit, exercise) {
     if (grade === undefined || unit === undefined || exercise === undefined) {
-      return {
-        error: 'Some problems has occured'
-      }
+      throw Error('Some errors occured at [oj/Listening/genPHData]')
     }
     return {
       title: `Unit ${unit} Exercise ${exercise}`,
@@ -116,6 +114,10 @@
           {
             titleName: '7A 听力书',
             Audiolist: getAudioByGrade('7A', 13, 6)
+          },
+          {
+            titleName: '7B 听力书',
+            Audiolist: getAudioByGrade('7B', 12, 5)
           },
           {
             titleName: '7A 个性化',
