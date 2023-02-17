@@ -161,6 +161,10 @@
               {
                 title: '7A初中英语听力训练 zip压缩包',
                 src: requireListening('7A')
+              },
+              {
+                title: '7B初中英语听力训练 zip压缩包',
+                src: requireListening('7B')
               }
             ],
             pdfDatas: []
