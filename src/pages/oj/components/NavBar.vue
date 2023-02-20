@@ -140,6 +140,8 @@
       }).catch(err => {
         console.log('[oj/NavBar.vue]: Error occured when loading avatar:')
         console.log('[oj/NavBar.vue]:', err)
+        console.log('[oj/NavBar.vue]: Using default avatar')
+        this.avatar = '/public/avatar/default.png'
       })
     },
     methods: {
