@@ -222,6 +222,7 @@
               requirePdf('《狼》家默卷及答案', 3),
               requirePdf('《穿井得一人》课件', 16),
               requirePdf('《穿井得一人》家默卷', 1),
+              requirePdf('《孙权劝学》翻译部分', 15),
               requirePdf('杞人忧天 课件', 17),
               requirePdf('期中综合练习卷二', 5),
               requirePdf('期中综合练习卷三', 5),
