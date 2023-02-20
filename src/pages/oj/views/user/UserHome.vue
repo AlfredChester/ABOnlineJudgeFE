@@ -124,10 +124,9 @@
     methods: {
       ...mapActions(['changeDomTitle']),
       init() {
-        console.clear()
         // 获取用户名称 undefined则为自身
         this.username = this.$route.query.username
-        debug('Loading user:' + this.username)
+        debug('Loading user: ' + this.username)
         // 获取基本信息
         api.getUserInfo(this.username).then(res => {
           this.changeDomTitle({
@@ -170,7 +169,7 @@
           this.$success(this.$i18n.t('m.Succeeded'))
           this.init()
         }).catch(err => {
-          console.log('Err from freshProblemDisplayID:', err)
+          console.log('Some error occured at freshProblemDisplayID:', err)
         })
       }
     },
