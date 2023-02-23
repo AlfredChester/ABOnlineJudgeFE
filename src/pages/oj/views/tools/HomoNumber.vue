@@ -32,9 +32,14 @@
           this.result = ''
           return
         }
-        this.result = String(
-          HomoUtil.homo(Number(this.sourceNumber))
-        )
+        try {
+          /* eslint no-eval: ["off"] */
+          this.result = String(
+            HomoUtil.homo(eval(this.sourceNumber))
+          )
+        } catch (error) {
+          this.result = 'Homo特有的啥都输入'
+        }
         this.result = '$ ' + this.result + ' $'
       }
     }
