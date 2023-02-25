@@ -18,6 +18,7 @@
 
 <script>
   import HomoUtil from '@/utils/homo'
+  import CalcUtil from '@/utils/calculator'
 
   export default {
     data() {
@@ -33,9 +34,8 @@
           return
         }
         try {
-          /* eslint no-eval: ["off"] */
           this.result = String(
-            HomoUtil.homo(eval(this.sourceNumber))
+            HomoUtil.homo(CalcUtil.calc(this.sourceNumber))
           )
         } catch (error) {
           this.result = 'Homo特有的啥都输入'
