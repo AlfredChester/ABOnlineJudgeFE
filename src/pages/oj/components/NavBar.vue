@@ -42,9 +42,9 @@
         <Menu-item name="/code_compresser">
           {{ $t('m.Code_Compresser') }}
         </Menu-item>
-        <Menu-item name="/homoGenerator">
+        <!-- <Menu-item name="/homoGenerator">
           {{ $t('m.Homo_Number_Generator') }}
-        </Menu-item>
+        </Menu-item> -->
         <Menu-item name="/listening">
           {{$t('m.ListeningPage')}}
         </Menu-item>
