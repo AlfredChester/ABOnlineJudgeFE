@@ -58,6 +58,7 @@
           {
             title: this.$i18n.t('m.EconomicSupport'),
             people: [
+              '张振华',
               '咖喱不恰不恰牛',
               '可爱的甜甜猫'
             ]
