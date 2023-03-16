@@ -134,10 +134,20 @@
         // 是否显示loading
         loading: true,
         // 当前页码
-        currentPage: 0
+        currentPage: 0,
+        // 创建日期
+        dateCreated: new Date('July 16, 2022 00:00:00')
       }
     },
     mounted () {
+      const now = new Date()
+      console.log(
+        '[oj/Announcement.vue]: Website created on ', this.dateCreated
+      )
+      console.log(
+        '[oj/Announcement.vue]: It has been ',
+        (now - this.dateCreated) / 3600 / 1000 / 24
+      )
       this.init()
     },
     methods: {
