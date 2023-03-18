@@ -40,7 +40,11 @@
         } catch (error) {
           this.result = 'Homo特有的啥都输入'
         }
-        this.result = '$ ' + this.result + ' $'
+        if (this.result[0] !== 'H' && this.result[0] !== '这') {
+          this.result = `$${this.result}$`
+        } else {
+          this.result = `$\\text{${this.result}}$`
+        }
       }
     }
   }
