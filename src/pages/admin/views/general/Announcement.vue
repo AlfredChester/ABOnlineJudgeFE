@@ -5,9 +5,8 @@
         <el-table
           v-loading="loading"
           :element-loading-text="$t('m.ON_LOADING')"
-          ref="table"
-          :data="announcementList"
-          style="width: 100%">
+          ref="table" style="width: 100%"
+          :data="announcementList">
           <el-table-column
             width="100"
             prop="id"
