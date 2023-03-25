@@ -4,9 +4,8 @@
       {{ $t('m.Homo_Number_Generator') }}
     </div>
     <div class="content">
-      <Input v-model="sourceNumber"
-             size="large" placeholder="输入一个数罢"
-             @on-change="toHomo">
+      <Input v-model="sourceNumber" @on-change="toHomo"
+             size="large" placeholder="输入一个数罢">
       </Input>
       <div v-katex key="content" v-html="result"  
            class="result markdown-body">
@@ -39,6 +38,7 @@
           )
         } catch (error) {
           this.result = 'Homo特有的啥都输入'
+          console.log('[oj/HomoNumber.vue] Error caught:', error)
         }
         if (this.result[0] !== 'H' && this.result[0] !== '这') {
           this.result = `$${this.result}$`
