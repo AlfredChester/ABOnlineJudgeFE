@@ -2,8 +2,10 @@
   <div class="error404">
     <div class="error404-body-con">
       <Card>
-        <div class="error404-body-con-title">4<span><Icon type="ios-navigate-outline"></Icon></span>4</div>
-        <p class="error404-body-con-message">YOU&nbsp;&nbsp;LOOK&nbsp;&nbsp;LOST</p>
+        <div class="error404-body-con-title">
+          4<span><Icon type="ios-navigate-outline"></Icon></span>4
+        </div>
+        <p class="error404-body-con-message">YOU&nbsp;&nbsp;SEEM&nbsp;&nbsp;LOST</p>
         <div class="error404-btn-con">
           <Button @click="goHome" size="large" style="width: 200px;">{{$t('m.Go_Home')}}</Button>
           <Button @click="backPage" size="large" style="width: 200px;margin-left: 40px;" type="primary">{{$t('m.Back')}}</Button>
@@ -61,14 +63,17 @@
         font-size: 240px;
         font-weight: 700;
         color: #2d8cf0;
-        height: 260px;
-        line-height: 260px;
+        height: 230px;
+        line-height: 230px;
         margin-top: 40px;
         span {
           display: inline-block;
           color: #19be6b;
           font-size: 230px;
           animation: error404animation 3s ease 0s infinite alternate;
+          i {
+            vertical-align: bottom;
+          }
         }
       }
       &-message {
