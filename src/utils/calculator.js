@@ -1,5 +1,5 @@
 /* eslint semi: ["off"] */
-const stock = [] // 先进后出，每一次出栈，即一对 ()
+const stack = [] // 先进后出，每一次出栈，即一对 ()
 const parenthesesPairPosition = {}
 
 // 剔除两侧空格
@@ -33,10 +33,10 @@ const parse = (expression, l = 0, r = expression.length - 1, skipSearchTimeOrDiv
     const v = expression[i];
 
     if (v === ')') {
-      stock.push(i)
+      stack.push(i)
       parenthesesDep++
     } else if (v === '(') {
-      const last = stock.pop()
+      const last = stack.pop()
       parenthesesPairPosition[i] = last
       parenthesesDep--
     }
