@@ -233,7 +233,8 @@
               requirePdf('单元练习二文言文讲评', 14),
               requirePdf('作文《我懂得了爱》写作指导', 3),
               requirePdf('7A 语文复习本--by 吴宇桐', 8),
-              requirePdf('周末练习七', 2)
+              requirePdf('周末练习七', 2),
+              requirePdf('期中古诗家默卷A', 2)
             ]
           },
           truth: {
