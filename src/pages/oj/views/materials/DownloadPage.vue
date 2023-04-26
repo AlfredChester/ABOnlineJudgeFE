@@ -262,7 +262,7 @@
         for (var _file of this.Downloads[_name].datas) {
           if (_file.src.endsWith('.jpg')) {
             this.AllImage.push(_file.src)
-            console.log(`[handleSwitching/DownloadPage.vue] Added ${_file.src} to AllImage`)
+            console.log(`[oj/DownloadPage.vue] Added ${_file.src} to AllImage`)
           }
         }
       }
