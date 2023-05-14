@@ -32,7 +32,7 @@
               </a>
             </span> <br/>
             <span id="copyright">
-              Copyright &copy; 2022-present 
+              Copyright &copy; 2022-now 
               <a href="https://github.com/FredB-mine" 
                  target="_blank">
                 Dr.Alfred.
