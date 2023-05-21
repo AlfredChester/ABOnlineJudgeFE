@@ -137,6 +137,9 @@
               box-shadow: none;
               color: white;
             }
+            .ivu-select-dropdown {
+              text-align: center;
+            }
           }
         }
       }
