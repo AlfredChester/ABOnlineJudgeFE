@@ -11,7 +11,7 @@
           {{ MaterialType.title }}
         </h1>
         <!--Normal files-->
-        <Row v-for="single in MaterialType.datas" 
+        <Row v-for="single in MaterialType.data" 
              class="type_row" :key="single.src">
           <Col span="23">
             <li class="ele_title">
@@ -39,7 +39,7 @@
           </Col>
         </Row>
         <!--Pdf preview-->
-        <Row v-for="single in MaterialType.pdfDatas" 
+        <Row v-for="single in MaterialType.pdfData" 
              class="type_row" :key="single.src">
           <!--File name-->
           <Col span="23">
@@ -149,8 +149,8 @@
         Downloads: {
           Exercises: {
             title: '模拟卷/练习卷',
-            datas: [],
-            pdfDatas: [
+            data: [],
+            pdfData: [
               requirePdf('Unit 8   Reading ABCD', 7),
               requirePdf('英语初一上学期期中考试-市北', 8),
               requirePdf('7A 市北期中 听力文字及参考答案', 4)
@@ -158,7 +158,7 @@
           },
           Listening: {
             title: '听力部分',
-            datas: [
+            data: [
               {
                 title: '7A初中英语听力训练 zip压缩包',
                 src: requireListening('7A')
@@ -168,11 +168,11 @@
                 src: requireListening('7B')
               }
             ],
-            pdfDatas: []
+            pdfData: []
           },
           Geography: {
             title: '地理配套光盘',
-            datas: [
+            data: [
               {
                 title: '上海版地理（六年级第一、二学期）配套光盘-2021',
                 src: requireGeography(6)
@@ -182,11 +182,11 @@
                 src: requireGeography(7)
               }
             ],
-            pdfDatas: []
+            pdfData: []
           },
           Chinese: {
             title: '语文学习资料包',
-            datas: [
+            data: [
               {
                 title: '现代文阅读笔记',
                 src: requireChinese('现代文阅读.jpg')
@@ -204,7 +204,7 @@
                 src: requireChinese('7Afinal.jpg')
               }
             ],
-            pdfDatas: [
+            pdfData: [
               requirePdf('《两小儿辩日》（翻译＋内容理解）', 15),
               requirePdf('《书戴嵩画牛》', 22),
               requirePdf('《学弈》文学常识及翻译', 8),
@@ -243,8 +243,8 @@
           },
           truth: {
             title: '真 理 诞 生 于 一 百 块 钱 之 后',
-            datas: [],
-            pdfDatas: [
+            data: [],
+            pdfData: [
               requirePdf('七上地理练习册答案', 7),
               requirePdf('七下地理练习册答案', 14),
               requirePdf('七年级上科学练习册答案', 68),
@@ -262,7 +262,7 @@
     },
     mounted() {
       for (var _name in this.Downloads) {
-        for (var _file of this.Downloads[_name].datas) {
+        for (var _file of this.Downloads[_name].data) {
           if (_file.src.endsWith('.jpg')) {
             this.AllImage.push(_file.src)
             console.log(`[oj/DownloadPage.vue] Added ${_file.src} to AllImage`)
@@ -306,7 +306,7 @@
       },
       handleSwitching(title) {
         for (var name in this.Downloads) {
-          this.Downloads[name].pdfDatas.forEach(element => {
+          this.Downloads[name].pdfData.forEach(element => {
             if (element.title !== title) {
               element.show = false
             } else {
