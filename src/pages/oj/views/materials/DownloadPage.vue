@@ -226,6 +226,8 @@
               requirePdf('《孙权劝学》家默卷', 2),
               requirePdf('《卖油翁》文常及翻译', 13),
               requirePdf('《爱莲说》翻译', 10),
+              requirePdf('《陋室铭》翻译', 9),
+              requirePdf('《陋室铭》家默卷', 1),
               requirePdf('杞人忧天 课件', 17),
               requirePdf('期中综合练习卷二', 5),
               requirePdf('期中综合练习卷三', 5),
