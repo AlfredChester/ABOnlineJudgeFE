@@ -31,7 +31,7 @@
                 :size="buttonSize" icon="ios-eye-outline" 
                 type="primary" style="text-align:right;"
                 @click="previewImg(
-                  'http://alfredoj.natapp1.cc' + single.src
+                  rootDomain + single.src
                 )">
                 {{ $t('m.preview') }}
               </Button>
@@ -145,6 +145,7 @@
     },
     data() {
       return {
+        rootDomain: window.location.origin,
         buttonSize: 'large',
         Downloads: {
           Exercises: {
@@ -273,13 +274,20 @@
     },
     methods: {
       previewImg(url) {
-        let AIMG = this.AllImage
-        AIMG = AIMG.sort((a, b) => {
-          return a === url ? 1 : -1
+        let ImageTemp = this.AllImage
+        let urlIdx = ImageTemp.findIndex(x => {
+          return x === url
         })
-        console.log('[oj/DownloadPage.vue] All images (sorted):', AIMG)
+        if (process.env.NODE_ENV === 'development') {
+          console.log('[oj/DownloadPage.vue] Preview url:', url)
+          console.log('[oj/DownloadPage.vue] All images:', ImageTemp)
+          console.log('[oj/DownloadPage.vue] urlIdx:', urlIdx)
+        }
+        ImageTemp[urlIdx] = ImageTemp[0]
+        ImageTemp[0] = url
+        console.log('[oj/DownloadPage.vue] All images (sorted):', ImageTemp)
         const $viewer = viewerApi({
-          images: AIMG
+          images: ImageTemp
         })
         console.log('[oj/DownloadPage.vue] Viewer object:', $viewer)
       },
