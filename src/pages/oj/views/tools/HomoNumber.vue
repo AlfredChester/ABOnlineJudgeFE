@@ -35,9 +35,10 @@
         try {
           this.result = String(
             HomoUtil.homo(CalcUtil.calc(this.sourceNumber))
-          )
+          ).replaceAll('*', '\\times')
+           .replaceAll('/', '\\div')
         } catch (error) {
-          this.result = 'Homo特有的啥都输入'
+          this.result = '\\text{生成器被撅飞力(悲), 请刷新或重新输入表达式重试}'
           console.log('[oj/HomoNumber.vue] Error caught:', error)
         }
         if (this.result[0] !== 'H' && this.result[0] !== '这') {
