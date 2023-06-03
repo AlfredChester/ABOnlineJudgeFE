@@ -1,4 +1,4 @@
-/* eslint semi: ["off"] */
+/* eslint-disable semi */
 const stack = [] // 先进后出，每一次出栈，即一对 ()
 const parenthesesPairPosition = {}
 
