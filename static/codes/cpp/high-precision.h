@@ -1,41 +1,68 @@
-/**
- * @file    high-precision.h
- * @author  Dr.Alfred (fredbao1126@gmail.com)
- * @brief   high precision number header (may be used by Vexah)
- * @version 0.5 Beta Test Version
- * @date    2022-10-23
+ /**
+ * @file        high-precision.h
+ * @author      Dr.Alfred (fredbao1126@gmail.com)
+ * @brief       high precision number header
+ * @version     0.6 Beta
+ * @date        2022-10-23
  * 
- * @copyright Copyright (c) 2019-2022 <Rhodes Island Inc.>
- * @license:  MIT License
+ * @copyright   Copyright (c) 2019-2023 <Rhodes Island Inc.>
+ * @license:    MIT License
  */
+
+// TODO Improve multiplication performance using FFT
+// TODO Improve division and mod efficient
 
 /*
  * INCLUDE: cpp bases libs
  */
-#include <deque>                    // _hp_base_MetaTp
-#include <string>                   // _init_string_T
-#include <stdio.h>                  // base I/O
+
+#include <deque>        // _hp_base_MetaTp support
+#include <stdio.h>      // c style base I/O support
+#include <iostream>     // cpp I/O stream support & _init_string_T
 
 /**
- * Constant Definations
+ * Marco Definations
  */
 
-#define  ALLOW_LEADING_ZERO     0
-#define  AUTO_FLOOR             0
-#define  DEBUG_MODE             0
-#define  DEFAULT_INIT_ZERO      1
-#define  HP_ALLOW_WARNING       0
+#ifndef _HIGH_PRECISION_MARCO_
+    #define _HIGH_PRECISION_MARCO_
+    // Configurations
+    #define  ALLOW_LEADING_ZERO     false   // Allow Leading zero
+    #define  AUTO_FLOOR             true    // Auto floor for division
+    #define  DEBUG_MODE             false   // Print runtime logs
+    #define  DEFAULT_INIT_ZERO      true    // Defaults to 0 for highInt objects
+    #define  ENABLE_FFT             false   // Experimental FFT multiplication
+    #define  HP_ALLOW_WARNING       true    // Warning when invalid stuff occur
+    #define  REDUCE_SPACE           true    // Reduce space by assigning _deque_vTp to char
+    // Pre Marco Define useful constants
+    #define  __high0                highInt(0)
+    #define  __high10               highInt(10)
+#endif // !_HIGH_PRECISION_MARCO_
 
-#define  __high0                highInt(0)
-#define  __high10               highInt(10)
+/**
+ *  Additional includes
+ */
+
+#if ENABLE_FFT
+    #include "fft-mult-extension.h" // FFT extension
+#endif
 
 /**
  * Type Definations
  */
 
-typedef std::deque<int>   _hp_base_MetaTp;
-typedef std::string       _init_string_T;
-typedef long long         _base_iter_Tp;
+#ifndef _HIGH_PRECISION_TYPES_
+    #define _HIGH_PRECISION_TYPES_  /* NOTHING */
+    #if REDUCE_SPACE
+        // Assign to char to reduce space (or short)
+        typedef char                _deque_vTp;
+    #else
+        typedef int                 _deque_vTp;
+    #endif // !REDUCE_SPACE
+    typedef long long               _base_iter_Tp;
+    typedef std::string             _init_string_T;
+    typedef std::deque<_deque_vTp>  _hp_base_MetaTp;
+#endif // !_HIGH_PRECISION_TYPES_
 
 #ifndef _HIGH_PRECISION_H_
 #define _HIGH_PRECISION_H_  /* NOTHING */
@@ -48,37 +75,35 @@ struct highInt {
         /**
          * @brief Process leading zeros
          */
-        inline void _processLeadingZeros() {
-            int delCnt = 0;
-            while (__metadata.size() > 1ULL && __metadata[0] == 0 && (!ALLOW_LEADING_ZERO)) {
+        inline void _processLeadingZeros(void) {
+            int delCnt = 0; // delete count
+            while (__metadata.size() > 1ULL && (!__metadata[0]) && (!ALLOW_LEADING_ZERO)) {
                 __metadata.pop_front();
                 if (DEBUG_MODE) {
                     ++delCnt;
                 }
             }
             if (DEBUG_MODE) {
-                printf("Deleted leading zeros*%d\n", delCnt);
+                printf("Deleted leading zeros * %d\n", delCnt);
             }
         }
 
         /**
          * @brief check if self is -0
-         * 
-         * @warning BUG3: -0 may occur
          */
-        inline void checkNeg0() {
+        inline void checkNeg0(void) {
+            _processLeadingZeros(); // may be -0000000
             if (isNeg && __metadata.size() == 1ULL && __metadata[0] == 0) {
                 isNeg = false;
             }
         }
 
         /**
-         * @brief Handle Carries
+         * @brief Handle Digit Carry
          */
-        inline void _handleCarry() {
-            // 进位 无bug 可能会多出一个leading zero
-            if (__metadata.front() < 0) {
-                isNeg = true;
+        inline void _handleCarry(void) {
+            if (__metadata.front() < 0) {   // *this is a negative number
+                isNeg = true;               // set negative to true
                 for (size_t i = 0; i < __metadata.size(); i++) {
                     __metadata[i] = -__metadata[i];
                 }
@@ -93,8 +118,6 @@ struct highInt {
                     __metadata[i] %= 10;
                 }
             }
-            // 退位:代码写的稀烂
-            // 根据首位为- 和首位为+做出不同的行为
             for (_base_iter_Tp i = __metadata.size() - 1; i > 0; i--) {
                 if (__metadata[i] < 0) {
                     while (__metadata[i] < 0) {
@@ -114,11 +137,10 @@ struct highInt {
         }
 
     public:
-
         /**
          * @brief Construct a new high Int object
          */
-        highInt () {
+        highInt() {
             isNeg = false;
             __metadata.clear();
             if (DEFAULT_INIT_ZERO) {
@@ -131,24 +153,29 @@ struct highInt {
          * 
          * @param __init Init string
          */
-        highInt (_init_string_T __init) {
+        highInt(_init_string_T __init) {
+            bool invalid = false;
             if (__init.empty()) {
+                invalid = true;
                 goto print_invalid;
             }
-            __metadata.clear();
-            isNeg = __init[0] == '-';
+            __metadata.clear(), isNeg = __init[0] == '-';
             if ((!isNeg) && (!isdigit(__init[0]))) {
+                invalid = true;
                 goto print_invalid;
             }
             for (size_t _i = isNeg ? 1 : 0; _i < __init.size(); _i++) {
-                if (!isdigit(__init[_i])) goto print_invalid;
+                if (!isdigit(__init[_i])) {
+                    invalid = true;
+                    goto print_invalid;
+                }
                 __metadata.push_back(__init[_i] - '0');
             }
-            _processLeadingZeros();
-            checkNeg0();
-            print_invalid: 
-            if (HP_ALLOW_WARNING) {
-                printf("Warning! highInt initial has been given invalid arguments: string %s\n", __init.c_str());
+            _processLeadingZeros(), checkNeg0();
+            print_invalid:
+            if (HP_ALLOW_WARNING && invalid) {
+                printf("Warning: invalid std::string argument is given to highInt constructor\n");
+                printf("Argument data: %s\n", __init.c_str());
             }
         }
 
@@ -157,24 +184,22 @@ struct highInt {
          * 
          * @param __init init number
          */
-        highInt (long long __init) {
+        highInt(long long __init) {
             if (DEBUG_MODE) {
                 printf("Using HighInt Construction func, input is %lld\n", __init);
             }
-            __metadata.clear();
-            isNeg = false;
+            __metadata.clear(), isNeg = false;
             if (__init == 0) {
                 __metadata.push_back(0);
-            }   // REPBUG: NO1
+            }   // Bug No1
             if (__init < 0) {
-                isNeg  = true;
-                __init = -__init;
+                isNeg  = true, __init = -__init;
             }
             while (__init) {
                 __metadata.push_front(__init % 10);
                 __init /= 10;
             }
-            _processLeadingZeros();
+            _processLeadingZeros(), checkNeg0();
         }
 
         /**
@@ -184,11 +209,8 @@ struct highInt {
          * @param __init init array
          */
         highInt (bool _neg, _hp_base_MetaTp &__init) {
-            isNeg = _neg;
-            __metadata = __init;
-            _handleCarry();
-            _processLeadingZeros();
-            checkNeg0();
+            isNeg = _neg, __metadata = __init;
+            _handleCarry(), _processLeadingZeros(), checkNeg0();
         }
 
         /**
@@ -196,19 +218,16 @@ struct highInt {
          * 
          * @return _hp_base_MetaTp 
          */
-        inline _hp_base_MetaTp _get_M_data() {
+        inline _hp_base_MetaTp _get_M_data(void) {
             return __metadata;
         }
 
         /**
          * @brief Input the item (based on getchar), signed
-         * 
-         * @warning Not recommended to use
          */
-        inline void scan() {
+        inline void scan(void) {
             char _readCache;
-            isNeg = false;
-            __metadata.clear();
+            isNeg = false, __metadata.clear();
             while (!isdigit(_readCache = getchar())) {
                 if (_readCache == '-') {
                     isNeg = true;
@@ -218,14 +237,13 @@ struct highInt {
             while (isdigit(_readCache = getchar())) {
                 __metadata.push_back(_readCache - '0');
             }
-            _processLeadingZeros();
-            checkNeg0();
+            _processLeadingZeros(), checkNeg0();
         }
 
         /**
          * @brief Print the item
          */
-        inline void print() {
+        inline void print(void) const {
             if (isNeg) {
                 putchar('-');
             }
@@ -240,7 +258,7 @@ struct highInt {
          * @return true
          * @return false
          */
-        inline bool isNegative() {
+        inline bool isNegative(void) {
             return isNeg;
         }
 
@@ -262,7 +280,7 @@ struct highInt {
          * @return true bigger
          * @return false smaller/equal
          */
-        inline bool operator>(highInt &_ano) const {
+        inline bool operator>(highInt _ano) const {
             if (isNeg != _ano.isNegative()) {
                 return !isNeg;
             }
@@ -285,7 +303,7 @@ struct highInt {
          * @return true smaller
          * @return false bigger/equal
          */
-        inline bool operator<(highInt &_ano) const {
+        inline bool operator<(highInt _ano) const {
             if (isNeg != _ano.isNegative()) {
                 return isNeg;
             }
@@ -308,7 +326,7 @@ struct highInt {
          * @return true smaller/equal
          * @return false bigger
          */
-        inline bool operator<=(highInt &_ano) const {
+        inline bool operator<=(highInt _ano) const {
             if (isNeg != _ano.isNegative()) {
                 return isNeg;
             }
@@ -329,10 +347,27 @@ struct highInt {
          * 
          * @return int value
          */
-        inline int toInt() {
+        inline int toInt(void) {
             int __retval = 0;
             if (HP_ALLOW_WARNING && __metadata.size() > 9ULL) {
-                puts("Warning: using toInt function but Int may overflow! toLongLong is recommended");
+                puts("Warning: using toInt function but int will overflow! toLongLong or toString is recommended");
+            }
+            for (auto element : __metadata) {
+                __retval = __retval * 10 + element;
+            }
+            return isNeg ? -__retval : __retval;
+        }
+
+        /**
+         * @brief Transfer the item to long long
+         * 
+         * @return long long value
+         */
+        inline long long toLongLong(void) {
+            long long __retval = 0;
+            if (HP_ALLOW_WARNING && __metadata.size() > 18ULL) {
+                puts("Warning: using toLongLong function but long long will overflow!");
+                puts("Using highInt only is suggested or you can use toString");
             }
             for (auto element : __metadata) {
                 __retval = __retval * 10 + element;
@@ -341,20 +376,19 @@ struct highInt {
         }
 
         /**
-         * @brief Transfer the item to long long
+         * @brief Transfer the item to string
          * 
-         * @return long long value
+         * @return std::string value
          */
-        inline long long toLongLong() {
-            long long __retval = 0;
-            if (HP_ALLOW_WARNING && __metadata.size() > 18ULL) {
-                puts("Warning: using toLongLong function but long long may overflow!");
-                puts("Using highInt only is suggested");
+        inline std::string toString(void) {
+            std::string __retval;
+            if (isNeg) {
+                __retval = "-";
             }
-            for (auto element : __metadata) {
-                __retval = __retval * 10 + element;
+            for (auto digit : __metadata) {
+                __retval += digit + '0';
             }
-            return __retval * (isNeg ? -1 : 1);
+            return __retval;
         }
 
         /**
@@ -365,6 +399,11 @@ struct highInt {
          */
         inline const highInt operator+(highInt _ano) const {
             // 倒叙相加
+            if (DEBUG_MODE) {
+                printf("Self: "), print();
+                printf("\nOther: "), _ano.print();
+                putchar('\n');
+            }
             _hp_base_MetaTp __tmp, _ano_M_data = _ano._get_M_data();
             _base_iter_Tp it1 = __metadata.size() - 1;
             _base_iter_Tp it2 = _ano_M_data.size() - 1;
@@ -436,26 +475,35 @@ struct highInt {
         }
 
         /**
-         * @brief Times Two highInt Objects
+         * @brief Multiplies Two highInt Objects
          * 
          * @param _ano another HighInt
          * @return const highInt 
          */
         inline const highInt operator*(highInt _ano) const {
-            _hp_base_MetaTp __tmp, _ano_M_data = _ano._get_M_data();
-            bool _isNeg = isNeg ^ _ano.isNegative();
-            // reserve spaces
-            __tmp.resize(__metadata.size() + _ano_M_data.size() - 1, 0);
-            // 绝对值相乘
-            for (_base_iter_Tp j = _ano_M_data.size() - 1; j >= 0; j--) {
-                for (size_t i = 0; i < __metadata.size(); i++) {
-                    __tmp[i + j] += _ano_M_data[j] * __metadata[i];
+            #if ENABLE_FFT
+                // 对绝对值部分进行FFT, 符号直接返回
+                _hp_base_MetaTp result = FFT_Extension::fft_mult_api(
+                    __metadata, _ano._get_M_data()
+                );
+                return highInt(isNeg ^ _ano.isNegative(), result);
+            #else
+                _hp_base_MetaTp __tmp, _ano_M_data = _ano._get_M_data();
+                bool _isNeg = isNeg ^ _ano.isNegative();
+                // reserve spaces
+                __tmp.resize(__metadata.size() + _ano_M_data.size() - 1, 0);
+                // 绝对值相乘
+                for (_base_iter_Tp j = _ano_M_data.size() - 1; j >= 0; j--) {
+                    if (!_ano_M_data[j]) {
+                        continue;
+                    }
+                    for (size_t i = 0; i < __metadata.size(); i++) {
+                        __tmp[i + j] += _ano_M_data[j] * __metadata[i];
+                    }
                 }
-            }
-            return highInt(_isNeg, __tmp);
+                return highInt(_isNeg, __tmp);
+            #endif
         }
-
-        // @todo better division efficiency
 
         /**
          * @brief division between two highInts
@@ -479,6 +527,7 @@ struct highInt {
                     ++cnt;
                     now = now - _ano;
                 }
+                // printf("%lld * %lld = %lld\n", cnt, _aLL, now.toLongLong());
                 ans = ans * __high10 + cnt;
             }
             if ((AUTO_FLOOR) && (now * 2 > ans)) {
@@ -513,7 +562,7 @@ struct highInt {
         }
 };
 
-inline highInt operator+(long long _left, highInt &_right) {
+inline highInt operator+(long long _left, highInt _right) {
     return highInt(_left) + _right;
 }
 
@@ -580,4 +629,27 @@ inline highInt lcm(highInt a, highInt b) {
     return a / gcd(a, b) * b;
 }
 
+inline std::istream &operator>>(std::istream &in, highInt &num) {
+    _init_string_T str;
+    if (!(in >> str)) {
+        return in;
+    }
+    num = str;
+    return in;
+}
+
+inline std::ostream &operator<<(std::ostream &out, highInt num) {
+    if (num.isNegative()) {
+        out << '-';
+    }
+    for (auto digit : num._get_M_data()) {
+        if (REDUCE_SPACE) {
+            out << (char)(digit + '0');
+        }
+        else {
+            out << digit;
+        }
+    }
+    return out;
+}
 #endif // !_HIGH_PRECISION_H_   
