@@ -62,7 +62,8 @@
     "vuex": "^3.0.1",
     "vuex-router-sync": "^5.0.0",
     "webpack-bundle-analyzer": "^4.7.0",
-    "xmlhttprequest": "^1.8.0"
+    "xmlhttprequest": "^1.8.0",
+    "yuicompressor": "^2.4.8"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
