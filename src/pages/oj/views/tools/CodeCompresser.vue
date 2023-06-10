@@ -23,7 +23,8 @@
 <script>
   import download from 'downloadjs'
   import CodeMirror from '@oj/components/CodeMirror.vue'
-  import CompressUtil from '@/utils/compress'
+  import CppCompressUtil from '@/utils/cpp_compress'
+  // import JsCompressUtil from 'yuicompressor'
 
   export default {
     components: {
@@ -34,7 +35,7 @@
         code: '',
         language: 'C++',
         languages: [
-          'C', 'C++'
+          'C', 'C++', 'JavaScript'
         ]
       }
     },
@@ -51,14 +52,20 @@
         this.language = newLang
       },
       compressCode() {
-        this.code = CompressUtil.compress(this.code)
-        this.$success(this.$i18n.t('m.Succeeded'))
+        if (this.language === 'C' || this.language === 'C++') {
+          this.code = CppCompressUtil.compress(this.code)
+          this.$success(this.$i18n.t('m.Succeeded'))
+        } else if (this.language === 'JavaScript') {
+          this.$success(this.$i18n.t('m.Succeeded'))
+        }
       },
       downloadCode() {
         if (this.language === 'C') {
           download(this.code, 'compressed.c', 'text/plain')
         } else if (this.language === 'C++') {
           download(this.code, 'compressed.cpp', 'text/plain')
+        } else if (this.language === 'JavaScript') {
+          download(this.code, 'compressed.js', 'text/plain')
         }
       }
     }
