@@ -24,7 +24,9 @@
   import download from 'downloadjs'
   import CodeMirror from '@oj/components/CodeMirror.vue'
   import CppCompressUtil from '@/utils/cpp_compress'
-  // import JsCompressUtil from 'yuicompressor'
+  
+  // const uglifyJS = require('uglify-js');
+  var JsCompressUtil
 
   export default {
     components: {
@@ -42,7 +44,9 @@
     methods: {
       onResetToTemplate() {
         this.$Modal.confirm({
-          content: this.$i18n.t('m.Are_you_sure_you_want_to_reset_your_code'),
+          content: this.$i18n.t(
+            'm.Are_you_sure_you_want_to_reset_your_code'
+          ),
           onOk: () => {
             this.code = ''
           }
@@ -56,6 +60,7 @@
           this.code = CppCompressUtil.compress(this.code)
           this.$success(this.$i18n.t('m.Succeeded'))
         } else if (this.language === 'JavaScript') {
+          this.code = JsCompressUtil.compress(this.code)
           this.$success(this.$i18n.t('m.Succeeded'))
         }
       },
