@@ -39,17 +39,20 @@
           <Icon type="ios-hammer"></Icon>
           {{ $t('m.Tools') }}
         </template>
-        <Menu-item name="/code_compresser">
+        <Menu-item name="/tools/codeCompresser">
           {{ $t('m.Code_Compresser') }}
         </Menu-item>
-        <!-- <Menu-item name="/homoGenerator">
+        <Menu-item name="/tools/homoGenerator">
           {{ $t('m.Homo_Number_Generator') }}
-        </Menu-item> -->
-        <Menu-item name="/listening">
+        </Menu-item>
+        <Menu-item name="/tools/listening">
           {{$t('m.ListeningPage')}}
         </Menu-item>
-        <Menu-item name="/downloadCollection">
+        <Menu-item name="/tools/downloadCollection">
           {{$t('m.DownloadPage')}}
+        </Menu-item>
+        <Menu-item name="/tools/duckchess">
+          {{$t('m.DuckChess')}}
         </Menu-item>
       </Submenu>
       <Submenu name="about">
@@ -138,7 +141,7 @@
         console.log('[oj/NavBar.vue]: User Avatar:', data.data.data.avatar)
         this.avatar = data.data.data.avatar
       }).catch(err => {
-        console.log('[oj/NavBar.vue]: Error occured when loading avatar:')
+        console.log('[oj/NavBar.vue]: Error occurred when loading avatar:')
         console.log('[oj/NavBar.vue]:', err)
         console.log('[oj/NavBar.vue]: Using default avatar')
         this.avatar = '/public/avatar/default.png'
