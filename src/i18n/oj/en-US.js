@@ -1,5 +1,6 @@
 export const m = {
   loadedi18nType: 'en-US',
+  DuckChess: 'DuckChess Simulator',
   preview: 'Preview',
   license: 'Tos & Privacy',
   // App.vue
