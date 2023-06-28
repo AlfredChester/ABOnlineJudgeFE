@@ -188,6 +188,12 @@ export default [
     component: Tools.Tools,
     children: [
       {
+        path: '',
+        name: 'Tools-default',
+        meta: {title: '404'},
+        component: NotFound
+      },
+      {
         path: 'listening',
         name: 'Listening',
         meta: {title: i18n.t('m.ListeningPage')},
