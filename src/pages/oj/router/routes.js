@@ -4,13 +4,9 @@ import {
   ACMRank,
   Announcements,
   ApplyResetPassword,
-  CodeCompresser,
-  DownloadPage,
   FAQ,
   Home,
-  HomoNumber,
   License,
-  Listening,
   Logout,
   NotFound,
   OIRank,
@@ -26,6 +22,7 @@ import {
 import i18n from '@/i18n'
 import * as Contest from '@oj/views/contest'
 import * as Setting from '@oj/views/setting'
+import * as Tools from '@oj/views/tools'
 
 export default [
   {
@@ -187,28 +184,40 @@ export default [
     component: ThanksPage
   },
   {
-    path: '/listening',
-    name: 'Listening',
-    meta: {title: i18n.t('m.ListeningPage')},
-    component: Listening
-  },
-  {
-    path: '/downloadCollection',
-    name: 'Downloads',
-    meta: {title: i18n.t('m.DownloadPage')},
-    component: DownloadPage
-  },
-  {
-    name: 'CodeCompresser',
-    path: '/code_compresser',
-    meta: {title: i18n.t('m.Code_Compresser')},
-    component: CodeCompresser
-  },
-  {
-    name: 'HomoNumber',
-    path: '/homoGenerator',
-    meta: {title: i18n.t('m.Homo_Number_Generator')},
-    component: HomoNumber
+    path: '/tools',
+    component: Tools.Tools,
+    children: [
+      {
+        path: 'listening',
+        name: 'Listening',
+        meta: {title: i18n.t('m.ListeningPage')},
+        component: Tools.Listening
+      },
+      {
+        path: 'downloadCollection',
+        name: 'Downloads',
+        meta: {title: i18n.t('m.DownloadPage')},
+        component: Tools.DownloadPage
+      },
+      {
+        name: 'CodeCompresser',
+        path: 'codeCompresser',
+        meta: {title: i18n.t('m.Code_Compresser')},
+        component: Tools.CodeCompresser
+      },
+      {
+        name: 'HomoNumber',
+        path: 'homoGenerator',
+        meta: {title: i18n.t('m.Homo_Number_Generator')},
+        component: Tools.HomoNumber
+      },
+      {
+        name: 'DuckChess',
+        path: 'duckchess',
+        meta: {title: i18n.t('m.DuckChess')},
+        component: Tools.DuckChess
+      }
+    ]
   },
   {
     path: '/tos',
