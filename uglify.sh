@@ -1,0 +1,1 @@
+uglifyjs static/games/DuckchessOnline/src/main.js -c -m --mangle-props -o static/games/DuckchessOnline/src/main.min.js --rename 
