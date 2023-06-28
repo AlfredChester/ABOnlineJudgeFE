@@ -253,7 +253,7 @@ function init() {
   // create stage canvas and menu elements
   stage = $(`<canvas width='${stageRect.width}' height='${stageRect.height}'></canvas>`)
   ctx = stage[0].getContext('2d')
-  menu = $(`<div id='menu'><h3>菜单</h3><fieldset><legend>操作</legend></fieldset><fieldset><legend>关于</legend><p>这个项目由 <a href='https://github.com/caibyte'>caibyte</a> 编写</p><p><a href='https://github.com/caibyte/DuckchessOnline'>github链接</a> <a href='http://alfredoj.natapp1.cc/static/games/DuckchessOnline/LICENSE.html'>MIT条款</a></p></fieldset><fieldset><legend>规则</legend><a href='https://www.luogu.com.cn/problem/P5380'>点我查看</a></fieldset></div>`)
+  menu = $(`<div id='menu'><h3>菜单</h3><fieldset><legend>操作</legend></fieldset><fieldset><legend>关于</legend><p>这个项目由 <a href='https://github.com/caibyte'>caibyte</a> 编写</p><p><a href='https://github.com/caibyte/DuckchessOnline'>github链接</a>&nbsp;&nbsp;<a href='http://alfredoj.natapp1.cc/static/games/DuckchessOnline/LICENSE.html'>MIT条款</a></p></fieldset><fieldset><legend>规则</legend><a href='https://www.luogu.com.cn/problem/P5380'>点我查看</a></fieldset></div>`)
   restart = $('<button class="btn">重新开始</button>')
   menu.children('fieldset')[0].append(restart[0])
   resize()
