@@ -162,10 +162,10 @@ class Rect {
   get height() {
     return this.bottom - this.top
   }
-  get midx() {
+  get midX() {
     return (this.left + this.right) / 2
   }
-  get midy() {
+  get midY() {
     return (this.top + this.bottom) / 2
   }
 }
@@ -273,7 +273,6 @@ function init() {
     curtain = curtainTime
   })
   stage.click((e) => {
-    console.log(e)
     click.push({ x: e.offsetX / stage.width() * stageRect.width, y: e.offsetY / stage.height() * stageRect.height })
   })
   stage.mousemove((e) => {
@@ -289,6 +288,34 @@ function init() {
 let curTeam = 1 // current team to move
 let hovering = null, selecting = null // current chess piece selected
 let click = []
+function checkmateType() {
+  let rx, ry, bx, by
+  for (let i = 0; i < hSize; i++) {
+    for (let j = 0; j < wSize; j++) {
+      if (map[i][j].type === 1) {
+        if (map[i][j].team === 1) {
+          [rx, ry] = [i, j]
+        }
+        if (map[i][j].team === 2) {
+          [bx, by] = [i, j]
+        }
+      }
+    }
+  }
+  for (let i = 0; i < hSize; i++) {
+    for (let j = 0; j < wSize; j++) {
+      if (map[i][j].team === 1 &&
+          map[i][j].canMoveTo(bx, by)) {
+        return 1
+      }
+      if (map[i][j].team === 2 &&
+          map[i][j].canMoveTo(rx, ry)) {
+        return 2
+      }
+    }
+  }
+  return 0
+}
 function update() {
   const updateClick = (pos) => {
     let cx = (boardRect.bottom - pos.y) / blockSize | 0, cy = (pos.x - boardRect.left) / blockSize | 0
@@ -319,6 +346,10 @@ function update() {
         map[cx][cy] = map[selecting.x][selecting.y]
         map[selecting.x][selecting.y] = new Piece(0)
         selecting = null
+        let tp = checkmateType()
+        if (tp !== 0) {
+          text += `, ${tp === 2 ? '红' : '蓝'}方已被将军`
+        }
       } else if (map[cx][cy].team === curTeam) {
         selecting = { x: cx, y: cy }
         for (let i = 0; i < hSize; ++i) {
@@ -499,7 +530,7 @@ function render() {
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
     ctx.font = '30px sans-serif'
-    ctx.fillText(text, textRect.midx, textRect.midy)
+    ctx.fillText(text, textRect.midX, textRect.midY)
   }
   const renderCurtain = () => {
     if (curtain) {
