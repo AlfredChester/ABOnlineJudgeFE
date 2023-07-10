@@ -4,6 +4,12 @@
   </iframe>
 </template>
 
+<script>
+export default {
+  name: 'DuckChess'
+}
+</script>
+
 <style lang="less">
   .DuckChessFrame {
     width: 100%;
