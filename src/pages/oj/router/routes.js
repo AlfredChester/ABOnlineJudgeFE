@@ -28,62 +28,62 @@ export default [
   {
     name: 'home',
     path: '/',
-    meta: {title: i18n.t('m.Home')},
+    meta: { title: i18n.t('m.Home') },
     component: Home
   },
   {
     name: 'logout',
     path: '/logout',
-    meta: {title: i18n.t('m.Logout')},
+    meta: { title: i18n.t('m.Logout') },
     component: Logout
   },
   {
     name: 'apply-reset-password',
     path: '/apply-reset-password',
-    meta: {title: i18n.t('m.Apply_Reset_Password')},
+    meta: { title: i18n.t('m.Apply_Reset_Password') },
     component: ApplyResetPassword
   },
   {
     name: 'reset-password',
     path: '/reset-password/:token',
-    meta: {title: i18n.t('m.Reset_Password')},
+    meta: { title: i18n.t('m.Reset_Password') },
     component: ResetPassword
   },
   {
     name: 'problem-list',
     path: '/problem',
-    meta: {title: i18n.t('m.Problem_List')},
+    meta: { title: i18n.t('m.Problem_List') },
     component: ProblemList
   },
   {
     name: 'problem-details',
     path: '/problem/:problemID',
-    meta: {title: i18n.t('m.Problem_Details')},
+    meta: { title: i18n.t('m.Problem_Details') },
     component: Problem
   },
   {
     name: 'submission-list',
     path: '/status',
-    meta: {title: i18n.t('m.Submission_List')},
+    meta: { title: i18n.t('m.Submission_List') },
     component: SubmissionList
   },
   {
     name: 'submission-details',
     path: '/status/:id/',
-    meta: {title: i18n.t('m.Submission_Details')},
+    meta: { title: i18n.t('m.Submission_Details') },
     component: SubmissionDetails
   },
   {
     name: 'contest-list',
     path: '/contest',
-    meta: {title: i18n.t('m.Contest_List')},
+    meta: { title: i18n.t('m.Contest_List') },
     component: Contest.ContestList
   },
   {
     name: 'contest-details',
     path: '/contest/:contestID/',
     component: Contest.ContestDetails,
-    meta: {title: i18n.t('m.Contest_Details')},
+    meta: { title: i18n.t('m.Contest_Details') },
     children: [
       {
         name: 'contest-submission-list',
@@ -120,20 +120,20 @@ export default [
   {
     name: 'acm-rank',
     path: '/acm-rank',
-    meta: {title: i18n.t('m.ACM_Rank')},
+    meta: { title: i18n.t('m.ACM_Rank') },
     component: ACMRank
   },
   {
     name: 'oi-rank',
     path: '/oi-rank',
-    meta: {title: i18n.t('m.OI_Rank')},
+    meta: { title: i18n.t('m.OI_Rank') },
     component: OIRank
   },
   {
     name: 'user-home',
     path: '/user-home',
     component: UserHome,
-    meta: {requiresAuth: true, title: i18n.t('m.MyHome')}
+    meta: { requiresAuth: true, title: i18n.t('m.MyHome') }
   },
   {
     path: '/setting',
@@ -142,25 +142,25 @@ export default [
       {
         name: 'default-setting',
         path: '',
-        meta: {requiresAuth: true, title: i18n.t('m.Default_Settings')},
+        meta: { requiresAuth: true, title: i18n.t('m.Default_Settings') },
         component: Setting.ProfileSetting
       },
       {
         name: 'profile-setting',
         path: 'profile',
-        meta: {requiresAuth: true, title: i18n.t('m.Profile_Settings')},
+        meta: { requiresAuth: true, title: i18n.t('m.Profile_Settings') },
         component: Setting.ProfileSetting
       },
       {
         name: 'account-setting',
         path: 'account',
-        meta: {requiresAuth: true, title: i18n.t('m.Account_Settings')},
+        meta: { requiresAuth: true, title: i18n.t('m.Account_Settings') },
         component: Setting.AccountSetting
       },
       {
         name: 'security-setting',
         path: 'security',
-        meta: {requiresAuth: true, title: i18n.t('m.Security_Settings')},
+        meta: { requiresAuth: true, title: i18n.t('m.Security_Settings') },
         component: Setting.SecuritySetting
       }
     ]
@@ -168,19 +168,19 @@ export default [
   {
     path: '/about',
     name: 'about',
-    meta: {title: i18n.t('m.Judger')},
+    meta: { title: i18n.t('m.Judger') },
     component: About
   },
   {
     path: '/faq',
     name: 'faq',
-    meta: {title: i18n.t('m.FAQ')},
+    meta: { title: i18n.t('m.FAQ') },
     component: FAQ
   },
   {
     path: '/ThanksPage',
     name: 'ThanksPage',
-    meta: {title: i18n.t('m.ThanksPage')},
+    meta: { title: i18n.t('m.ThanksPage') },
     component: ThanksPage
   },
   {
@@ -190,37 +190,37 @@ export default [
       {
         path: '',
         name: 'Tools-default',
-        meta: {title: '404'},
+        meta: { title: '404' },
         component: NotFound
       },
       {
         path: 'listening',
         name: 'Listening',
-        meta: {title: i18n.t('m.ListeningPage')},
+        meta: { title: i18n.t('m.ListeningPage') },
         component: Tools.Listening
       },
       {
         path: 'downloadCollection',
         name: 'Downloads',
-        meta: {title: i18n.t('m.DownloadPage')},
+        meta: { title: i18n.t('m.DownloadPage') },
         component: Tools.DownloadPage
       },
       {
         name: 'CodeCompresser',
         path: 'codeCompresser',
-        meta: {title: i18n.t('m.Code_Compresser')},
+        meta: { title: i18n.t('m.Code_Compresser') },
         component: Tools.CodeCompresser
       },
       {
         name: 'HomoNumber',
         path: 'homoGenerator',
-        meta: {title: i18n.t('m.Homo_Number_Generator')},
+        meta: { title: i18n.t('m.Homo_Number_Generator') },
         component: Tools.HomoNumber
       },
       {
         name: 'DuckChess',
         path: 'duckchess',
-        meta: {title: i18n.t('m.DuckChess')},
+        meta: { title: i18n.t('m.DuckChess') },
         component: Tools.DuckChess
       }
     ]
@@ -228,12 +228,12 @@ export default [
   {
     path: '/tos',
     name: 'License',
-    meta: {title: i18n.t('m.license')},
+    meta: { title: i18n.t('m.license') },
     component: License
   },
   {
     path: '*',
-    meta: {title: '404'},
+    meta: { title: '404' },
     component: NotFound
   }
 ]
