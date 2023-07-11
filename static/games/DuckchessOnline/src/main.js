@@ -253,7 +253,7 @@ function init() {
   // create stage canvas and menu elements
   stage = $(`<canvas width='${stageRect.width}' height='${stageRect.height}'></canvas>`)
   ctx = stage[0].getContext('2d')
-  menu = $(`<div id='menu'><h3>菜单</h3><fieldset><legend>操作</legend></fieldset><fieldset><legend>关于</legend><p>这个项目由 <a href='https://github.com/caibyte' target="_blank">caibyte</a> 编写, <a href='https://github.com/FredB-mine' target="_blank">Dr.Alfred</a> 进行修改</p><p><a href='https://github.com/caibyte/DuckchessOnline' target="_blank">github链接</a>&nbsp;&nbsp;<a href='http://alfredoj.natapp1.cc/static/games/DuckchessOnline/LICENSE.html' target="_blank">MIT条款</a></p></fieldset><fieldset><legend>规则</legend><a href='https://www.luogu.com.cn/problem/P5380' target="_blank">点我查看</a></fieldset></div>`)
+  menu = $(`<div id='menu'><h3>菜单</h3><fieldset><legend>操作</legend></fieldset><fieldset><legend>关于</legend><p>这个项目由 <a href='https://github.com/caibyte' target="_blank">caibyte</a> 编写, <a href='https://github.com/FredB-mine' target="_blank">Dr.Alfred</a> 进行修改</p><p><a href='https://github.com/caibyte/DuckchessOnline' target="_blank">github链接</a>&nbsp;&nbsp;<a href='http://alfredoj.natapp1.cc/static/games/DuckchessOnline/LICENSE.html'>MIT条款</a></p></fieldset><fieldset><legend>规则</legend><a href='https://www.luogu.com.cn/problem/P5380' target="_blank">点我查看</a></fieldset></div>`)
   restart = $('<button class="btn">重新开始</button>')
   menu.children('fieldset')[0].append(restart[0])
   resize()
@@ -305,11 +305,11 @@ function checkmateType() {
   for (let i = 0; i < hSize; i++) {
     for (let j = 0; j < wSize; j++) {
       if (map[i][j].team === 1 &&
-          map[i][j].canMoveTo(bx, by)) {
+        map[i][j].canMoveTo(bx, by)) {
         return 1
       }
       if (map[i][j].team === 2 &&
-          map[i][j].canMoveTo(rx, ry)) {
+        map[i][j].canMoveTo(rx, ry)) {
         return 2
       }
     }
