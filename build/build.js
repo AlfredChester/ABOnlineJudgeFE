@@ -34,7 +34,7 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
 
     console.log(chalk.cyan('  Congratulations, the project built complete without error\n'))
     console.log(chalk.yellow(
-      ' You can now check the onlinejudge in http://YouIP/'
+      ' You can now check the onlinejudge in http://localhost:8080/'
     ))
   })
 })
