@@ -302,6 +302,9 @@ export const m = {
   Succeeded: '成功',
   Real_Time: '真实时间',
   Signal: '信号',
+  Testcase_Info: '测试点信息',
+  Compile_Info: '编译信息',
+  Source_Code: '源代码',
   // SubmissionList.vue
   Submission_List: '提交列表',
   Submission_Details: '提交详情',
