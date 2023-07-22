@@ -38,7 +38,7 @@
                 Dr.Alfred.
               </a>
             </span> <br/>
-            <span id="power_by">
+            <span id="powered_by">
               Powered by 
               <a href="https://github.com/QingdaoU/OnlineJudge" 
                  target="_blank">
@@ -65,32 +65,32 @@
 </template>
 
 <script>
-  import { languages } from '../../../i18n'
+import { languages } from '../../../i18n'
 
-  export default {
-    data() {
-      var languagesTemp = {}
-      console.log('[oj/Footer.vue]: Fetching i18n Map')
-      for (var item of languages) {
-        console.log('[oj/Footer.vue]:', item.label, item.value)
-        languagesTemp[item.label] = item.value
-      }
-      return {
-        version: process.env.VERSION,
-        languages: languagesTemp,
-        langCache: this.$i18n.locale
-      }
+export default {
+  data() {
+    var languagesTemp = {}
+    console.log('[oj/Footer.vue]: Fetching i18n Map')
+    for (var item of languages) {
+      console.log('[oj/Footer.vue]:', item.label, item.value)
+      languagesTemp[item.label] = item.value
+    }
+    return {
+      version: process.env.VERSION,
+      languages: languagesTemp,
+      langCache: this.$i18n.locale
+    }
+  },
+  watch: {
+    'langCache'() {
+      this.$i18n.locale = this.langCache
+      this.$success(this.$i18n.t('m.Succeeded'))
     },
-    watch: {
-      'langCache'() {
-        this.$i18n.locale = this.langCache
-        this.$success(this.$i18n.t('m.Succeeded'))
-      },
-      '$i18n.locale'(newVal) {
-        this.langCache = newVal
-      }
+    '$i18n.locale'(newVal) {
+      this.langCache = newVal
     }
   }
+}
 </script>
 
 <style lang="less">
@@ -100,6 +100,8 @@
   text-align: center;
   font-size: small;
   display: flex;
+  width: 100%;
+
   .wrapped {
     vertical-align: middle;
     margin-left: auto;
@@ -107,13 +109,16 @@
     margin-top: 20px;
     margin-bottom: 20px;
     color: white;
+
     .inner_wrap {
       min-width: 65vw;
       display: flex;
+
       .logo {
         margin-top: auto;
         margin-bottom: auto;
       }
+
       .slogan {
         margin-top: auto;
         margin-bottom: auto;
@@ -123,13 +128,16 @@
         font-size: 1.6em;
         text-align: left;
       }
+
       .infoCard {
         flex: 1;
         text-align: right;
         margin-top: auto;
         margin-bottom: auto;
+
         .infoCard_line_extension {
           margin-right: 10px;
+
           .ivu-select {
             .ivu-select-selection {
               background-color: unset;
@@ -137,6 +145,7 @@
               box-shadow: none;
               color: white;
             }
+
             .ivu-select-dropdown {
               text-align: center;
             }
@@ -144,8 +153,10 @@
         }
       }
     }
+
     a {
       color: rgba(255, 255, 255, .75);
+
       &:active,
       &:hover {
         color: white;
