@@ -20,19 +20,19 @@ export const JUDGE_STATUS = {
   '1': {
     name: 'Time Limit Exceeded',
     short: 'TLE',
-    color: 'red',
+    color: 'blue',
     type: 'error'
   },
   '2': {
     name: 'Time Limit Exceeded',
     short: 'TLE',
-    color: 'red',
+    color: 'blue',
     type: 'error'
   },
   '3': {
     name: 'Memory Limit Exceeded',
     short: 'MLE',
-    color: 'red',
+    color: 'blue',
     type: 'error'
   },
   '4': {
@@ -68,6 +68,16 @@ export const JUDGE_STATUS = {
     color: 'yellow',
     type: 'warning'
   }
+}
+
+export const COLORS = {
+  'AC': { color: '#19be6b' },
+  'WA': { color: '#ed3f14' },
+  'TLE': { color: '#0e1d69' },
+  'MLE': { color: '#0e1d69' },
+  'RE': { color: '#9d3dcf' },
+  'CE': { color: '#ffc116' },
+  'PAC': { color: '#3498db' }
 }
 
 export const CONTEST_STATUS = {
@@ -119,7 +129,7 @@ export const STORAGE_KEY = {
   languages: 'languages'
 }
 
-export function buildProblemCodeKey (problemID, contestID = null) {
+export function buildProblemCodeKey(problemID, contestID = null) {
   if (contestID) {
     return `${STORAGE_KEY.PROBLEM_CODE}_${contestID}_${problemID}`
   }
