@@ -12,94 +12,95 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex'
-  import NavBar from '@oj/components/NavBar.vue'
-  import MyFooter from '@oj/components/Footer.vue'
+import { mapActions, mapState } from 'vuex'
+import NavBar from '@oj/components/NavBar.vue'
+import MyFooter from '@oj/components/Footer.vue'
 
-  export default {
-    name: 'app',
-    components: {
-      NavBar,
-      MyFooter
+export default {
+  name: 'app',
+  components: {
+    NavBar,
+    MyFooter
+  },
+  created() {
+    try {
+      document.body.removeChild(document.getElementById('app-loader'))
+    } catch (e) {
+      console.log('Error when loading app', e)
+    }
+  },
+  mounted() {
+    this.getWebsiteConfig()
+  },
+  methods: {
+    ...mapActions(['getWebsiteConfig', 'changeDomTitle'])
+  },
+  computed: {
+    ...mapState(['website'])
+  },
+  watch: {
+    'website'() {
+      this.changeDomTitle()
     },
-    created() {
-      try {
-        document.body.removeChild(document.getElementById('app-loader'))
-      } catch (e) {
-      }
-    },
-    mounted() {
-      this.getWebsiteConfig()
-    },
-    methods: {
-      ...mapActions(['getWebsiteConfig', 'changeDomTitle'])
-    },
-    computed: {
-      ...mapState(['website'])
-    },
-    watch: {
-      'website'() {
-        this.changeDomTitle()
-      },
-      '$route'() {
-        this.changeDomTitle()
-      }
+    '$route'() {
+      this.changeDomTitle()
     }
   }
+}
 </script>
 
 <style lang="less">
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background: #bbb;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+
+  &:active,
+  &:hover {
+    outline-width: 0;
   }
-
-  /* 滚动槽 */
-  ::-webkit-scrollbar-track {
-    border-radius: 6px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    background: #bbb;
-  }
-
-  * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-
-  a {
-    text-decoration: none;
-    background-color: transparent;
-
-    &:active,
-    &:hover {
-      outline-width: 0;
-    }
-  }
+}
 
 
-  @media screen and (max-width: 1200px) {
-    .content-app {
-      margin-top: 160px;
-      padding: 0 2%;
-    }
-  }
-
-  @media screen and (min-width: 1200px) {
-    .content-app {
-      margin-top: 80px;
-      padding: 0 2%;
-    }
-  }
-
+@media screen and (max-width: 1200px) {
   .content-app {
-    min-height: calc(100vh - 60px);
+    margin-top: 160px;
+    padding: 0 2%;
   }
+}
 
-  .fadeInUp-enter-active {
-    animation: fadeInUp .8s;
+@media screen and (min-width: 1200px) {
+  .content-app {
+    margin-top: 80px;
+    padding: 0 2%;
   }
+}
+
+.content-app {
+  min-height: calc(100vh - 60px);
+}
+
+.fadeInUp-enter-active {
+  animation: fadeInUp .8s;
+}
 </style>
