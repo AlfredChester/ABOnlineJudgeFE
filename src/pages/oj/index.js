@@ -45,8 +45,8 @@ Object.keys(filters).forEach(key => {
 })
 
 Vue.config.productionTip = false
-Vue.config.debug = false
-Vue.config.devtools = false
+Vue.config.debug = process.env.NODE_ENV !== 'production'
+Vue.config.devtools = process.env.NODE_ENV !== 'production'
 
 Vue.use(iView, {
   i18n: (key, value) => i18n.t(key, value)
@@ -76,4 +76,4 @@ Vue.prototype.$error = (s) => Vue.prototype.$Message.error(s)
 Vue.prototype.$info = (s) => Vue.prototype.$Message.info(s)
 Vue.prototype.$success = (s) => Vue.prototype.$Message.success(s)
 
-new Vue(Vue.util.extend({router, store, i18n}, App)).$mount('#app')
+new Vue(Vue.util.extend({ router, store, i18n }, App)).$mount('#app')
