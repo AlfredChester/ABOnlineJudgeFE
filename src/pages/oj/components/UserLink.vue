@@ -50,7 +50,7 @@ export default {
 
 <style lang="less">
 a {
-  color: #495060;
+  color: #495060 !important;
 
   &:hover {
     color: #2d8cf0;
