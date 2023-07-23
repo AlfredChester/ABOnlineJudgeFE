@@ -19,8 +19,6 @@
                 </Dropdown-menu>
               </Dropdown>
             </li>
-
-
             <li>
               <i-switch size="large" v-model="formFilter.myself" @on-change="handleQueryChange">
                 <span slot="open">{{ $t('m.Mine') }}</span>
@@ -30,7 +28,6 @@
             <li>
               <Input v-model="formFilter.username" :placeholder="$t('m.Search_Author')" @on-enter="handleQueryChange"/>
             </li>
-
             <li>
               <Button type="info" icon="md-refresh" @click="getSubmissions">{{ $t('m.Refresh') }}</Button>
             </li>
