@@ -27,12 +27,12 @@
               <!--v-for-->
               <div class="wrapper" v-for="Case in submission.info.data">
                 <Tooltip placement="top">
-                  <div class="test-case" :style="'background: ' +
-                    colors[judge_status[Case.result].short].color">
+                  <div class="test-case" :style="'background: ' + (!judging ?
+                    colors[judge_status[Case.result].short].color : '#3498db')">
                     <div class="id">
                       #{{ Case.test_case }}
                     </div>
-                    <div class="test-case-content">
+                    <div class="test-case-content" v-if="!judging">
                       <div class="status">
                         {{ judge_status[Case.result].short }}
                       </div>
@@ -41,15 +41,26 @@
                         {{ utils.submissionMemoryFormat(Case.memory) }}
                       </div>
                     </div>
+                    <div class="test-case-content" v-else>
+                      <span class="spinning">
+                        <Icon 
+                          type="ios-loading" size=45
+                          class="demo-spin-icon-load">
+                        </Icon>
+                      </span>
+                    </div>
                   </div>
                   <template #content>
-                    <p class="poptip_content">
+                    <p class="poptip_content" v-if="!judging">
                       {{ judge_status[Case.result].name }}
                       <span v-if="Case.score">
                         , {{ $t('m.Score') }}: {{ Case.score }}
                       </span>
                     </p>
-                    <p v-if="isAdminRole">
+                    <p v-else>
+                      Judging
+                    </p>
+                    <p v-if="isAdminRole && !judging">
                       Real: {{ Case.real_time }}ms,
                       Exit: {{ Case.exit_code }}
                     </p>
@@ -102,9 +113,9 @@
               <div class="left">
                 {{ $t('m.Status') }}:
               </div>
-              <div class="right" :style="'font-weight: bold;color: ' +
+              <div class="right" :style="'font-weight:bold; color: ' +
                 colors[judge_status[submission.result].short].color">
-                {{ judge_status[submission.result].name }}
+                {{ status.statusName }}
               </div>
             </div>
             <div class="line">
@@ -209,8 +220,7 @@ export default {
       menuSelect: undefined,
       judge_status: JUDGE_STATUS,
       utils: utils,
-      colors: COLORS,
-      avatar: undefined
+      colors: COLORS
     }
   },
   mounted() {
@@ -220,8 +230,7 @@ export default {
     handleRejudge(id) {
       api.submissionRejudge(id).then(res => {
         this.$success(this.$i18n.t('m.Succeed'))
-        this.getSubmission()
-      }, () => { })
+      }, () => { this.getSubmission() })
     },
     selectItem(name) {
       this.menuSelect = name
@@ -276,6 +285,9 @@ export default {
     showRejudgeBtn() {
       return this.user.admin_type === USER_TYPE.SUPER_ADMIN && !this.submission.contest
     },
+    judging() {
+      return this.status.statusName === 'Judging'
+    },
     submitTime() {
       var dateTime = this.submission.create_time
       return dayjs(dateTime).format('YYYY-MM-DD HH:MM:DD')
@@ -285,6 +297,31 @@ export default {
 </script>
 
 <style scoped lang="less">
+.spinning {
+  display: block;
+  margin: auto;
+  font-size: 18px;
+  color: white;
+
+  .demo-spin-icon-load {
+    animation: ani-demo-spin 1s linear infinite;
+  }
+
+  @keyframes ani-demo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    50% {
+      transform: rotate(180deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
 #status {
 
   .title {
