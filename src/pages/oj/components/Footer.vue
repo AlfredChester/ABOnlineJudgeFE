@@ -101,6 +101,7 @@ export default {
   font-size: small;
   display: flex;
   width: 100%;
+  bottom: 0px;
 
   .wrapped {
     vertical-align: middle;
