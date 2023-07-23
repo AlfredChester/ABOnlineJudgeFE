@@ -11,6 +11,7 @@ export const m = {
   Go_Home: '返回主页',
   // Problem.vue
   SPJ_Enabled: '本题启用SPJ',
+  Copy: '复制',
   Copy_Success: '复制成功',
   Copy_Fail: '复制失败',
   Details_i18n: '详情',
@@ -127,6 +128,7 @@ export const m = {
   // ContestDetail.vue
   Enter: '输入',
   Problems: '题目',
+  Problem: '题目',
   Announcements: '公告',
   Submissions: '提交信息',
   Rankings: '排名',
@@ -311,6 +313,7 @@ export const m = {
   When: '时间',
   ID: 'ID',
   Time: '时间',
+  Submit_time: '提交时间',
   Memory: '内存',
   Author: '作者',
   Option: '选项',
