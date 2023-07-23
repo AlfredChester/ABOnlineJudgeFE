@@ -1,10 +1,12 @@
 <template>
-  <a :href="'/user-home?username=' + username">
-    <span v-if="!loading">
-      <Avatar :src="image"></Avatar>
-    </span>
-    {{ username }}
-  </a>
+  <div class="userlink">
+    <a :href="'/user-home?username=' + username">
+      <span v-if="!loading">
+        <Avatar :src="image"></Avatar>
+      </span>
+      {{ username }}
+    </a>
+  </div>
 </template>
 
 <script>
@@ -49,8 +51,8 @@ export default {
 </script>
 
 <style lang="less">
-a {
-  color: #495060 !important;
+.userlink a {
+  color: #495060;
 
   &:hover {
     color: #2d8cf0;
