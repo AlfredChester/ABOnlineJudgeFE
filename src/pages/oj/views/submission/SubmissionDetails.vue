@@ -1,62 +1,34 @@
 <template>
-  <Row type="flex" justify="space-around">
-    <Col :span="20" id="status">
-      <Alert :type="status.type === 'primary' ? 'info' : status.type" showIcon>
-        <span class="title">
-          {{ $t('m.' + status.statusName.replace(/ /g, "_")) }}
-        </span>
-        <div slot="desc" class="content">
-          <span>
-            {{ $t('m.Time') }}
-            {{ submission.statistic_info.time_cost | submissionTime }}
-          </span>
-          <span>
-            {{ $t('m.Memory') }}: 
-            {{ submission.statistic_info.memory_cost | submissionMemory }}
-          </span>
-          <span>
-            {{ $t('m.Lang') }}: 
-            {{ submission.language }}
-          </span>
-          <span>
-            {{ $t('m.Author') }}: 
-            {{ submission.username }}
-          </span>
-        </div>
-      </Alert>
-    </Col>
-    <Col :span="20">
+  <Row justify="center" type="flex">
+    <Col :span="14">
       <panel class="container">
-        <div slot="title" style="font-size: xx-large; margin-top: 3px;">
+        <div slot="title">
           <Menu class="submission-menu" @on-select="selectItem"
                 mode="horizontal" :active-name="isCE ? 'CEInfo' : 'Testcase'">
             <MenuItem name="Testcase" v-if="!isCE">
-              测试点信息
+              {{ $t('m.Testcase_Info') }}
             </MenuItem>
             <MenuItem name="CEInfo" v-else>
-              编译信息
+              {{ $t('m.Compile_Info') }}
             </MenuItem>
             <MenuItem name="Code">
-              源代码
+              {{ $t('m.Source_Code') }}
             </MenuItem>
           </Menu>
         </div>
         <div class="content">
           <span v-if="menuSelect === 'CEInfo'">
-            <h3>编译信息</h3>
+            <h3>{{ $t('m.Compile_Info') }}</h3>
             <pre>{{ submission.statistic_info.err_info }}</pre>
           </span>
           <span v-else-if="menuSelect === 'Testcase'">
-            <h3>测试点信息</h3>
+            <h3>{{ $t('m.Testcase_Info') }}</h3>
             <div class="test-cases-wrap">
               <!--v-for-->
               <div class="wrapper" v-for="Case in submission.info.data">
-                <Tooltip placement="top"
-                         :content="getTip(Case.test_case)">
-                  <div class="test-case" 
-                      :style="'background: ' +
-                        colors[judge_status[Case.result].short].color">
-                      <!--colors[judge_status[Case.result].color]-->
+                <Tooltip placement="top">
+                  <div class="test-case" :style="'background: ' +
+                    colors[judge_status[Case.result].short].color">
                     <div class="id">
                       #{{ Case.test_case }}
                     </div>
@@ -70,13 +42,32 @@
                       </div>
                     </div>
                   </div>
+                  <template #content>
+                    <p class="poptip_content">
+                      {{ judge_status[Case.result].name }}, 
+                      {{ $t('m.Score') }}: {{ Case.score }}
+                    </p>
+                    <p v-if="isAdminRole">
+                      Real: {{ Case.real_time }}ms,
+                      Exit: {{ Case.exit_code }}
+                    </p>
+                  </template>
                 </Tooltip>
               </div>
             </div>
           </span>
           <span v-else>
-            <div>
-              <h3>源代码 - {{ submission.language }}</h3>
+            <div style="display: flex;">
+              <h3>
+                {{ $t('m.Source_Code') }} - {{ submission.language }}
+              </h3>
+              &nbsp; &nbsp;
+              <Button size="small"
+                      v-clipboard:copy="submission.code"
+                      v-clipboard:success="onCopy"
+                      v-clipboard:error="onCopyError">
+                {{ $t('m.Copy') }}
+              </Button>
             </div>
             <Highlight 
                      :code="submission.code" 
@@ -87,31 +78,117 @@
         </div>
       </panel>
     </Col>
-    <Col v-if="submission.can_unshare" :span="20">
-      <div id="share-btn">
-        <Button v-if="submission.shared"
-                type="warning" size="large" @click="shareSubmission(false)">
-          {{ $t('m.UnShare') }}
-        </Button>
-        <Button v-else
-                type="primary" size="large" @click="shareSubmission(true)">
-          {{ $t('m.Share') }}
-        </Button>
-      </div>
+    <Col :span="1"></Col>
+    <Col :span="5" id="status">
+      <panel class="container">
+        <div slot="title" style="font-size: initial;">
+          <UserLink :username="submission.username">
+          </UserLink>
+        </div>
+        <div class="content">
+          <div class="submission-info">
+            <!-- <div class="line">
+              <div class="left">
+                {{ $t('m.Problem') }}:
+              </div>
+              <div class="right">
+                <ProblemLink :problemId="String(submission.problem)">
+                </ProblemLink>
+              </div>
+            </div> -->
+            <div class="line">
+              <div class="left">
+                {{ $t('m.Status') }}:
+              </div>
+              <div class="right" :style="'font-weight: bold;color: ' +
+                colors[judge_status[submission.result].short].color">
+                {{ judge_status[submission.result].name }}
+              </div>
+            </div>
+            <div class="line">
+              <div class="left">
+                {{ $t('m.Language') }}: 
+              </div>
+              <div class="right">
+                {{ submission.language }}
+              </div>
+            </div>
+            <div class="line">
+              <div class="left">
+                {{ $t('m.Submit_time') }}:
+              </div>
+              <div class="right">
+                {{ submitTime }}
+              </div>
+            </div>
+            <div class="line">
+              <div class="left">
+                {{ $t('m.Time') }}
+              </div>
+              <div class="right">
+                {{ submission.statistic_info.time_cost | submissionTime }}
+              </div>
+            </div>
+            <div class="line">
+              <div class="left">
+                {{ $t('m.Memory') }}: 
+              </div>
+              <div class="right">
+                {{ submission.statistic_info.memory_cost | submissionMemory }}
+              </div>
+            </div>
+            <div class="line">
+              <div class="left">
+                {{ $t('m.Score') }}:
+              </div>
+              <div class="right">
+                {{ submission.statistic_info.score }}
+              </div>
+            </div>
+          </div>
+          <div class="btn">
+            <div v-if="submission.can_unshare">
+              <div id="share-btn">
+                <Button v-if="submission.shared"
+                        type="warning" size="large" @click="shareSubmission(false)">
+                  {{ $t('m.UnShare') }}
+                </Button>
+                <Button v-else
+                        type="primary" size="large" @click="shareSubmission(true)">
+                  {{ $t('m.Share') }}
+                </Button>
+              </div>
+            </div>
+            <div v-if="showRejudgeBtn">
+              <div id="rejudge-btn">
+                <Button size="large" @click="handleRejudge(submission.id)">
+                  {{ $t('m.Rejudge') }}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </panel>
     </Col>
   </Row>
 </template>
 
 <script>
 import api from '@oj/api'
-import { JUDGE_STATUS, COLORS } from '@/utils/constants'
+import dayjs from 'dayjs'
 import utils from '@/utils/utils'
+import UserLink from '@/pages/oj/components/UserLink'
+import ProblemLink from '@/pages/oj/components/ProblemLink'
 import Highlight from '@/pages/oj/components/Highlight'
+import { mapGetters } from 'vuex'
+import { JUDGE_STATUS, COLORS, USER_TYPE } from '@/utils/constants'
 
 export default {
   name: 'submissionDetails',
   components: {
-    Highlight
+    Highlight,
+    UserLink,
+    ProblemLink
   },
   data() {
     return {
@@ -130,13 +207,20 @@ export default {
       menuSelect: undefined,
       judge_status: JUDGE_STATUS,
       utils: utils,
-      colors: COLORS
+      colors: COLORS,
+      avatar: undefined
     }
   },
   mounted() {
     this.getSubmission()
   },
   methods: {
+    handleRejudge(id) {
+      api.submissionRejudge(id).then(res => {
+        this.$success(this.$i18n.t('m.Succeed'))
+        this.getSubmission()
+      }, () => { })
+    },
     selectItem(name) {
       this.menuSelect = name
     },
@@ -165,14 +249,15 @@ export default {
       }, () => {
       })
     },
-    getTip(testcase) {
-      testcase = Number(testcase)
-      var data = this.submission.info.data[testcase - 1]
-      console.log(JSON.stringify(data, null, 2))
-      return ''
+    onCopy(event) {
+      this.$success(this.$i18n.t('m.Copy_Success'))
+    },
+    onCopyError(e) {
+      this.$error(this.$i18n.t('m.Copy_Fail'))
     }
   },
   computed: {
+    ...mapGetters(['user']),
     status() {
       return {
         type: JUDGE_STATUS[this.submission.result].type,
@@ -185,6 +270,13 @@ export default {
     },
     isAdminRole() {
       return this.$store.getters.isAdminRole
+    },
+    showRejudgeBtn() {
+      return this.user.admin_type === USER_TYPE.SUPER_ADMIN && !this.submission.contest
+    },
+    submitTime() {
+      var dateTime = this.submission.create_time
+      return dayjs(dateTime).format('YYYY-MM-DD HH:MM:DD')
     }
   }
 }
@@ -192,6 +284,7 @@ export default {
 
 <style scoped lang="less">
 #status {
+
   .title {
     font-size: 20px;
   }
@@ -202,6 +295,29 @@ export default {
 
     span {
       margin-right: 10px;
+    }
+  }
+}
+
+.submission-info {
+  margin-bottom: 20px;
+
+  .line {
+    display: flex;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 5px;
+
+    .left {
+      flex: 1 0 auto;
+    }
+
+    .right {
+      max-width: 175px;
+      color: #1c2127;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
   }
 }
@@ -267,6 +383,10 @@ export default {
             }
           }
         }
+
+        .poptip_content {
+          align-items: center;
+        }
       }
     }
 
@@ -291,10 +411,13 @@ export default {
   }
 }
 
-#share-btn {
-  float: right;
-  margin-top: 5px;
-  margin-right: 10px;
+.btn {
+  display: flex;
+  flex-direction: row-reverse;
+
+  div {
+    margin-left: 10px;
+  }
 }
 
 pre {
