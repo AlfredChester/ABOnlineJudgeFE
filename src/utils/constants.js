@@ -49,11 +49,13 @@ export const JUDGE_STATUS = {
   },
   '6': {
     name: 'Pending',
+    short: 'PED',
     color: 'yellow',
     type: 'warning'
   },
   '7': {
     name: 'Judging',
+    short: 'JDG',
     color: 'blue',
     type: 'primary'
   },
@@ -65,6 +67,7 @@ export const JUDGE_STATUS = {
   },
   '9': {
     name: 'Submitting',
+    short: 'SUB',
     color: 'yellow',
     type: 'warning'
   }
@@ -77,7 +80,10 @@ export const COLORS = {
   'MLE': { color: '#0e1d69' },
   'RE': { color: '#9d3dcf' },
   'CE': { color: '#ffc116' },
-  'PAC': { color: '#3498db' }
+  'PAC': { color: '#3498db' },
+  'JDG': { color: '#3498db' },
+  'SUB': { color: '#3498db' },
+  'PED': { color: '#3498db' }
 }
 
 export const CONTEST_STATUS = {
