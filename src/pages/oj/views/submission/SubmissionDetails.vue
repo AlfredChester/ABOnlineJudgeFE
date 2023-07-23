@@ -44,8 +44,10 @@
                   </div>
                   <template #content>
                     <p class="poptip_content">
-                      {{ judge_status[Case.result].name }}, 
-                      {{ $t('m.Score') }}: {{ Case.score }}
+                      {{ judge_status[Case.result].name }}
+                      <span v-if="Case.score">
+                        , {{ $t('m.Score') }}: {{ Case.score }}
+                      </span>
                     </p>
                     <p v-if="isAdminRole">
                       Real: {{ Case.real_time }}ms,
@@ -137,7 +139,7 @@
                 {{ submission.statistic_info.memory_cost | submissionMemory }}
               </div>
             </div>
-            <div class="line">
+            <div class="line" v-if="submission.statistic_info.score">
               <div class="left">
                 {{ $t('m.Score') }}:
               </div>
