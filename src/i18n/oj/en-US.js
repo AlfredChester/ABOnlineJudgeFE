@@ -11,6 +11,7 @@ export const m = {
   Go_Home: 'Go Home',
   // Problem.vue
   SPJ_Enabled: 'SPJ is enabled',
+  Copy: 'Copy',
   Copy_Success: 'Copied',
   Copy_Fail: 'Failed to copy',
   Details_i18n: 'Details',
@@ -127,6 +128,7 @@ export const m = {
   // ContestDetail.vue
   Enter: 'Enter',
   Problems: 'Problems',
+  Problem: 'Problem',
   Announcements: 'Announcements',
   Submissions: 'Submissions',
   Rankings: 'Rankings',
@@ -302,12 +304,16 @@ export const m = {
   Succeeded: 'Succeeded',
   Real_Time: 'Real Time',
   Signal: 'Signal',
+  Testcase_Info: 'Testcase information',
+  Compile_Info: 'Compile information',
+  Source_Code: 'Source code',
   // SubmissionList.vue
   Submission_List: 'Submission List',
   Submission_Details: 'Submission Details',
   When: 'When',
   ID: 'ID',
   Time: 'Time',
+  Submit_time: 'Submit At',
   Memory: 'Memory',
   Author: 'Author',
   Option: 'Option',
