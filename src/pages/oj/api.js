@@ -8,12 +8,12 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 axios.defaults.xsrfCookieName = 'csrftoken'
 
 export default {
-  getWebsiteConf (params) {
+  getWebsiteConf(params) {
     return ajax('website', 'get', {
       params
     })
   },
-  getAnnouncementList (offset, limit) {
+  getAnnouncementList(offset, limit) {
     let params = {
       offset: offset,
       limit: limit
@@ -22,12 +22,12 @@ export default {
       params
     })
   },
-  login (data) {
+  login(data) {
     return ajax('login', 'post', {
       data
     })
   },
-  checkUsernameOrEmail (username, email) {
+  checkUsernameOrEmail(username, email) {
     return ajax('check_username_or_email', 'post', {
       data: {
         username,
@@ -36,85 +36,85 @@ export default {
     })
   },
   // 注册
-  register (data) {
+  register(data) {
     return ajax('register', 'post', {
       data
     })
   },
-  logout () {
+  logout() {
     return ajax('logout', 'get')
   },
-  getCaptcha () {
+  getCaptcha() {
     return ajax('captcha', 'get')
   },
-  getUserInfo (username = undefined) {
+  getUserInfo(username = undefined) {
     return ajax('profile', 'get', {
       params: {
         username
       }
     })
   },
-  updateProfile (profile) {
+  updateProfile(profile) {
     return ajax('profile', 'put', {
       data: profile
     })
   },
-  freshDisplayID (userID) {
+  freshDisplayID(userID) {
     return ajax('profile/fresh_display_id', 'get', {
       params: {
         user_id: userID
       }
     })
   },
-  twoFactorAuth (method, data) {
+  twoFactorAuth(method, data) {
     return ajax('two_factor_auth', method, {
       data
     })
   },
-  tfaRequiredCheck (username) {
+  tfaRequiredCheck(username) {
     return ajax('tfa_required', 'post', {
       data: {
         username
       }
     })
   },
-  getSessions () {
+  getSessions() {
     return ajax('sessions', 'get')
   },
-  deleteSession (sessionKey) {
+  deleteSession(sessionKey) {
     return ajax('sessions', 'delete', {
       params: {
         session_key: sessionKey
       }
     })
   },
-  applyResetPassword (data) {
+  applyResetPassword(data) {
     return ajax('apply_reset_password', 'post', {
       data
     })
   },
-  resetPassword (data) {
+  resetPassword(data) {
     return ajax('reset_password', 'post', {
       data
     })
   },
-  changePassword (data) {
+  changePassword(data) {
     return ajax('change_password', 'post', {
       data
     })
   },
-  changeEmail (data) {
+  changeEmail(data) {
     return ajax('change_email', 'post', {
       data
     })
   },
-  getLanguages () {
+  getLanguages() {
     return ajax('languages', 'get')
   },
-  getProblemTagList () {
+  getProblemTagList() {
     return ajax('problem/tags', 'get')
   },
-  getProblemList (offset, limit, searchParams) {
+  getProblemList(offset, limit, searchParams) {
     let params = {
       paging: true,
       offset,
@@ -129,17 +129,17 @@ export default {
       params: params
     })
   },
-  pickone () {
+  pickone() {
     return ajax('pickone', 'get')
   },
-  getProblem (problemID) {
+  getProblem(problemID) {
     return ajax('problem', 'get', {
       params: {
         problem_id: problemID
       }
     })
   },
-  getContestList (offset, limit, searchParams) {
+  getContestList(offset, limit, searchParams) {
     let params = {
       offset,
       limit
@@ -155,21 +155,21 @@ export default {
       params
     })
   },
-  getContest (id) {
+  getContest(id) {
     return ajax('contest', 'get', {
       params: {
         id
       }
     })
   },
-  getContestAccess (contestID) {
+  getContestAccess(contestID) {
     return ajax('contest/access', 'get', {
       params: {
         contest_id: contestID
       }
     })
   },
-  checkContestPassword (contestID, password) {
+  checkContestPassword(contestID, password) {
     return ajax('contest/password', 'post', {
       data: {
         contest_id: contestID,
@@ -177,21 +177,21 @@ export default {
       }
     })
   },
-  getContestAnnouncementList (contestId) {
+  getContestAnnouncementList(contestId) {
     return ajax('contest/announcement', 'get', {
       params: {
         contest_id: contestId
       }
     })
   },
-  getContestProblemList (contestId) {
+  getContestProblemList(contestId) {
     return ajax('contest/problem', 'get', {
       params: {
         contest_id: contestId
       }
     })
   },
-  getContestProblem (problemID, contestID) {
+  getContestProblem(problemID, contestID) {
     return ajax('contest/problem', 'get', {
       params: {
         contest_id: contestID,
@@ -199,52 +199,52 @@ export default {
       }
     })
   },
-  submitCode (data) {
+  submitCode(data) {
     return ajax('submission', 'post', {
       data
     })
   },
-  getSubmissionList (offset, limit, params) {
+  getSubmissionList(offset, limit, params) {
     params.limit = limit
     params.offset = offset
     return ajax('submissions', 'get', {
       params
     })
   },
-  getContestSubmissionList (offset, limit, params) {
+  getContestSubmissionList(offset, limit, params) {
     params.limit = limit
     params.offset = offset
     return ajax('contest_submissions', 'get', {
       params
     })
   },
-  getSubmission (id) {
+  getSubmission(id) {
     return ajax('submission', 'get', {
       params: {
         id
       }
     })
   },
-  submissionExists (problemID) {
+  submissionExists(problemID) {
     return ajax('submission_exists', 'get', {
       params: {
         problem_id: problemID
       }
     })
   },
-  submissionRejudge (id) {
+  submissionRejudge(id) {
     return ajax('admin/submission/rejudge', 'get', {
       params: {
         id
       }
     })
   },
-  updateSubmission (data) {
+  updateSubmission(data) {
     return ajax('submission', 'put', {
       data
     })
   },
-  getUserRank (offset, limit, rule = 'acm') {
+  getUserRank(offset, limit, rule = 'acm') {
     let params = {
       offset,
       limit,
@@ -254,17 +254,17 @@ export default {
       params
     })
   },
-  getContestRank (params) {
+  getContestRank(params) {
     return ajax('contest_rank', 'get', {
       params
     })
   },
-  getACMACInfo (params) {
+  getACMACInfo(params) {
     return ajax('admin/contest/acm_helper', 'get', {
       params
     })
   },
-  updateACInfoCheckedStatus (data) {
+  updateACInfoCheckedStatus(data) {
     return ajax('admin/contest/acm_helper', 'put', {
       data
     })
@@ -278,9 +278,9 @@ export default {
  * @param data post data, use for method put|post
  * @returns {Promise}
  */
-function ajax (url, method, options) {
+function ajax(url, method, options) {
   if (options !== undefined) {
-    var {params = {}, data = {}} = options
+    var { params = {}, data = {} } = options
   } else {
     params = data = {}
   }
@@ -297,7 +297,7 @@ function ajax (url, method, options) {
         reject(res)
         // 若后端返回为登录，则为session失效，应退出当前登录用户
         if (res.data.data.startsWith('Please login')) {
-          store.dispatch('changeModalStatus', {'mode': 'login', 'visible': true})
+          store.dispatch('changeModalStatus', { 'mode': 'login', 'visible': true })
         }
       } else {
         resolve(res)
