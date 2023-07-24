@@ -1,6 +1,6 @@
 <template>
   <Row justify="center" type="flex">
-    <Col :span="14">
+    <Col :span="13">
       <panel class="container">
         <div slot="title">
           <Menu class="submission-menu" @on-select="selectItem"
@@ -92,7 +92,7 @@
       </panel>
     </Col>
     <Col :span="1"></Col>
-    <Col :span="5" id="status">
+    <Col :span="6" id="status">
       <panel class="container">
         <div slot="title" style="font-size: initial;">
           <UserLink :username="submission.username">
@@ -100,7 +100,7 @@
         </div>
         <div class="content">
           <div class="submission-info">
-            <!-- <div class="line">
+            <div class="line">
               <div class="left">
                 {{ $t('m.Problem') }}:
               </div>
@@ -108,7 +108,7 @@
                 <ProblemLink :problemId="String(submission.problem)">
                 </ProblemLink>
               </div>
-            </div> -->
+            </div>
             <div class="line">
               <div class="left">
                 {{ $t('m.Status') }}:
@@ -248,7 +248,6 @@ export default {
           }
         }
         this.submission = data
-        console.log(data)
         this.selectItem(this.isCE ? 'CEInfo' : 'Testcase')
       }, () => { })
     },
@@ -352,7 +351,7 @@ export default {
     }
 
     .right {
-      max-width: 175px;
+      max-width: 250px;
       color: #1c2127;
       text-overflow: ellipsis;
       overflow: hidden;
