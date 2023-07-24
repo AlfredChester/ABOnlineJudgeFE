@@ -1,6 +1,6 @@
 <template>
-    <a :href="'/problem/'">
-      
+    <a :href="'/problem/' + data._id">
+      {{ data._id }} {{ data.title }}
     </a>
   </template>
   
@@ -27,9 +27,10 @@ export default {
   },
   methods: {
     reload() {
-      if (this.problemId !== undefined && this.problemId !== '') {
+      if (this.problemId !== 'undefined' && this.problemId !== '') {
         api.getProblemByID(this.problemId).then(res => {
-          console.log(res.data.data)
+          this.loading = false
+          this.data = res.data.data
         })
       }
     }
@@ -41,14 +42,9 @@ export default {
   }
 }
 </script>
-  
+
 <style lang="less">
 a {
-  color: #495060;
-
-  &:hover {
-    color: #2d8cf0;
-    border-bottom: none;
-  }
+  font-weight: bolder;
 }
 </style>
