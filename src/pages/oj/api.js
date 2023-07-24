@@ -139,6 +139,13 @@ export default {
       }
     })
   },
+  getProblemByID(id) {
+    return ajax('problem', 'get', {
+      params: {
+        id: id
+      }
+    })
+  },
   getContestList(offset, limit, searchParams) {
     let params = {
       offset,
