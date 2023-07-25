@@ -101,7 +101,7 @@ export default {
           show: true,
           feature: {
             dataView: { show: true, readOnly: true },
-            magicType: { show: true, type: ['bar', 'stack'] },
+            magicType: { show: true, type: ['bar'] },
             saveAsImage: { show: true }
           },
           right: '10%'
