@@ -1,5 +1,6 @@
 <template>
-    <a :href="'/problem/' + data._id">
+    <a :href="'/problem/' + data._id" 
+       class="problemlink" v-if="!loading">
       {{ data._id }} {{ data.title }}
     </a>
   </template>
@@ -44,7 +45,7 @@ export default {
 </script>
 
 <style lang="less">
-a {
+.problemlink a {
   font-weight: bolder;
 }
 </style>
