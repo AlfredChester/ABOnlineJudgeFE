@@ -53,7 +53,7 @@
                   <template #content>
                     <p class="poptip_content" v-if="!judging">
                       {{ judge_status[Case.result].name }}
-                      <span v-if="Case.score">
+                      <span v-if="Case.score !== undefined">
                         , {{ $t('m.Score') }}: {{ Case.score }}
                       </span>
                     </p>
