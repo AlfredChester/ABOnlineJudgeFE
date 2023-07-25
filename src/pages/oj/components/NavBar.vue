@@ -46,13 +46,13 @@
           {{ $t('m.Homo_Number_Generator') }}
         </Menu-item>
         <Menu-item name="/tools/listening">
-          {{$t('m.ListeningPage')}}
+          {{ $t('m.ListeningPage') }}
         </Menu-item>
         <Menu-item name="/tools/downloadCollection">
-          {{$t('m.DownloadPage')}}
+          {{ $t('m.DownloadPage') }}
         </Menu-item>
         <Menu-item name="/tools/duckchess">
-          {{$t('m.DuckChess')}}
+          {{ $t('m.DuckChess') }}
         </Menu-item>
       </Submenu>
       <Submenu name="about">
@@ -95,7 +95,7 @@
         <Dropdown class="drop-menu" @on-click="handleRoute" placement="bottom" trigger="click">
           <Button type="text" class="drop-menu-title">
             <Avatar :src="avatar"></Avatar>
-            {{ user.username }}
+                        {{ user.username }}
             <Icon type="md-arrow-dropdown"></Icon>
           </Button>
           <Dropdown-menu slot="list">
@@ -120,113 +120,120 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
-  import api from '@oj/api'
-  import login from '@oj/views/user/Login'
-  import register from '@oj/views/user/Register'
+import { mapGetters, mapActions } from 'vuex'
+import api from '@oj/api'
+import login from '@oj/views/user/Login'
+import register from '@oj/views/user/Register'
 
-  export default {
-    components: {
-      login,
-      register
-    },
-    data() {
-      return {
-        avatar: ''
+export default {
+  components: {
+    login,
+    register
+  },
+  data() {
+    return {
+      avatar: ''
+    }
+  },
+  mounted() {
+    this.getProfile()
+    api.getUserInfo(this.user.username).then(data => {
+      console.log('[oj/NavBar.vue]: User Avatar:', data.data.data.avatar)
+      this.avatar = data.data.data.avatar
+    }).catch(err => {
+      console.log('[oj/NavBar.vue]: Error occurred when loading avatar:')
+      console.log('[oj/NavBar.vue]:', err)
+      console.log('[oj/NavBar.vue]: Using default avatar')
+      this.avatar = '/public/avatar/default.png'
+    })
+  },
+  methods: {
+    ...mapActions(['getProfile', 'changeModalStatus']),
+    handleRoute(route) {
+      if (route && route.indexOf('admin') < 0) {
+        this.$router.push(route)
+      } else {
+        window.open('/admin/')
       }
     },
-    mounted() {
-      this.getProfile()
-      api.getUserInfo(this.user.username).then(data => {
-        console.log('[oj/NavBar.vue]: User Avatar:', data.data.data.avatar)
-        this.avatar = data.data.data.avatar
-      }).catch(err => {
-        console.log('[oj/NavBar.vue]: Error occurred when loading avatar:')
-        console.log('[oj/NavBar.vue]:', err)
-        console.log('[oj/NavBar.vue]: Using default avatar')
-        this.avatar = '/public/avatar/default.png'
+    handleBtnClick(mode) {
+      this.changeModalStatus({
+        visible: true,
+        mode: mode
       })
+    }
+  },
+  computed: {
+    ...mapGetters(['website', 'modalStatus', 'user', 'isAuthenticated', 'isAdminRole']),
+    // 跟随路由变化
+    activeMenu() {
+      return '/' + this.$route.path.split('/')[1]
     },
-    methods: {
-      ...mapActions(['getProfile', 'changeModalStatus']),
-      handleRoute(route) {
-        if (route && route.indexOf('admin') < 0) {
-          this.$router.push(route)
-        } else {
-          window.open('/admin/')
-        }
+    modalVisible: {
+      get() {
+        return this.modalStatus.visible
       },
-      handleBtnClick(mode) {
-        this.changeModalStatus({
-          visible: true,
-          mode: mode
-        })
-      }
-    },
-    computed: {
-      ...mapGetters(['website', 'modalStatus', 'user', 'isAuthenticated', 'isAdminRole']),
-      // 跟随路由变化
-      activeMenu() {
-        return '/' + this.$route.path.split('/')[1]
-      },
-      modalVisible: {
-        get() {
-          return this.modalStatus.visible
-        },
-        set(value) {
-          this.changeModalStatus({ visible: value })
-        }
+      set(value) {
+        this.changeModalStatus({ visible: value })
       }
     }
   }
+}
 </script>
 
 <style lang="less" scoped>
-  #header {
-    min-width: 300px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: auto;
-    width: 100%;
-    z-index: 1000;
-    background-color: #fff;
-    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
-    .oj-menu {
-      background: #fdfdfd;
-    }
-    .logo {
-      user-select: none;
-      margin-left: 2%;
-      margin-right: 2%;
-      font-size: 20px;
-      float: left;
-      line-height: 60px;
+#header {
+  min-width: 300px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: auto;
+  width: 100%;
+  z-index: 1000;
+  background-color: #fff;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+
+  .oj-menu {
+    background: #fdfdfd;
+  }
+
+  .logo {
+    user-select: none;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 20px;
+    float: left;
+    line-height: 60px;
+    height: 60px;
+    width: auto;
+
+    img {
       height: 60px;
-      width: auto;
-      img {
-        height: 60px;
-      }
-    }
-    .drop-menu {
-      float: right;
-      margin-right: 30px;
-      position: absolute;
-      right: 10px;
-      &-title {
-        font-size: 18px;
-      }
-    }
-    .btn-menu {
-      font-size: 16px;
-      float: right;
-      margin-right: 10px;
     }
   }
-  .modal {
+
+  .drop-menu {
+    float: right;
+    margin-right: 30px;
+    position: absolute;
+    right: 10px;
+
     &-title {
       font-size: 18px;
-      font-weight: 600;
     }
   }
+
+  .btn-menu {
+    font-size: 16px;
+    float: right;
+    margin-right: 10px;
+  }
+}
+
+.modal {
+  &-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+}
 </style>
