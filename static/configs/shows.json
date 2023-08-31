@@ -1,0 +1,25 @@
+{
+    "Better_Call_Saul": {
+        "S01": {
+            "range": 10
+        },
+        "S02": {
+            "range": 10
+        },
+        "S03": {
+            "range": 10
+        },
+        "S04": {
+            "range": 10
+        },
+        "S05": {
+            "range": 10
+        }
+    },
+    "Breaking_Bad": {
+        "movie": {
+            "name": "绝命毒师电影--续命之徒",
+            "range": 1
+        }
+    }
+}
