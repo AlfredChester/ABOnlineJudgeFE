@@ -50,15 +50,11 @@ span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 </style>
 
-
   </head>
 
   <body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF"
     vlink="#800080" alink="#FF0000">
     <h1 class="settitle" align="center">The GNU C Reference Manual</h1>
-
-
-
 
     <a name="SEC_Contents"></a>
     <h2 class="contents-heading">Table of Contents</h2>
@@ -362,7 +358,6 @@ ul.no-bullet {list-style: none}
       </ul>
     </div>
 
-
     <a name="Top"></a>
     <div class="header">
       <p>
@@ -422,8 +417,6 @@ ul.no-bullet {list-style: none}
           align="left" valign="top">
         </td></tr>
     </table>
-
-
 
     <hr>
     <a name="Preface"></a>
@@ -542,7 +535,6 @@ ul.no-bullet {list-style: none}
         </td></tr>
     </table>
 
-
     <hr>
     <a name="Identifiers"></a>
     <div class="header">
@@ -659,7 +651,6 @@ __volatile __volatile__
           align="left" valign="top">
         </td></tr>
     </table>
-
 
     <hr>
     <a name="Integer-Constants"></a>
@@ -1017,8 +1008,6 @@ pumpernickel bread with a kasha knish and seltzer water.&quot;
 knish
 </pre></div>
 
-
-
     <hr>
     <a name="Operators"></a>
     <div class="header">
@@ -1063,7 +1052,6 @@ knish
     <div class="example">
       <pre class="example">( ) [ ] { } ; , . :
 </pre></div>
-
 
     <hr>
     <a name="White-Space"></a>
@@ -1147,7 +1135,6 @@ x
     <div class="example">
       <pre class="example">&quot;potato                        knish&quot;
 </pre></div>
-
 
     <hr>
     <a name="Data-Types"></a>
@@ -1279,14 +1266,12 @@ x
         The 8-bit <code>signed char</code> data type can hold integer values in
         the range of -128 to 127.
 
-
       </li><li> <code>unsigned char</code>
         <a name="index-unsigned-char-data-type"></a>
         <br>
         The 8-bit <code>unsigned char</code> data type can hold integer values
         in
         the range of 0 to 255.
-
 
       </li><li> <code>char</code>
         <a name="index-char-data-type"></a>
@@ -1299,7 +1284,6 @@ x
         specifically for storing ASCII characters (such as <code>`m'</code>),
         including escape
         sequences (such as <code>`\n'</code>).
-
 
       </li><li> <code>short int</code>
         <a name="index-short-int-data-type"></a>
@@ -1315,7 +1299,6 @@ x
         values
         in the range of 0 to 65,535. You may also refer to this data type
         as <code>unsigned short</code>.
-
 
       </li><li> <code>int</code>
         <a name="index-int-data-type"></a>
@@ -1333,7 +1316,6 @@ x
         the range of 0 to 4,294,967,295. You may also refer to this data type
         simply as <code>unsigned</code>.
 
-
       </li><li> <code>long int</code>
         <a name="index-long-int-data-type"></a>
         <br>
@@ -1344,7 +1326,6 @@ x
         also
         refer to this data type as <code>long</code>, <code>signed long int</code>,
         or <code>signed long</code>.
-
 
       </li><li> <code>unsigned long int</code>
         <a name="index-unsigned-long-int-data-type"></a>
@@ -1357,7 +1338,6 @@ x
         You may
         also refer to this data type as <code>unsigned long</code>.
 
-
       </li><li> <code>long long int</code>
         <a name="index-long-long-int-data-type"></a>
         <br>
@@ -1369,8 +1349,6 @@ x
         <code>signed long long int</code> or <code>signed long long</code>. This
         type is
         not part of C89, but is both part of C99 and a GNU C extension.
-
-
 
       </li><li> <code>unsigned long long int</code>
         <a name="index-unsigned-long-long-int-data-type"></a>
@@ -1441,7 +1419,6 @@ char quux = 'a';
         Its maximum
         value is stored in <code>FLT_MAX</code>, and should be no less than
         <code>1e37</code>.
-
 
       </li><li> <code>double</code>
         <a name="index-double-data-type"></a>
@@ -1622,7 +1599,6 @@ void example (void)
         The <code>__complex__ float</code> data type has two components: a real
         part and an imaginary part, both of which are of the <code>float</code>
         data type.
-
 
       </li><li> <code>__complex__ int</code>
         <br>
@@ -1963,7 +1939,6 @@ banana = 15;  /* <span class="roman">You can&rsquo;t do this!</span> */
       <code>first_number</code> and <code>second_number</code>.
     </p>
 
-
     <hr>
     <a name="Declaring-Union-Variables-After-Definition"></a>
     <div class="header">
@@ -2060,8 +2035,6 @@ union numbers first_number = { 5 };
     float f;
   } first_number = { 5 };
 </pre></div>
-
-
 
     <hr>
     <a name="Accessing-Union-Members"></a>
@@ -2303,7 +2276,6 @@ first_number.f = 3.9;
       <code>first_point</code> and <code>second_point</code>.
     </p>
 
-
     <hr>
     <a name="Declaring-Structure-Variables-After-Definition"></a>
     <div class="header">
@@ -2460,7 +2432,6 @@ struct rectangle my_rectangle = { {0, 5}, {10, 0} };
       make the code easier to read.
     </p>
 
-
     <hr>
     <a name="Accessing-Structure-Members"></a>
     <div class="header">
@@ -2512,8 +2483,6 @@ my_rectangle.bottom_right.x = 10;
 my_rectangle.bottom_right.y = 0;
 </pre></div>
 
-
-
     <hr>
     <a name="Bit-Fields"></a>
     <div class="header">
@@ -2562,8 +2531,6 @@ my_rectangle.bottom_right.y = 0;
       0 to <em>2^N - 1</em>, and the range of a signed bit field of <em>N</em>
       bits is from <em>-(2^N) / 2</em> to <em>((2^N) / 2) - 1</em>.
     </p>
-
-
 
     <p>Bit fields can be specified without a name in order to control which
       actual bits within the containing unit are used. However,
@@ -2667,7 +2634,6 @@ my_rectangle.bottom_right.y = 0;
         </td></tr>
     </table>
 
-
     <hr>
     <a name="Declaring-Arrays"></a>
     <div class="header">
@@ -2691,7 +2657,6 @@ my_rectangle.bottom_right.y = 0;
     <div class="example">
       <pre class="example">int my_array[10];
 </pre></div>
-
 
     <p>For standard C code, the number of elements in an array must be positive.
     </p>
@@ -2726,7 +2691,6 @@ my_function (int number)
   &hellip;;
 }
 </pre></div>
-
 
     <hr>
     <a name="Initializing-Arrays"></a>
@@ -2785,7 +2749,6 @@ my_function (int number)
     <div class="example">
       <pre class="example">int my_array[5] = { 0, 0, 5, 0, 9 };
 </pre></div>
-
 
     <p>When using GNU extensions, you can initialize a range of elements to
       the same value, by specifying the first and last indices, in the form
@@ -2866,8 +2829,6 @@ my_function (int number)
 struct point point_array[2] = { {4, 5}, {8, 9} };
 point_array[0].x = 3;
 </pre></div>
-
-
 
     <hr>
     <a name="Multidimensional-Arrays"></a>
@@ -3195,7 +3156,6 @@ point_array[0].y = 3;
 int *baz, quux;   /* <span class="roman">A pointer and an integer variable.</span> */
 </pre></div>
 
-
     <hr>
     <a name="Initializing-Pointers"></a>
     <div class="header">
@@ -3354,7 +3314,6 @@ fish_ptr -&gt; weight = 6.2;
       5.1 and 6.2, respectively.
     </p>
 
-
     <hr>
     <a name="Incomplete-Types"></a>
     <div class="header">
@@ -3405,7 +3364,6 @@ fish_ptr -&gt; weight = 6.2;
   };
 struct singly_linked_list *list_head;
 </pre></div>
-
 
     <hr>
     <a name="Type-Qualifiers"></a>
@@ -3850,9 +3808,6 @@ struct foo {
       <pre class="example">x = x + y;
 </pre></div>
 
-
-
-
     <hr>
     <a name="Incrementing-and-Decrementing"></a>
     <div class="header">
@@ -3987,7 +3942,6 @@ y = 940.0 / 20.2;
         Integer Division</a> for
       information about overflow in signed integer division.
     </p>
-
 
     <p>You use the modulus operator <code>%</code> to obtain the remainder
       produced
@@ -4178,7 +4132,6 @@ else
       <pre class="example">if (x &gt;= y)
   puts (&quot;x is greater than or equal to y&quot;);
 </pre></div>
-
 
     <hr>
     <a name="Logical-Operators"></a>
@@ -4637,7 +4590,6 @@ foo = (struct fooType) byteArray; /* <span class="roman">Fail!</span> */
 a = 10 + function();
 </pre></div>
 
-
     <hr>
     <a name="The-Comma-Operator"></a>
     <div class="header">
@@ -4832,7 +4784,6 @@ else
       evaluated.
     </p>
 
-
     <hr>
     <a name="Statements-and-Declarations-in-Expressions"></a>
     <div class="header">
@@ -4985,8 +4936,6 @@ else
       </li><li> Comma operator expressions.
 
       </li></ol>
-
-
 
     <p>The above list is somewhat dry and is apparently straightforward, but
       it does hide some pitfalls. Take this example:
@@ -5301,7 +5250,6 @@ int foo (void)
       things will happen, but the C standards do not say which.
     </p>
 
-
     <hr>
     <a name="Sequence-Points-and-Signal-Delivery"></a>
     <div class="header">
@@ -5320,7 +5268,6 @@ int foo (void)
       this document, even though the C standards consider the compiler and
       the C library together to be &ldquo;the implementation&rdquo;.
     </p>
-
 
     <p>When a signal is received, this will happen between sequence points.
       Side effects on <code>volatile</code> objects prior to the previous
@@ -5347,7 +5294,6 @@ int foo (void)
       intended to run on a POSIX system but not on other systems, you can
       safely call these from your signal handler too.
     </p>
-
 
     <hr>
     <a name="Statements"></a>
@@ -5512,7 +5458,6 @@ puts (&quot;Hello, user!&quot;);
       cause a fault in the program if the value of <code>cucumber</code> is both
       not a valid pointer and has been declared as <code>volatile</code>.
     </p>
-
 
     <hr>
     <a name="The-if-Statement"></a>
@@ -6057,7 +6002,6 @@ printf (&quot;%d\n&quot;, x);   /* <span class="roman">Compilation error! <code>
                        <span class="roman">in the preceding block.</span> */
 </pre></div>
 
-
     <hr>
     <a name="The-Null-Statement"></a>
     <div class="header">
@@ -6181,8 +6125,6 @@ static enum Result turn (void)
 }
 </pre></div>
 
-
-
     <hr>
     <a name="The-break-Statement"></a>
     <div class="header">
@@ -6259,7 +6201,6 @@ for (x = 1; x &lt;= 10; x++)
       is
       inside a loop, then it affects only the innermost loop.
     </p>
-
 
     <hr>
     <a name="The-return-Statement"></a>
@@ -6339,7 +6280,6 @@ square_value (int x)
 }
 </pre></div>
 
-
     <hr>
     <a name="The-typedef-Statement"></a>
     <div class="header">
@@ -6403,7 +6343,6 @@ array_of_bytes five_bytes = {0, 1, 2, 3, 4};
       library
       type names.
     </p>
-
 
     <hr>
     <a name="Functions"></a>
@@ -6474,7 +6413,6 @@ array_of_bytes five_bytes = {0, 1, 2, 3, 4};
           valign="top">
         </td></tr>
     </table>
-
 
     <hr>
     <a name="Function-Declarations"></a>
@@ -6669,7 +6607,6 @@ add_values (x, y)
     <div class="example">
       <pre class="example">a = quux (5, 10);
 </pre></div>
-
 
     <hr>
     <a name="Function-Parameters"></a>
@@ -6879,7 +6816,6 @@ add_multiple_values (int number, ...)
 }
 </pre></div>
 
-
     <p>To use optional parameters, you need to have a way to know how many
       there are. This can vary, so it can&rsquo;t be hard-coded, but if you
       don&rsquo;t know how many optional parameters you have, then you could
@@ -6952,7 +6888,6 @@ void example (int want_foo)
   message (pf, 5);
 }
 </pre></div>
-
 
     <hr>
     <a name="The-main-Function"></a>
@@ -7045,7 +6980,6 @@ main (int argc, char *argv[])
   return 0;
 }
 </pre></div>
-
 
     <hr>
     <a name="Recursive-Functions"></a>
@@ -7180,7 +7114,6 @@ factorial (int x)
       follow.
     </p>
 
-
     <hr>
     <a name="Program-Structure-and-Scope"></a>
     <div class="header">
@@ -7274,8 +7207,6 @@ computeSqrt (double x)
 }
 </pre></div>
 
-
-
     <hr>
     <a name="Scope"></a>
     <div class="header">
@@ -7289,7 +7220,6 @@ computeSqrt (double x)
     <a name="Scope-1"></a>
     <h3 class="section">6.2 Scope</h3>
     <a name="index-scope"></a>
-
 
     <p>Scope refers to what parts of the program can &ldquo;see&rdquo; a
       declared object. A declared
@@ -7329,8 +7259,6 @@ int y = 5;
       more information on changing the scope of
       declared objects. Also see <a href="#Static-Functions">Static Functions</a>.
     </p>
-
-
 
     <hr>
     <a name="A-Sample-Program"></a>
@@ -7376,7 +7304,6 @@ int y = 5;
           align="left" valign="top">
         </td></tr>
     </table>
-
 
     <hr>
     <a name="hello_002ec"></a>
@@ -7589,7 +7516,6 @@ There is NO WARRANTY, to the extent permitted by law.\n&quot;),
 }
 </pre></div>
 
-
     <hr>
     <a name="system_002eh"></a>
     <div class="header">
@@ -7659,7 +7585,6 @@ There is NO WARRANTY, to the extent permitted by law.\n&quot;),
     </div>
     <a name="Overflow-1"></a>
     <h2 class="appendix">Appendix A Overflow</h2>
-
 
     <p>[This appendix, written principally by Paul Eggert, is from the GNU
       Autoconf manual. We
@@ -8605,8 +8530,6 @@ of this license document, but changing it is not allowed.
       free software license, such as the GNU General Public License,
       to permit their use in free software.
     </p>
-
-
 
     <hr>
     <a name="Index"></a>
@@ -9567,8 +9490,6 @@ of this license document, but changing it is not allowed.
         In any case, <code>argv[argc]</code> is a null pointer.</p>
     </div>
     <hr>
-
-
 
   </body>
 </html>
