@@ -46,18 +46,18 @@ function generateJSON(grade, index, whichExam) {
 }
 
 /**
- * A Function to generate a list of Jsons of AudioInfos
+ * A Function to generate a list of json of AudioInfos
  * @author Dr.Alfred
  *
  * @param {String} grade       current Grade
- * @param {Number} charpterNum Total sum of charpters
- * @param {Number} midTerm     Which Charpter is before Midterm
+ * @param {Number} chapterNum Total sum of chapters
+ * @param {Number} midTerm     Which Chapter is before Midterm
  */
-function getAudioByGrade(grade, charpterNum, midTerm) {
+function getAudioByGrade(grade, chapterNum, midTerm) {
   let _retval = []            // 返回的JSON数组
   let givenMidTerm = false    // 是否已经把期中练习放入数组
-  for (let i = 1; i < charpterNum; i++) {
-    // 循环charpterNum - 1 次 填充除了期末练习之外的练习
+  for (let i = 1; i < chapterNum; i++) {
+    // 循环chapterNum - 1 次 填充除了期末练习之外的练习
     let index = i - 1
     if (i === midTerm + 1) {  // 期中考试
       _retval[index] = generateJSON(grade, '中', 'Mid-term') // 期中
@@ -70,7 +70,7 @@ function getAudioByGrade(grade, charpterNum, midTerm) {
       }
     }
   }
-  _retval[charpterNum - 1] = generateJSON(grade, '末', 'Final')   // 期末练习
+  _retval[chapterNum - 1] = generateJSON(grade, '末', 'Final')   // 期末练习
   return _retval
 }
 
@@ -82,7 +82,7 @@ function getAudioByGrade(grade, charpterNum, midTerm) {
  */
 function genPHData(grade, unit, exercise) {
   if (grade === undefined || unit === undefined || exercise === undefined) {
-    throw Error('Some errors occured at [oj/Listening/genPHData]')
+    throw Error('Some errors occurred at [oj/Listening/genPHData]')
   }
   return {
     title: `Unit ${unit} Exercise ${exercise}`,
@@ -92,7 +92,7 @@ function genPHData(grade, unit, exercise) {
 }
 
 /**
- * A function to generate "Exercise" Datas
+ * A function to generate "Exercise" Data
  * @param {String} name   "Exercise" Name
  */
 function genExerciseData(name) {
