@@ -200,6 +200,12 @@ export default [
         component: Tools.Listening
       },
       {
+        path: 'video',
+        name: 'VideoPage',
+        meta: { title: i18n.t('m.VideoPage') },
+        component: Tools.VideoPage
+      },
+      {
         path: 'downloadCollection',
         name: 'Downloads',
         meta: { title: i18n.t('m.DownloadPage') },
