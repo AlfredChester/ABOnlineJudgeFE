@@ -1,6 +1,7 @@
 export const m = {
   loadedi18nType: 'zh-TW',
   DuckChess: '鴨棋模擬器',
+  VideoPage: '美剧追不停',
   preview: '預覽',
   license: '服務/隱私條款',
   // App.vue
