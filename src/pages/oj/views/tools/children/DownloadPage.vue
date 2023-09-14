@@ -234,6 +234,7 @@ export default {
             requirePdf('《陋室铭》翻译', 9),
             requirePdf('《陋室铭》家默卷', 1),
             requirePdf('《活板》 翻译部分', 25),
+            requirePdf('《答谢中书书》文常及翻译部分', 10),
             requirePdf('杞人忧天 课件', 17),
             requirePdf('期中综合练习卷二', 5),
             requirePdf('期中综合练习卷三', 5),
