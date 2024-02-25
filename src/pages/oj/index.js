@@ -76,4 +76,15 @@ Vue.prototype.$error = (s) => Vue.prototype.$Message.error(s)
 Vue.prototype.$info = (s) => Vue.prototype.$Message.info(s)
 Vue.prototype.$success = (s) => Vue.prototype.$Message.success(s)
 
+console.log(
+  '%c%s%c%s', 'color:red;font-size:24px;', `   Welcome to`,
+  'color:blue;font-weight:bold;', `
+     ___      .______     ______          __  
+    /   \\     |   _  \\   /  __  \\        |  | 
+   /  ^  \\    |  |_)  | |  |  |  |       |  | 
+  /  /_\\  \\   |   _  <  |  |  |  | .--.  |  | 
+ /  _____  \\  |  |_)  | |  \`--'  | |  \`--'  | 
+/__/     \\__\\ |______/   \\______/   \\______/  
+ `)
+
 new Vue(Vue.util.extend({ router, store, i18n }, App)).$mount('#app')
